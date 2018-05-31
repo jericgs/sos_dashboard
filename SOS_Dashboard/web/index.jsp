@@ -23,7 +23,7 @@
         <link rel="icon" type="image/png" href="Resources/imagens/icons/icon.ico">
 
         <!-- CSS Style-->
-        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/style.css">
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/style-page1.css">
 
         <!-- Navbar Fixo no Top -->
         <link href="navbar-top-fixed.css" rel="stylesheet">
@@ -69,7 +69,7 @@
                             <a class="nav-link" href="#" data-container="link" data-link="contato">CONTATO</a>                            
                         </li>
                         <li class="nav-item">                                                        
-                            <a class="nav-link" href="#">LOGIN</a>
+                            <a class="nav-link" href="login.jsp">LOGIN</a>
                         </li> 
                     </ul>
 
