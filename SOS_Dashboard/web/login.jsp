@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.css">        
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/style.css">
 
-        <!-- ï¿½cone -->        
+        <!-- Icone -->        
         <link rel="icon" type="image/png" href="Resources/imagens/icons/icon.ico">
 
         <!-- CSS Style-->
@@ -27,6 +27,10 @@
 
         <!-- Navbar Fixo no Top -->
         <link href="navbar-top-fixed.css" rel="stylesheet">
+
+        <!-- Alertas Sweetalert -->
+        <link rel="stylesheet" href="Resources/node_modules/sweetalert2/css/sweetalert2.min.css">
+        <script src="Resources/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 
 
         <!-- Font -->
@@ -49,7 +53,7 @@
                                     <img src="Resources/imagens/icons/now-logo.png" alt="">
                                 </div>
                             </div>
-
+                            
                             <form action="login" method="post">
                                 <div class="card-body"> 
                                     <div class="input-group form-group-no-border input-lg">
@@ -90,6 +94,10 @@
 
             </footer>
 
+        </div>
+        
+        <div>
+            
         </div>
 
     </body>
