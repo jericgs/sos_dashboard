@@ -53,7 +53,7 @@
                                     <img src="Resources/imagens/icons/now-logo.png" alt="">
                                 </div>
                             </div>
-                            
+
                             <form action="login" method="post">
                                 <div class="card-body"> 
                                     <div class="input-group form-group-no-border input-lg">
@@ -95,9 +95,9 @@
             </footer>
 
         </div>
-        
+
         <div>
-            
+
         </div>
 
     </body>

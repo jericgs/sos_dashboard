@@ -12,6 +12,6 @@
         <title>Area - Admin</title>        
     </head>
     <body>
-        <h1>Resultado Login: <%= request.getAttribute("Resultado")%></h1>       
+        <h1>Resultado Login: ${resultado}</h1>       
     </body>
 </html>
