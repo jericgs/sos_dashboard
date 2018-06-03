@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.uern.les.erick.dao;
+package br.com.uern.les.erick.daos;
 
 import br.com.uern.les.erick.conexao.ConexaoBD;
-import br.com.uern.les.erick.modelo.Usuario;
+import br.com.uern.les.erick.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

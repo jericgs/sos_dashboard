@@ -12,6 +12,7 @@
         <title>Area - Admin</title>        
     </head>
     <body>
-        <h1>Resultado Login: ${resultado}</h1>       
+        <h1>Resultado Tipo de Usuário: ${resultado.tipoDeUsuario}</h1>
+        <h1>Resultado Senha: ${resultado.senha}</h1>       
     </body>
 </html>

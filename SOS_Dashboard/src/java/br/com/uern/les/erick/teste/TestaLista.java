@@ -5,8 +5,8 @@
  */
 package br.com.uern.les.erick.teste;
 
-import br.com.uern.les.erick.dao.UsuarioDAO;
-import br.com.uern.les.erick.modelo.Usuario;
+import br.com.uern.les.erick.daos.UsuarioDAO;
+import br.com.uern.les.erick.modelos.Usuario;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,11 +20,17 @@ public class TestaLista {
 
         String usuario = "wer";
         String senha = "444";
-     
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario user = usuarioDAO.getLogin(usuario, senha);
         
-        System.out.println(user);
+        if(usuario.equalsIgnoreCase("wer")){
+            System.out.println("Passou");
+        }else{
+            System.out.println("passou else");
+        }
+     
+        //UsuarioDAO usuarioDAO = new UsuarioDAO();
+        //Usuario user = usuarioDAO.getLogin(usuario, senha);
+        
+        //System.out.println(user);
 
     }
 }

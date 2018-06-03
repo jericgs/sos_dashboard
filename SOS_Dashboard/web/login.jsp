@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -32,7 +33,6 @@
         <link rel="stylesheet" href="Resources/node_modules/sweetalert2/css/sweetalert2.min.css">
         <script src="Resources/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
 
-
         <!-- Font -->
         <link href= "https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel='stylesheet' type='text/css'>         
 
@@ -40,7 +40,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     </head>
-    <body class="login-page">
+    <body class="login-page" onLoad="hidden()">
 
         <div class="page-header" filter-color="orange">
             <div class="page-header-image" style="background-image:url(Resources/imagens/body/login.jpg)"></div>
@@ -54,23 +54,23 @@
                                 </div>
                             </div>
 
-                            <form action="login" method="post">
+                            <form action="index" method="post">
                                 <div class="card-body"> 
                                     <div class="input-group form-group-no-border input-lg">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                         </div>
-                                        <input type="text" size="30" maxlength="30" class="form-control" name="usuario" value="" placeholder="Login">
+                                        <input id="login" type="text" size="30" maxlength="30" class="form-control" name="usuario" value="" placeholder="Login">
                                     </div>
                                     <div class="input-group form-group-no-border input-lg">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-keyboard-o"></i></span>
                                         </div>
-                                        <input type="password" size="8" maxlength="8" class="form-control" name="senha" value="" placeholder="Senha">
+                                        <input id="senha" type="password" size="8" maxlength="8" class="form-control" name="senha" value="" placeholder="Senha">
                                     </div> 
                                 </div>               
                                 <div class="card-footer text-center">
-                                    <input type="submit" class="btn btn-login btn-round btn-lg btn-block" onclick="this.blur();" value="Entrar">
+                                    <input type="submit" class="btn btn-login btn-round btn-lg btn-block" onclick="this.blur();" name="logica" value="Login">
                                 </div>
                             </form>                                                                                                                                                        
 
@@ -80,25 +80,32 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            <footer class="footer ">
 
-            <footer class="footer " >
 
-
-                <div class="container">                  
+                <div class="container" id="foo">                  
                     <div class="copyright">
-                        &copy; <script>document.write(new Date().getFullYear())</script>, Coded by <a href="http://lattes.cnpq.br/1048245272218464" target="_blank">Erick Gomes</a>.
+                        &copy; <script>document.write(new Date().getFullYear());</script>, Coded by <a href="http://lattes.cnpq.br/1048245272218464" target="_blank">Erick Gomes</a>.
                     </div>
                 </div>
 
 
             </footer>
-
         </div>
 
-        <div>
-
-        </div>
+        <script language="JavaScript">
+            function hidden() {
+                document.body.style.overflow = 'hidden';
+            }
+        </script>
+        
+        <!-- Primeiro POG (Não consegui usar jax)-->
+        <script>
+            <c:if test="${not empty resultado.tipoAlerta}">
+                swal({type: '${resultado.tipoAlerta}', title: 'Oops...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 1400});
+            </c:if>
+        </script>
 
     </body>
 </html>

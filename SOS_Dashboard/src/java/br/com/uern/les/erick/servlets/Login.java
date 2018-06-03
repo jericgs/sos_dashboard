@@ -5,8 +5,8 @@
  */
 package br.com.uern.les.erick.servlets;
 
-import br.com.uern.les.erick.dao.UsuarioDAO;
-import br.com.uern.les.erick.modelo.Usuario;
+import br.com.uern.les.erick.daos.UsuarioDAO;
+import br.com.uern.les.erick.modelos.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
             } else {
 
                 if (usuarioB.getTipoDeUsuario().equalsIgnoreCase("Tarm")) {
-                    request.setAttribute("resultado", "oi");
+                    request.setAttribute("resultado", usuarioB);
                     RequestDispatcher rd = request.getRequestDispatcher("areaTarm.jsp");
                     rd.forward(request, response);
                 }
@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
                 }
 
                 if (usuarioB.getTipoDeUsuario().equalsIgnoreCase("Admin")) {
-                    request.setAttribute("Resultado", usuarioB.getTipoDeUsuario());
+                    request.setAttribute("Resultado", usuarioB);
                     request.getRequestDispatcher("areaAdmin.jsp").forward(request, response);
                 }
 
@@ -82,5 +82,4 @@ public class Login extends HttpServlet {
         }
 
     }
-
 }
