@@ -24,14 +24,18 @@ public class UsuarioDAO {
 
     private Connection connection;
 
-    public UsuarioDAO(){
+    /*public UsuarioDAO() {
         try {
             this.connection = new ConexaoBD().getConnection();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 
+    public UsuarioDAO(Connection connection) {
+        this.connection = connection;
+    }
+    
     public Usuario getLogin(String usuario, String senha) {
 
         try {

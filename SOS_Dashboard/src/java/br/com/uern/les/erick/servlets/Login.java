@@ -9,6 +9,7 @@ import br.com.uern.les.erick.daos.UsuarioDAO;
 import br.com.uern.les.erick.modelos.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +45,8 @@ public class Login extends HttpServlet {
             rd.include(request, response);
         } else {
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            Connection connection = (Connection) request.getAttribute("conexao");
+            UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
             Usuario usuarioB = usuarioDAO.getLogin(usuario, senha);
 
             if (usuarioB == null) {

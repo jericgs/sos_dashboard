@@ -9,6 +9,7 @@ import br.com.uern.les.erick.daos.UsuarioDAO;
 import br.com.uern.les.erick.modelos.Alerta;
 import br.com.uern.les.erick.modelos.Usuario;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,14 +39,16 @@ public class Login implements Logica {
                 return "login.jsp";
             } else {
 
-                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                Connection connection = (Connection) req.getAttribute("conexao");
+
+                UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
                 Usuario usuarioB = usuarioDAO.getLogin(usuario, senha);
 
                 if (usuarioB == null) {
                     Alerta alerta = new Alerta();
                     alerta.setTipoAlerta("error");
                     alerta.setMsnAlerta("Acesso Negado!");
-                    req.setAttribute("resultado", alerta);                    
+                    req.setAttribute("resultado", alerta);
                     return "login.jsp";
                 } else {
 
