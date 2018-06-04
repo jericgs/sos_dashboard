@@ -5,7 +5,6 @@
  */
 package br.com.uern.les.erick.daos;
 
-import br.com.uern.les.erick.conexao.ConexaoBD;
 import br.com.uern.les.erick.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

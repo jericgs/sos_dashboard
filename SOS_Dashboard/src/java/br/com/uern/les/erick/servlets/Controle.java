@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jerick.gs
  */
-@WebServlet(name = "index", urlPatterns = {"/index"})
+@WebServlet(name = "controle", urlPatterns = {"/controle"})
 public class Controle extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

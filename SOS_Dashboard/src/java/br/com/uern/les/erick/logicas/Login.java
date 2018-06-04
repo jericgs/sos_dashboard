@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -53,17 +54,26 @@ public class Login implements Logica {
                 } else {
 
                     if (usuarioB.getTipoDeUsuario().equalsIgnoreCase("Tarm")) {
-                        req.setAttribute("resultado", usuarioB);
+
+                        HttpSession session = req.getSession();
+                        session.setAttribute("status", "logado");                        
+                        req.setAttribute("tarm", usuarioB);
                         return "areaTarm.jsp";
                     }
 
                     if (usuarioB.getTipoDeUsuario().equalsIgnoreCase("Médico")) {
-                        req.setAttribute("resultado", usuarioB);
+
+                        HttpSession session = req.getSession();
+                        session.setAttribute("status", "logado");                        
+                        req.setAttribute("medico", usuarioB);
                         return "areaMedico.jsp";
                     }
 
                     if (usuarioB.getTipoDeUsuario().equalsIgnoreCase("Admin")) {
-                        req.setAttribute("resultado", usuarioB);
+
+                        HttpSession session = req.getSession();
+                        session.setAttribute("status", "logado");                        
+                        req.setAttribute("admin", usuarioB);
                         return "areaAdmin.jsp";
                     }
 

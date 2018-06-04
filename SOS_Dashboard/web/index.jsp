@@ -69,7 +69,7 @@
                             <a class="nav-link" href="#" data-container="link" data-link="contato">CONTATO</a>                            
                         </li>
                         <li class="nav-item">                              
-                            <a class="nav-link" href="index?logica=Login&usuario=L&senha=S">LOGIN</a>                            
+                            <a class="nav-link" href="controle?logica=Login&usuario=L&senha=S">LOGIN</a>                            
                         </li> 
                     </ul>
 

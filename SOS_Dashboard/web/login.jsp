@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <form action="index" method="post">
+                            <form action="controle" method="post">
                                 <div class="card-body"> 
                                     <div class="input-group form-group-no-border input-lg">
                                         <div class="input-group-prepend">

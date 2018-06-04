@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,16 @@
         <title>Area - Médico</title>
     </head>
     <body>
-        <h1>Resultado Login: <%= request.getAttribute("Resultado")%></h1>       
+
+        <c:if test="${sessionScope.status == null}">
+            <jsp:forward page="controle?logica=Login&usuario=L&senha=S"></jsp:forward>                
+        </c:if>
+
+        <h1>Resultado Tipo de Session: ${sessionScope.status}</h1>
+        <h1>Resultado Tipo de Usuário: ${medico.tipoDeUsuario}</h1>
+        <h1>Resultado Senha: ${medico.senha}</h1>
+        
+        <a href="controle?logica=Logout&status=${sessionScope.status}">Logout</a>
+        
     </body>
 </html>
