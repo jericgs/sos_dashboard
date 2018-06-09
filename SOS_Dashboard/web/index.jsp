@@ -23,22 +23,21 @@
         <link rel="icon" type="image/png" href="Resources/imagens/icons/icon.ico">
 
         <!-- CSS Style-->
-        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/style-page1.css">
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/style-page1.css">        
 
         <!-- Navbar Fixo no Top -->
         <link href="navbar-top-fixed.css" rel="stylesheet">
-
 
         <!-- Font -->
         <link href= "https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel='stylesheet' type='text/css'>         
 
         <!-- Awesome  -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-               
+        <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
     </head>
-    <body class="body" data-container="home">       
+    <body class="body" data-container="home"> 
 
         <!-- NAVEGAÇÃO -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-light navbarSombra"style="background-color: #1B2B5E;" data-container="menu">
@@ -114,7 +113,7 @@
             </a>
 
         </div>
-        
+
         <!-- SOBRE -->
         <div data-container="sobre" class="section section-gray section-clients">
             <div class="container text-center">                    
@@ -131,7 +130,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- PROTOCOLOS -->
         <div class="section section-features" data-container="protocolos">
             <div class="container">
@@ -216,7 +215,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Telefones:</h4>
-                        <p class="lead mb-0"><span class="fa fa-phone-square"></span> (84)3315-4917<br><span class="fa fa-phone-square"></span> (84)3315-4883</p>
+                        <p class="lead mb-0"><span class="fa fa-phone-square"></span> (84) 3315-4917<br><span class="fa fa-phone-square"></span> (84) 3315-4883</p>
                     </div>
                     <div class="col-md-6 mb-5 mb-lg-0">
                         <h4 class="text-uppercase mb-4">Nós encontre</h4>
@@ -246,13 +245,15 @@
                 </div>
             </div>
         </footer>
-        
+
         <!-- RODAPÉ -->        
         <div class="copyright py-4 text-center text-white">
             <div class="container">
                 <small herf="http://lattes.cnpq.br/1048245272218464">&copy; Copyright · 2018 · <a class="styleLink" href="http://lattes.cnpq.br/1048245272218464">Erick Gomes</a></small>
             </div>
         </div>
+
+
 
         <!-- Modal SBV -->
         <div class="modal fade" id="acessoSBV" tabindex="-1" role="dialog">
@@ -314,12 +315,11 @@
 
         </div>
 
-
         <!-- Optional JavaScript CSS -->
         <!-- JQuery primeiro, depois popper.js, depois Bootstrap JS -->
         <script src="Resources/node_modules/jquery/dist/jquery.js"></script>
         <script src="Resources/node_modules/popper.js/dist/umd/popper.js"></script>
-        <script src="Resources/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="Resources/node_modules/bootstrap/dist/js/bootstrap.js"></script>                
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8kJ3p081G1hbsHQLkydJg8AtpVUznejw&callback=initMap"async defer></script>
 
         <!-- SCRIPTS -->

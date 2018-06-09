@@ -103,8 +103,8 @@
         <!-- Primeiro POG (Não consegui usar jax)-->
         <script>
             <c:if test="${not empty resultado.tipoAlerta}">
-                swal({type: '${resultado.tipoAlerta}', title: 'Oops...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 1400});
-            </c:if>
+                swal({type: '${resultado.tipoAlerta}', title: 'Oops...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 2000});
+            </c:if>                
         </script>
 
     </body>
