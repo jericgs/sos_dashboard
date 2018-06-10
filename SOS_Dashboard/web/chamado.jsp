@@ -148,7 +148,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Hora</label>
-                                                        <input type="email" class="form-control">
+                                                        <input type="text" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,26 +167,46 @@
                                                 </div>
                                             </div>                                            
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">City</label>
+                                                        <label class="control-label">Solicitante</label>
                                                         <input type="text" class="form-control">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Country</label>
+                                                        <label class="control-label">Telefone</label>
                                                         <input type="text" class="form-control">
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="radio">
+                                                        <label> 
+                                                            <input type="radio" name="motivo" checked="true">
+                                                            <p style="color: #AAAAAA;">Socorro</p>
+                                                        </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Postal Code</label>
-                                                        <input type="text" class="form-control">
+                                                    <div class="radio">
+                                                        <label> 
+                                                            <input type="radio" name="motivo">
+                                                            <p style="color: #AAAAAA;">Transporte</p>
+                                                        </label>
                                                     </div>
-                                                </div>
-                                            </div>                                           
-                                            <button type="submit" class="btn btn-primary pull-right">Registrar</button>
+                                                </div>      
+                                                <div class="col-md-4">
+                                                    <div class="radio">
+                                                        <label> 
+                                                            <input type="radio" name="motivo">
+                                                            <p style="color: #AAAAAA;">Informação</p>
+                                                        </label>
+                                                    </div>
+                                                </div>      
+                                            </div>                                            
+                                            <button type="submit" class="btn btn-primary pull-right">Próximo</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
