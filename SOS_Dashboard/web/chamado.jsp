@@ -23,6 +23,9 @@
         <!--  Material Dashboard CSS -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
 
+        <!-- Kit -->
+<!--        <link href="Resources/node_modules/bootstrap/compiler/material-kit.min.css" rel="stylesheet" />-->
+
         <!--  CSS for Demo Purpose, don't include it in your project     -->
         <link href="Resources/node_modules/bootstrap/compiler/demo.css" rel="stylesheet" />  
 
@@ -38,7 +41,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet'>
     </head>
 
-    <body>
+    <body>      
 
         <c:if test="${sessionScope.status == null}">
             <jsp:forward page="controle?logica=Login&usuario=L&senha=S"></jsp:forward>                
@@ -112,7 +115,7 @@
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
                                 <li>
-                                    <a href="controle?logica=Logout&status=${sessionScope.status}">
+                                    <a href="controle?logica=Logout&status=${sessionScope.status}&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                         <i class="material-icons">exit_to_app</i>
                                         <p class="hidden-lg hidden-md">Sair</p>
                                     </a>                                
@@ -133,13 +136,13 @@
                                     <div class="card-content">
                                         <form>
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">N°. Chamado</label>
                                                         <input type="text" class="form-control" disabled>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Data</label>
                                                         <input type="text" class="form-control">
@@ -152,17 +155,21 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
+                                            <div class="row ">
+                                                <div class="col-md-6"> 
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Médico Regulador</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
+                                                        <select class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                                                            <option class="bs-title-option form-control" value="">Selecione o médico</option>
+                                                            <option disabled>Choose city</option>
+                                                            <option value="2">José Erico Gomes da Silva</option>
+                                                            <option value="3">Is great</option>
+                                                        </select>	
+                                                    </div>                                                                                                                                                     
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">TARM</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" class="form-control ">
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -206,7 +213,7 @@
                                                     </div>
                                                 </div>      
                                             </div>                                            
-                                            <button type="submit" class="btn btn-primary pull-right">Próximo</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right">Próximo</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -214,19 +221,7 @@
                             </div>                           
                         </div>
                     </div>
-                </div>
-                <footer class="footer">
-                    <div class="container-fluid">                        
-                        <p class="copyright pull-right">
-                            &copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            , Coded by
-                            <a href="http://lattes.cnpq.br/1048245272218464">Erick Gomes</a>
-                        </p>
-                    </div>
-                </footer>
+                </div>               
             </div>
         </div>
     </body>
@@ -235,6 +230,11 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material.min.js" type="text/javascript"></script>
+
+    <!-- JS Select -->        
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-material-design.min.js" type="text/javascript"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-selectpicker.js" type="text/javascript"></script>
+
     <!--  Charts Plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
     <!--  Dynamic Elements plugin -->

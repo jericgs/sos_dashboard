@@ -30,18 +30,29 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }*/
-
     public UsuarioDAO(Connection connection) {
         this.connection = connection;
     }
-    
+
     public Usuario getLogin(String usuario, String senha) {
 
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM usuario WHERE  NomeUsuario= ? and Senha = ?");
+            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM usuario WHERE  NomeUsuario = ? and Senha = ?");
             stmt.setString(1, usuario);
             stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();
+
+            String sql = "UPDATE usuario SET Status = ? WHERE NomeUsuario = ? AND Senha = ?";
+            PreparedStatement ps = this.connection.prepareStatement(sql);
+
+            // seta os valores
+            ps.setString(1, "Online");
+            ps.setString(2, usuario);
+            ps.setString(3, senha);
+
+            //fecha atualização
+            ps.execute();
+            ps.close();
 
             while (rs.next()) {
                 // criando o objeto Usuario
@@ -51,24 +62,44 @@ public class UsuarioDAO {
                 usuarioL.setStatus(rs.getString("Status"));
                 usuarioL.setTipoDeUsuario(rs.getString("TipoDeUsuario"));
 
+                //fecha busca
+                rs.close();
+                stmt.close();
+
                 // adicionando o objeto à lista
                 return usuarioL;
             }
 
-            rs.close();
-            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
+    public void getLogout(String nomeUsuario) {
+
+        try {
+            String sql = "UPDATE usuario SET Status = ? WHERE NomeUsuario = ?";
+            PreparedStatement ps = this.connection.prepareStatement(sql);
+
+            // seta os valores
+            ps.setString(1, "Offline");
+            ps.setString(2, nomeUsuario);
+
+            //fecha atualização
+            ps.execute();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void adiciona(Usuario usuario) {
 
         // cria um preparedStatement
-        String sql = "insert into usuario "
+        String sql = "INSERT INTO usuario "
                 + "(NomeUsuario,Senha,Status,TipoDeUsuario) "
-                + "values (?,?,?,?)";
+                + "VALUES (?,?,?,?)";
 
         try {
             // prepared statement para inserção

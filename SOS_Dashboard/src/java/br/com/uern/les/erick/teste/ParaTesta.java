@@ -5,6 +5,10 @@
  */
 package br.com.uern.les.erick.teste;
 
+import br.com.uern.les.erick.conexao.ConexaoBD;
+import br.com.uern.les.erick.daos.UsuarioDAO;
+import br.com.uern.les.erick.modelos.Usuario;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -13,8 +17,19 @@ import java.sql.SQLException;
  */
 public class ParaTesta {
 
-    public static void main(String[] args) throws SQLException {
-       
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
+        /*
+        String usuario = "maria_clara";
+        String senha = "87654321";
+        String status = "Online";        
+
+        Connection connection = new ConexaoBD().getConnection();
+        UsuarioDAO dAO = new UsuarioDAO(connection);
+        //dAO.getLogout(usuario);
+        Usuario usuarioB = dAO.getLogin(usuario, senha, status);
+        
+        System.out.println(usuarioB.getStatus());
+        */
     }
 }

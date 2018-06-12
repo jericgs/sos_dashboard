@@ -112,7 +112,7 @@
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
                                 <li>
-                                    <a href="controle?logica=Logout&status=${sessionScope.status}">
+                                    <a href="controle?logica=Logout&status=${sessionScope.status}&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                         <i class="material-icons">exit_to_app</i>
                                         <p class="hidden-lg hidden-md">Sair</p>
                                     </a>                                

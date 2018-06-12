@@ -5,6 +5,8 @@
  */
 package br.com.uern.les.erick.logicas;
 
+import br.com.uern.les.erick.daos.UsuarioDAO;
+import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,13 +21,23 @@ public class Logout implements Logica {
     public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
         String status = req.getParameter("status");
+        String nomeUsuario = req.getParameter("nomeUsuario");
 
         if (status.equalsIgnoreCase("logado")) {
+
+            //invalida a sessão
             HttpSession sessao = req.getSession();
             sessao.invalidate();
-            
-        }   
-        return "login.jsp";        
+
+            //muda o status para offline
+            Connection connection = (Connection) req.getAttribute("conexao");
+
+            UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
+            usuarioDAO.getLogout(nomeUsuario);
+            return "login.jsp";
+        }
+        return null;
+
     }
 
 }
