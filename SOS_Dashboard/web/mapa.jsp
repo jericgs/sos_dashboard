@@ -71,7 +71,7 @@
                             </a>
                         </li>                                                
                         <li>
-                            <a href="./chamado.jsp">
+                            <a href="controle?logica=ChamadoSolicitante&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">library_books</i>
                                 <p>Chamado</p>
                             </a>

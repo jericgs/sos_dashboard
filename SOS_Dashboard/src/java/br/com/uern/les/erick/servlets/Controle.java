@@ -33,10 +33,7 @@ public class Controle extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException(
                     "A lógica de negócios causou uma exceção", e);
-        }
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
+        }        
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

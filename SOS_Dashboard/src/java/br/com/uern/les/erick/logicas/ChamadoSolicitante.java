@@ -5,6 +5,7 @@
  */
 package br.com.uern.les.erick.logicas;
 
+import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,12 +13,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jerick.gs
  */
-public class Index implements Logica {
+public class ChamadoSolicitante implements Logica{
 
     @Override
-    public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-        return "index.jsp";
-
+    public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {       
+        
+        String nomeUsuario = req.getParameter("nomeUsuario");
+        
+        Connection connection = (Connection) req.getAttribute("conexao");
+        return "chamadoSolicitante.jsp";
     }
+    
 }

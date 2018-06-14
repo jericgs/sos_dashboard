@@ -10,7 +10,7 @@
 <html>
     <head>
 
-        <title>Tarm</title>
+        <title>Tarm</title>       
 
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -22,9 +22,6 @@
 
         <!--  Material Dashboard CSS -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
-
-        <!-- Kit -->
-<!--        <link href="Resources/node_modules/bootstrap/compiler/material-kit.min.css" rel="stylesheet" />-->
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
         <link href="Resources/node_modules/bootstrap/compiler/demo.css" rel="stylesheet" />  
@@ -74,7 +71,7 @@
                             </a>
                         </li>                                                
                         <li class="active">
-                            <a href="./typography.html">
+                            <a href="controle?logica=ChamadoSolicitante&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">library_books</i>
                                 <p>Chamado</p>
                             </a>
@@ -131,28 +128,29 @@
                             <div>
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Registro de Chamado</h4>                                       
+                                        <h4 class="title">Registro de Chamado</h4>
+                                        <p class="category">Solicitante - 1/2</p>
                                     </div>
                                     <div class="card-content">
-                                        <form>
+                                        <form action="controle">
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">N°. Chamado</label>
-                                                        <input type="text" class="form-control" disabled>
+                                                        <input type="text" name="numChamado" value="1" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Data</label>
-                                                        <input type="text" class="form-control">
+                                                        <input id="setData" type="text" name="data" value="null" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Hora</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
+                                                        <input id="setHora" type="text" name="hora" value="null" class="form-control">
+                                                    </div>                                                    
                                                 </div>
                                             </div>
                                             <div class="row ">
@@ -160,9 +158,9 @@
                                                     <div class="form-group label-floating">
                                                         <select class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
                                                             <option class="bs-title-option form-control" value="">Selecione o médico</option>
-                                                            <option disabled>Choose city</option>
-                                                            <option value="2">José Erico Gomes da Silva</option>
-                                                            <option value="3">Is great</option>
+                                                            <option value="1">Nenhum</option>
+                                                            <option value="2">Médico 1</option>
+                                                            <option value="3">Médico 2</option>
                                                         </select>	
                                                     </div>                                                                                                                                                     
                                                 </div>
@@ -177,13 +175,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Solicitante</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="solicitante" value="" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Telefone</label>
-                                                        <input type="text" class="form-control">
+                                                        <input type="text" name="telefone" value="" class="form-control">
                                                     </div>
                                                 </div>                                                
                                             </div>
@@ -191,7 +189,7 @@
                                                 <div class="col-md-4">
                                                     <div class="radio">
                                                         <label> 
-                                                            <input type="radio" name="motivo" checked="true">
+                                                            <input type="radio" name="motivo" value="Socorro" checked="true">
                                                             <p style="color: #AAAAAA;">Socorro</p>
                                                         </label>
                                                     </div>
@@ -199,7 +197,7 @@
                                                 <div class="col-md-4">
                                                     <div class="radio">
                                                         <label> 
-                                                            <input type="radio" name="motivo">
+                                                            <input type="radio" name="motivo" value="Transporte">
                                                             <p style="color: #AAAAAA;">Transporte</p>
                                                         </label>
                                                     </div>
@@ -207,13 +205,13 @@
                                                 <div class="col-md-4">
                                                     <div class="radio">
                                                         <label> 
-                                                            <input type="radio" name="motivo">
+                                                            <input type="radio" name="motivo" value="Informacao">
                                                             <p style="color: #AAAAAA;">Informação</p>
                                                         </label>
                                                     </div>
                                                 </div>      
                                             </div>                                            
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right">Próximo</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="ChamadoPaciente">Próximo</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -248,5 +246,33 @@
     <!-- Material Dashboard javascript methods -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material-dashboard.js?v=1.2.0"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>    
+    <!-- momentjs.com -->        
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
+
+    <script type="text/javascript">
+        $(function () {
+            setHora();
+            function setHora() {
+
+                setTimeout(setHora, 1000);
+                $('#setHora').val(moment().format("hh:mm:ss a"));
+//                console.log(moment().format("hh:mm:ss a"));
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            setData();
+            function setData() {
+
+                setTimeout(setData, 1000);
+                $('#setData').val(moment().format("DD/MM/YYYY"));
+//                console.log(moment().format("DD/MM/YYYY"));
+            }
+        });
+    </script>
+
+
 </html>

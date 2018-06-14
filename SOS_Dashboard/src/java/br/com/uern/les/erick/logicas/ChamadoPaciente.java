@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jerick.gs
  */
-public class Index implements Logica {
+public class ChamadoPaciente implements Logica{
 
     @Override
-    public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-        return "index.jsp";
-
+    public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {        
+        
+         return "chamadoPaciente.jsp";
     }
+    
 }
