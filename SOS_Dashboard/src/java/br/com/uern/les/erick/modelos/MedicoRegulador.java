@@ -9,24 +9,24 @@ package br.com.uern.les.erick.modelos;
  *
  * @author jerick.gs
  */
-public class Tarm {
-    
-    private String CPFT;
+public class MedicoRegulador {
+    private String CPFM;
     private String usuario;
     private int contato;
     private int endereco;
+    private String CRM;
     private String nascimento;
     private String RG;
     private String nome;
     private String genero;
     private String situacao;
 
-    public String getCPFT() {
-        return CPFT;
+    public String getCPFM() {
+        return CPFM;
     }
 
-    public void setCPFT(String CPFT) {
-        this.CPFT = CPFT;
+    public void setCPFM(String CPFM) {
+        this.CPFM = CPFM;
     }
 
     public String getUsuario() {
@@ -51,6 +51,14 @@ public class Tarm {
 
     public void setEndereco(int endereco) {
         this.endereco = endereco;
+    }
+
+    public String getCRM() {
+        return CRM;
+    }
+
+    public void setCRM(String CRM) {
+        this.CRM = CRM;
     }
 
     public String getNascimento() {
@@ -92,5 +100,5 @@ public class Tarm {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
-            
+    
 }

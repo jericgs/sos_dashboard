@@ -37,7 +37,7 @@ public class UsuarioDAO {
     public Usuario getLogin(String usuario, String senha) {
 
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM usuario WHERE  NomeUsuario = ? and Senha = ?");
+            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM usuario WHERE  NomeUsuario = ? AND Senha = ?");
             stmt.setString(1, usuario);
             stmt.setString(2, senha);
             ResultSet rs = stmt.executeQuery();

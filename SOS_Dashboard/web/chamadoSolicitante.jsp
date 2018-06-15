@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="medico" class="br.com.uern.les.erick.modelos.MedicoRegulador"/>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -156,18 +157,19 @@
                                             <div class="row ">
                                                 <div class="col-md-6"> 
                                                     <div class="form-group label-floating">
-                                                        <select class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
-                                                            <option class="bs-title-option form-control" value="">Selecione o médico</option>
-                                                            <option value="1">Nenhum</option>
-                                                            <option value="2">Médico 1</option>
-                                                            <option value="3">Médico 2</option>
+                                                        <label class="control-label">Médico Regulador</label>
+                                                        <select name="medico" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
+                                                            <option onClick="atualizarMedicos()" class="bs-title-option form-control" value="nenhum">Nenhum</option>
+                                                            <c:forEach var="medico" items="${sessionScope.medicosOn}">
+                                                                <option value="${medico.CPFM}">${medico.nome}</option>
+                                                            </c:forEach>
                                                         </select>	
                                                     </div>                                                                                                                                                     
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">TARM</label>
-                                                        <input type="text" class="form-control ">
+                                                        <input type="text" name="nomeTarm" value="${sessionScope.dadosTarm.nome}" class="form-control ">
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -257,7 +259,7 @@
 
                 setTimeout(setHora, 1000);
                 $('#setHora').val(moment().format("hh:mm:ss a"));
-//                console.log(moment().format("hh:mm:ss a"));
+                //                console.log(moment().format("hh:mm:ss a"));
             }
         });
     </script>
@@ -269,9 +271,16 @@
 
                 setTimeout(setData, 1000);
                 $('#setData').val(moment().format("DD/MM/YYYY"));
-//                console.log(moment().format("DD/MM/YYYY"));
+//                                console.log(moment().format("DD/MM/YYYY"));
             }
         });
+    </script>
+
+    <script type="text/javascript">
+        function atualizarMedicos() {
+            $.get("controle?logica=AtualizarMedicos");
+            console.log("Chamou");
+        }
     </script>
 
 

@@ -6,9 +6,7 @@
 package br.com.uern.les.erick.logicas;
 
 import br.com.uern.les.erick.daos.MedicoDAO;
-import br.com.uern.les.erick.daos.TarmDAO;
 import br.com.uern.les.erick.modelos.MedicoRegulador;
-import br.com.uern.les.erick.modelos.Tarm;
 import java.sql.Connection;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -19,25 +17,19 @@ import javax.servlet.http.HttpSession;
  *
  * @author jerick.gs
  */
-public class ChamadoSolicitante implements Logica {
+public class AtualizarMedicos implements Logica{
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-        String nomeUsuario = req.getParameter("nomeUsuario");
-
+        
         Connection connection = (Connection) req.getAttribute("conexao");
         HttpSession session = req.getSession();
         
-        TarmDAO tarmDAO = new TarmDAO(connection);
-        Tarm tarm = tarmDAO.getDadosTarm(nomeUsuario);        
-        session.setAttribute("dadosTarm", tarm);
-      
         MedicoDAO mdao = new MedicoDAO(connection);
         List<MedicoRegulador> medicoReguladors = mdao.getMedicoRegulador();        
         session.setAttribute("medicosOn", medicoReguladors);
-
-        return "chamadoSolicitante.jsp";
+        
+        return null;
     }
-
+    
 }
