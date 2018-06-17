@@ -7,7 +7,6 @@ package br.com.uern.les.erick.servlets;
 
 import br.com.uern.les.erick.logicas.Logica;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

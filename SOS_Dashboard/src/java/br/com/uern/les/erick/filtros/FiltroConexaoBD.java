@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.caelum.jdbc.filtro;
+package br.com.uern.les.erick.filtros;
 
 import br.com.uern.les.erick.conexao.ConexaoBD;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class FiltroConexaoBD implements Filter {
 
         try {
             Connection connection = new ConexaoBD().getConnection();
-            // pendurando a connection na requisição
+            // pendurando conexão ne requisição 
             request.setAttribute("conexao", connection);
             chain.doFilter(request, response);
             connection.close();

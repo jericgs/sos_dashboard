@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jerick.gs
  */
-public interface Logica {
-
-    String executa(HttpServletRequest req, HttpServletResponse res) throws Exception;
-        
+public interface LogicaAjax {
+    
+    String executaAjax(HttpServletRequest req, HttpServletResponse res) throws Exception;
+    
 }

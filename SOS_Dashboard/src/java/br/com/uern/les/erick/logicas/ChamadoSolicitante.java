@@ -32,12 +32,8 @@ public class ChamadoSolicitante implements Logica {
         TarmDAO tarmDAO = new TarmDAO(connection);
         Tarm tarm = tarmDAO.getDadosTarm(nomeUsuario);        
         session.setAttribute("dadosTarm", tarm);
-      
-        MedicoDAO mdao = new MedicoDAO(connection);
-        List<MedicoRegulador> medicoReguladors = mdao.getMedicoRegulador();        
-        session.setAttribute("medicosOn", medicoReguladors);
 
         return "chamadoSolicitante.jsp";
     }
-
+    
 }

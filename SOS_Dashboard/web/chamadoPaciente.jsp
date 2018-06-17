@@ -146,7 +146,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Queixa</label>
+                                                        <label class="form-group label-floating">Queixa</label>
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Enredo resumido do fato.</label>
                                                             <textarea class="form-control" rows="5"></textarea>

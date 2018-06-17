@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="medico" class="br.com.uern.les.erick.modelos.MedicoRegulador"/>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -153,26 +152,7 @@
                                                         <input id="setHora" type="text" name="hora" value="null" class="form-control">
                                                     </div>                                                    
                                                 </div>
-                                            </div>
-                                            <div class="row ">
-                                                <div class="col-md-6"> 
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Médico Regulador</label>
-                                                        <select name="medico" class="form-control selectpicker" data-style="select-with-transition" title="Single Select" data-size="7">
-                                                            <option onClick="atualizarMedicos()" class="bs-title-option form-control" value="nenhum">Nenhum</option>
-                                                            <c:forEach var="medico" items="${sessionScope.medicosOn}">
-                                                                <option value="${medico.CPFM}">${medico.nome}</option>
-                                                            </c:forEach>
-                                                        </select>	
-                                                    </div>                                                                                                                                                     
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">TARM</label>
-                                                        <input type="text" name="nomeTarm" value="${sessionScope.dadosTarm.nome}" class="form-control ">
-                                                    </div>
-                                                </div>
-                                            </div>                                            
+                                            </div>                                                                                     
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
@@ -183,10 +163,27 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Telefone</label>
-                                                        <input type="text" name="telefone" value="" class="form-control">
+                                                        <input id="telefone" type="text" name="telefone" value="" class="form-control">
                                                     </div>
                                                 </div>                                                
                                             </div>
+                                            <div class="row ">
+                                                <div class="col-md-6">                                                     
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Médico Regulador</label>                                                        
+                                                        <select autofocus id="combobox" name="medico" class="form-control selectpicker" data-style="select-with-transition" data-size="7">                                                                                                                        
+                                                            <!--                                                             <option class="form-control" value="nenhum">Nenhum</option>-->
+                                                            <option value="nenhum"></option>
+                                                        </select>                                                        
+                                                    </div>                                                                                                                                                     
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group label-floating" style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">TARM</label>
+                                                        <input type="text" name="nomeTarm" value="${sessionScope.dadosTarm.nome}" class="form-control ">
+                                                    </div>
+                                                </div>
+                                            </div>   
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="radio">
@@ -256,10 +253,9 @@
         $(function () {
             setHora();
             function setHora() {
-
                 setTimeout(setHora, 1000);
                 $('#setHora').val(moment().format("hh:mm:ss a"));
-                //                console.log(moment().format("hh:mm:ss a"));
+                //            console.log(moment().format("hh:mm:ss a"));
             }
         });
     </script>
@@ -276,12 +272,67 @@
         });
     </script>
 
-    <script type="text/javascript">
-        function atualizarMedicos() {
-            $.get("controle?logica=AtualizarMedicos");
-            console.log("Chamou");
-        }
-    </script>
+    <script>
+
+        $(document).ready(function () {
+
+            setMedicos();
+
+            function setMedicos() {
+
+                console.log("Atualizou 1");
+
+                combobox.innerHTML = "<option value='nenhum'>Nenhum</option>";
+
+                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax", function (data, status) {
+                        
+                    //NATIVO
+                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
+                    var objDados = JSON.parse(data);
+
+                    combobox = document.getElementById("combobox");
+
+                    for (i = 0; i < objDados.length; i++) {
+                        //conteudo.innerHTML += objDados.clientes[i].id + "| " + objDados.clientes[i].nome + " | " + objDados.clientes[i].email + "<br>";
+                        //combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados.clientes[i].nome + "</option>";
+
+                        combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados[i].nome + "</option>";
+                    }
+
+                    $('.selectpicker').selectpicker('refresh');                    
+
+                });
+            }
+
+            $("#telefone").click(function () {
+                console.log("Atualizou 2");
+
+                combobox.innerHTML = "<option value='nenhum'>Nenhum</option>";
+
+                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax", function (data, status) {
+
+                    //NATIVO
+                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
+                    var objDados = JSON.parse(data);
+
+                    combobox = document.getElementById("combobox");
+
+                    for (i = 0; i < objDados.length; i++) {
+                        //combobox.innerHTML += objDados.clientes[i].id + "| " + objDados.clientes[i].nome + " | " + objDados.clientes[i].email + "<br>";
+                        //combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados.clientes[i].nome + "</option>";
+
+                        combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados[i].nome + "</option>";
+                    }
+
+                    $('.selectpicker').selectpicker('refresh');
+
+                });
+
+            });
+
+        });
+
+    </script>    
 
 
 </html>
