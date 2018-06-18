@@ -284,7 +284,7 @@
 
                 combobox.innerHTML = "<option value='nenhum'>Nenhum</option>";
 
-                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax", function (data, status) {
+                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax&data=nenhum", function (data, status) {
                         
                     //NATIVO
                     //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
@@ -309,7 +309,7 @@
 
                 combobox.innerHTML = "<option value='nenhum'>Nenhum</option>";
 
-                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax", function (data, status) {
+                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax&data=nenhum", function (data, status) {
 
                     //NATIVO
                     //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';

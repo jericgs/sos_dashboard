@@ -6,6 +6,10 @@
 package br.com.uern.les.erick.teste;
 
 
+import br.com.uern.les.erick.conexao.ConexaoBD;
+import br.com.uern.les.erick.daos.ChamadoDAO;
+import br.com.uern.les.erick.modelos.InformacaoDeTempo;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -39,5 +43,19 @@ public class ParaTesta {
 //            System.out.println(medicoReguladorsOn.get(i).getCPFM());
 //        }
 
+//          String data = "18/05/2018";
+//          int numchamdo = 0;
+//          
+//          Connection connection = new ConexaoBD().getConnection();
+//          ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
+//          numchamdo = chamadoDAO.getNumeroDeChamado(data);
+//          
+//          System.out.println(numchamdo);
+            
+
+//            InformacaoDeTempo informacaoDeTempo = new InformacaoDeTempo();
+//            
+//            System.out.println(informacaoDeTempo.getDate());
+//            System.out.println(informacaoDeTempo.getHora());
     }
 }
