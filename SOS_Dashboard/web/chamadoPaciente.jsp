@@ -184,24 +184,25 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Cidade</label>
-                                                        <input type="text" class="form-control ">
+                                                        <input type="text" name="cidade" value="Mossoró" class="form-control ">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Estado</label>
-                                                        <input type="text" class="form-control ">
+                                                        <input type="text" name="estado" value="RN" class="form-control ">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">País</label>
-                                                        <input type="text" class="form-control ">
+                                                        <input type="text" name="pais" value="Brasil" class="form-control ">
                                                     </div>
                                                 </div>  
-                                            </div>                                                                                      
+                                            </div>                                            
+                                            <button type="button" onclick='history.go(-1)' style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>                                            
                                             <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right">Gravar</button>
-                                            <div class="clearfix"></div>
+                                            <div class="clearfix"></div>                                                                                                                                                                             
                                         </form>
                                     </div>
                                 </div>

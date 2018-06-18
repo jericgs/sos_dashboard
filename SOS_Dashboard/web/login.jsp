@@ -99,12 +99,81 @@
                 document.body.style.overflow = 'hidden';
             }
         </script>
-        
+
         <!-- Primeiro POG (Não consegui usar jax)-->
         <script>
             <c:if test="${not empty resultado.tipoAlerta}">
-                swal({type: '${resultado.tipoAlerta}', title: 'Oops...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 2000});
-            </c:if>                
+            swal({type: '${resultado.tipoAlerta}', title: 'Oops...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 2000});
+            </c:if>
+        </script>
+
+        <script>
+            (function (window) {
+                'use strict';
+
+                var noback = {
+
+                    //globals 
+                    version: '0.0.1',
+                    history_api: typeof history.pushState !== 'undefined',
+
+                    init: function () {
+                        window.location.hash = '#no-back';
+                        noback.configure();
+                    },
+
+                    hasChanged: function () {
+                        if (window.location.hash == '#no-back') {
+                            window.location.hash = '#BLOQUEIO';
+                            //mostra mensagem que não pode usar o btn volta do browser
+                            if ($("#msgAviso").css('display') == 'none') {
+                                $("#msgAviso").slideToggle("slow");
+                            }
+                        }
+                    },
+
+                    checkCompat: function () {
+                        if (window.addEventListener) {
+                            window.addEventListener("hashchange", noback.hasChanged, false);
+                        } else if (window.attachEvent) {
+                            window.attachEvent("onhashchange", noback.hasChanged);
+                        } else {
+                            window.onhashchange = noback.hasChanged;
+                        }
+                    },
+
+                    configure: function () {
+                        if (window.location.hash == '#no-back') {
+                            if (this.history_api) {
+                                history.pushState(null, '', '#BLOQUEIO');
+                            } else {
+                                window.location.hash = '#BLOQUEIO';
+                                //mostra mensagem que não pode usar o btn volta do browser
+                                if ($("#msgAviso").css('display') == 'none') {
+                                    $("#msgAviso").slideToggle("slow");
+                                }
+                            }
+                        }
+                        noback.checkCompat();
+                        noback.hasChanged();
+                    }
+
+                };
+
+                // AMD support 
+                if (typeof define === 'function' && define.amd) {
+                    define(function () {
+                        return noback;
+                    });
+                }
+                // For CommonJS and CommonJS-like 
+                else if (typeof module === 'object' && module.exports) {
+                    module.exports = noback;
+                } else {
+                    window.noback = noback;
+                }
+                noback.init();
+            }(window));
         </script>
 
     </body>
