@@ -137,7 +137,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">N°. Chamado</label>
-                                                        <input type="text" name="numChamado" value="1" class="form-control">
+                                                        <input id="numChamado" type="text" name="numChamado" value="null" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -249,6 +249,25 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
 
+
+    <script type="text/javascript">
+        $(function () {
+            setNumChamado();
+            function setNumChamado() {
+                setTimeout(setNumChamado, 1000);
+
+                dataMomento = moment().format("DD/MM/YYYY");
+
+                $.post("AjaxControle", {logicaAjax: "ChamadoSolicitanteAjax", data: dataMomento}, function (data, status) {
+
+                    var objDados = JSON.parse(data);
+                    $('#numChamado').val(objDados[0].numChamadoAtual);
+
+                });
+            }
+        });
+    </script>
+
     <script type="text/javascript">
         $(function () {
             setHora();
@@ -285,7 +304,7 @@
                 combobox.innerHTML = "<option value='nenhum'>Nenhum</option>";
 
                 $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax&data=nenhum", function (data, status) {
-                        
+
                     //NATIVO
                     //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
                     var objDados = JSON.parse(data);
@@ -299,7 +318,7 @@
                         combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados[i].nome + "</option>";
                     }
 
-                    $('.selectpicker').selectpicker('refresh');                    
+                    $('.selectpicker').selectpicker('refresh');
 
                 });
             }
