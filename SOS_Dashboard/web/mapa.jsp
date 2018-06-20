@@ -45,7 +45,7 @@
         </c:if> 
 
         <div class="wrapper">
-            <div class="sidebar" data-color="red" data-image="../assets/img/sidebar-1.jpg">
+            <div class="sidebar" data-color="red" data-image="Resources/imagens/body/sidebar.png">
                 <!--
             Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
     
@@ -139,7 +139,7 @@
 <!--  PerfectScrollbar Library -->
 <script src="Resources/node_modules/bootstrap/js/disp-dasboard/perfect-scrollbar.jquery.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="Resources/node_modules/bootstrap/js/disp-dasboard/disp-dasboard/bootstrap-notify.js"></script>
+<!--<script src="Resources/node_modules/bootstrap/js/disp-dasboard/disp-dasboard/bootstrap-notify.js"></script>-->
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8kJ3p081G1hbsHQLkydJg8AtpVUznejw"></script>
 <!-- Material Dashboard javascript methods -->
