@@ -41,7 +41,7 @@ public class Controle extends HttpServlet {
         try {
             Class classe = Class.forName(nomeDaClasse);
             Logica logica = (Logica) classe.newInstance();
-            String pagina = logica.executa(request, response);
+            String pagina = logica.executa(request, response);            
             request.getRequestDispatcher(pagina).forward(request, response);
         } catch (Exception e) {
             throw new ServletException(

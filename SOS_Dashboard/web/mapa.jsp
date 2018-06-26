@@ -33,9 +33,10 @@
         <link rel="stylesheet" href="Resources/node_modules/sweetalert2/css/sweetalert2.min.css">
         <script src="Resources/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>       
 
-        <!--     Fonts and icons     -->
-        <link href="Resources/node_modules/font-awe/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet'>
+        <!--     Fonts and icons     -->       
+        <link rel="stylesheet" href="Resources/font-awe/roboto.min.css">
+        <link rel="stylesheet" href="Resources/font-awe/material-icons.min.css">
+        
     </head>
 
     <body>

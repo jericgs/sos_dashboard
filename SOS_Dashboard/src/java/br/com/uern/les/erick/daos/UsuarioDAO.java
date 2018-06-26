@@ -43,25 +43,25 @@ public class UsuarioDAO {
             ResultSet rs = stmt.executeQuery();
 
             String sql = "UPDATE usuario SET Status = ? WHERE NomeUsuario = ? AND Senha = ?";
-            PreparedStatement ps = this.connection.prepareStatement(sql);
-
             // seta os valores
-            ps.setString(1, "Online");
-            ps.setString(2, usuario);
-            ps.setString(3, senha);
-
-            //fecha atualização
-            ps.execute();
-            ps.close();
+            try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
+                // seta os valores
+                ps.setString(1, "Online");
+                ps.setString(2, usuario);
+                ps.setString(3, senha);
+                
+                //fecha atualização
+                ps.execute();
+            }
 
             while (rs.next()) {
                 // criando o objeto Usuario
                 Usuario usuarioL = new Usuario();
                 usuarioL.setNomeUsuario(rs.getString("NomeUsuario"));
                 usuarioL.setSenha(rs.getString("Senha"));
+                usuarioL.setTipoDeUsuario(rs.getString("TipoUsuario"));
                 usuarioL.setStatus(rs.getString("Status"));
-                usuarioL.setTipoDeUsuario(rs.getString("TipoDeUsuario"));
-
+                
                 //fecha busca
                 rs.close();
                 stmt.close();
@@ -80,15 +80,15 @@ public class UsuarioDAO {
 
         try {
             String sql = "UPDATE usuario SET Status = ? WHERE NomeUsuario = ?";
-            PreparedStatement ps = this.connection.prepareStatement(sql);
-
             // seta os valores
-            ps.setString(1, "Offline");
-            ps.setString(2, nomeUsuario);
-
-            //fecha atualização
-            ps.execute();
-            ps.close();
+            try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
+                // seta os valores
+                ps.setString(1, "Offline");
+                ps.setString(2, nomeUsuario);
+                
+                //fecha atualização
+                ps.execute();
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,7 +98,7 @@ public class UsuarioDAO {
 
         // cria um preparedStatement
         String sql = "INSERT INTO usuario "
-                + "(NomeUsuario,Senha,Status,TipoDeUsuario) "
+                + "(NomeUsuario,Senha,TipoUsuario,Status) "
                 + "VALUES (?,?,?,?)";
 
         try {
@@ -108,8 +108,8 @@ public class UsuarioDAO {
             // seta os valores
             stmt.setString(1, usuario.getNomeUsuario());
             stmt.setString(2, usuario.getSenha());
-            stmt.setString(3, usuario.getStatus());
             stmt.setString(4, usuario.getTipoDeUsuario());
+            stmt.setString(3, usuario.getStatus());
 
             // executa
             stmt.execute();
@@ -121,27 +121,25 @@ public class UsuarioDAO {
 
     public List<Usuario> getUsuario() {
 
-        List<Usuario> usuarios = new ArrayList<Usuario>();
+        List<Usuario> usuarios = new ArrayList<>();
 
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM usuario");
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                // criando o objeto Usuario
-                Usuario usuarioB = new Usuario();
-                usuarioB.setNomeUsuario(rs.getString("NomeUsuario"));
-                usuarioB.setSenha(rs.getString("Senha"));
-                usuarioB.setStatus(rs.getString("Status"));
-                usuarioB.setTipoDeUsuario(rs.getString("TipoDeUsuario"));
-
-                // adicionando o objeto à lista
-                usuarios.add(usuarioB);
-
+            try (PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM usuario"); ResultSet rs = stmt.executeQuery()) {
+                
+                while (rs.next()) {
+                    // criando o objeto Usuario
+                    Usuario usuarioB = new Usuario();
+                    usuarioB.setNomeUsuario(rs.getString("NomeUsuario"));
+                    usuarioB.setSenha(rs.getString("Senha"));
+                    usuarioB.setTipoDeUsuario(rs.getString("TipoUsuario"));
+                    usuarioB.setStatus(rs.getString("Status"));
+                    
+                    // adicionando o objeto à lista
+                    usuarios.add(usuarioB);
+                    
+                }
+                
             }
-
-            rs.close();
-            stmt.close();
             return usuarios;
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);

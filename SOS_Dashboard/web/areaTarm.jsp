@@ -34,10 +34,11 @@
         <!-- Alertas Sweetalert -->
         <link rel="stylesheet" href="Resources/node_modules/sweetalert2/css/sweetalert2.min.css">
         <script src="Resources/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>       
-
-        <!--     Fonts and icons     -->
-        <link href="Resources/node_modules/font-awe/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet'>
+       
+        <!--     Fonts and icons     -->       
+        <link rel="stylesheet" href="Resources/font-awe/roboto.min.css">
+        <link rel="stylesheet" href="Resources/font-awe/material-icons.min.css">
+        
     </head>
 
     <body>
@@ -86,7 +87,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./mapa.jsp">
+                            <a href="controle?logica=Mapa&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Mapa</p>
                             </a>
@@ -580,73 +581,4 @@
                                 });
     </script>
     
-    <script>
-            (function (window) {
-                'use strict';
-
-                var noback = {
-
-                    //globals 
-                    version: '0.0.1',
-                    history_api: typeof history.pushState !== 'undefined',
-
-                    init: function () {
-                        window.location.hash = '#no-back';
-                        noback.configure();
-                    },
-
-                    hasChanged: function () {
-                        if (window.location.hash == '#no-back') {
-                            window.location.hash = '#BLOQUEIO';
-                            //mostra mensagem que não pode usar o btn volta do browser
-                            if ($("#msgAviso").css('display') == 'none') {
-                                $("#msgAviso").slideToggle("slow");
-                            }
-                        }
-                    },
-
-                    checkCompat: function () {
-                        if (window.addEventListener) {
-                            window.addEventListener("hashchange", noback.hasChanged, false);
-                        } else if (window.attachEvent) {
-                            window.attachEvent("onhashchange", noback.hasChanged);
-                        } else {
-                            window.onhashchange = noback.hasChanged;
-                        }
-                    },
-
-                    configure: function () {
-                        if (window.location.hash == '#no-back') {
-                            if (this.history_api) {
-                                history.pushState(null, '', '#BLOQUEIO');
-                            } else {
-                                window.location.hash = '#BLOQUEIO';
-                                //mostra mensagem que não pode usar o btn volta do browser
-                                if ($("#msgAviso").css('display') == 'none') {
-                                    $("#msgAviso").slideToggle("slow");
-                                }
-                            }
-                        }
-                        noback.checkCompat();
-                        noback.hasChanged();
-                    }
-
-                };
-
-                // AMD support 
-                if (typeof define === 'function' && define.amd) {
-                    define(function () {
-                        return noback;
-                    });
-                }
-                // For CommonJS and CommonJS-like 
-                else if (typeof module === 'object' && module.exports) {
-                    module.exports = noback;
-                } else {
-                    window.noback = noback;
-                }
-                noback.init();
-            }(window));
-        </script>
-        
 </html>

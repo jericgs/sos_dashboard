@@ -28,11 +28,12 @@
         <!-- Navbar Fixo no Top -->
         <link href="navbar-top-fixed.css" rel="stylesheet">
 
-        <!-- Font -->
-        <link href= "https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel='stylesheet' type='text/css'>         
+        <!--     Fonts and icons     -->       
+        <link rel="stylesheet" href="Resources/font-awe/roboto.min.css">
+        <link rel="stylesheet" href="Resources/font-awe/material-icons.min.css">          
 
         <!-- Awesome  -->       
-        <link href="Resources/node_modules/font-awe/font-awesome.min.css" rel="stylesheet">
+        <link href="Resources/font-awe/font-awesome.min.css" rel="stylesheet">
 
 
 

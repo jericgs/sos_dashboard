@@ -1,0 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.uern.les.erick.daos;
+
+import br.com.uern.les.erick.modelos.Solicitante;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author jerick.gs
+ */
+public class SolicitanteDAO {
+
+    private Connection connection;
+
+    public SolicitanteDAO(Connection connection) {
+        this.connection = connection;
+    }
+
+    public int inserirSolicitante(Solicitante solicitante) {
+
+        int idSol = 0;
+
+        try {
+
+            String sql1 = "INSERT INTO solicitante "
+                    + "(Nome,Tel)"
+                    + " values (?,?)";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql1)) {
+                stmt.setString(1, solicitante.getNome());
+                stmt.setString(2, solicitante.getTel());
+
+                stmt.execute();
+            }
+
+            String sql2 = "SELECT IdS FROM solicitante WHERE Nome = ? AND Tel = ?";
+
+            try (PreparedStatement ps = this.connection.prepareStatement(sql2)) {
+                ps.setString(1, solicitante.getNome());
+                ps.setString(2, solicitante.getTel());
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    idSol = rs.getInt("IdS");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return idSol;
+    }
+}

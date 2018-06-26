@@ -5,6 +5,7 @@
  */
 package br.com.uern.les.erick.daos;
 
+import br.com.uern.les.erick.modelos.RegistroChamado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,14 +34,13 @@ public class ChamadoDAO {
             PreparedStatement ps = this.connection.prepareStatement(sql);
             ps.setString(1, DataMomento);
 
-            ResultSet rs = ps.executeQuery();            
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                numChamado = rs.getInt("COUNT('NumChamado')");                
+                numChamado = rs.getInt("COUNT('NumChamado')");
             }
-            
+
             numChamado++;
-                        
 
         } catch (SQLException ex) {
             Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -48,5 +48,60 @@ public class ChamadoDAO {
 
         return numChamado;
 
+    }
+
+    public int inserindoChamado(RegistroChamado registroChamado) {
+
+        int idRC = 0;
+
+        try {
+            String sql1 = "INSERT INTO registrodechamado "
+                    + "(CPFT,CPFM,IdS,IdP,NumChamado,Hora,DataDeRegistro,Queixa,Motivo)"
+                    + " values (?,?,?,?,?,?,?,?,?)";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql1);) {
+
+                stmt.setString(1, registroChamado.getCpft());
+                stmt.setString(2, registroChamado.getCpfm());
+                stmt.setInt(3, registroChamado.getIdS());
+                stmt.setInt(4, registroChamado.getIdP());
+                stmt.setInt(5, registroChamado.getNumChamado());
+                stmt.setString(6, registroChamado.getHora());
+                stmt.setString(7, registroChamado.getDataDeRegistro());
+                stmt.setString(8, registroChamado.getQueixa());
+                stmt.setString(9, registroChamado.getMotivo());
+
+                stmt.execute();
+
+            }
+
+            String sql2 = "SELECT IdRC FROM registrodechamado WHERE CPFT = ? AND "
+                    + "CPFM = ? AND IdS = ? AND IdP = ? AND NumChamado = ? AND "
+                    + "Hora = ? AND DataDeRegistro = ? AND Queixa = ? AND Motivo = ?";
+
+            try (PreparedStatement ps = this.connection.prepareStatement(sql2)) {
+
+                ps.setString(1, registroChamado.getCpft());
+                ps.setString(2, registroChamado.getCpfm());
+                ps.setInt(3, registroChamado.getIdS());
+                ps.setInt(4, registroChamado.getIdP());
+                ps.setInt(5, registroChamado.getNumChamado());
+                ps.setString(6, registroChamado.getHora());
+                ps.setString(7, registroChamado.getDataDeRegistro());
+                ps.setString(8, registroChamado.getQueixa());
+                ps.setString(9, registroChamado.getMotivo());
+                
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    idRC = rs.getInt("IdRC");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return idRC;
     }
 }

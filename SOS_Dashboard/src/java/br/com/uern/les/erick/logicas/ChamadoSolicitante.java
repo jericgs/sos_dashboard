@@ -5,12 +5,9 @@
  */
 package br.com.uern.les.erick.logicas;
 
-import br.com.uern.les.erick.daos.MedicoDAO;
 import br.com.uern.les.erick.daos.TarmDAO;
-import br.com.uern.les.erick.modelos.MedicoRegulador;
 import br.com.uern.les.erick.modelos.Tarm;
 import java.sql.Connection;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

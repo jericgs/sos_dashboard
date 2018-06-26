@@ -4,7 +4,7 @@
     Author     : jerick.gs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -14,11 +14,11 @@
 
         <!-- Required meta tags -->
         <meta charset="utf-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">                
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">
 
         <!--  Material Dashboard CSS -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
@@ -33,9 +33,10 @@
         <link rel="stylesheet" href="Resources/node_modules/sweetalert2/css/sweetalert2.min.css">
         <script src="Resources/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>       
 
-        <!--     Fonts and icons     -->
-        <link href="Resources/node_modules/font-awe/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet'>
+        <!--     Fonts and icons     -->       
+        <link rel="stylesheet" href="Resources/font-awe/roboto.min.css">
+        <link rel="stylesheet" href="Resources/font-awe/material-icons.min.css">
+
     </head>
 
     <body>      
@@ -83,7 +84,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./mapa.jsp">
+                            <a href="controle?logica=Mapa&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Mapa</p>
                             </a>
@@ -132,24 +133,24 @@
                                         <p class="category">Solicitante - 1/2</p>
                                     </div>
                                     <div class="card-content">
-                                        <form action="controle">
+                                        <form id="formSolicitante" action="controle" method="post">
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">NÂ°. Chamado</label>
+                                                        <label class="control-label">N°. Chamado</label>
                                                         <input id="numChamado" type="text" name="numChamado" value="null" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Data</label>
-                                                        <input id="setData" type="text" name="data" value="null" class="form-control">
+                                                        <input id="setData" type="text" name="data" maxlength="10" value="null" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Hora</label>
-                                                        <input id="setHora" type="text" name="hora" value="null" class="form-control">
+                                                        <input id="setHora" type="text" name="hora" maxlength="12" value="null" class="form-control">
                                                     </div>                                                    
                                                 </div>
                                             </div>                                                                                     
@@ -157,30 +158,29 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Solicitante</label>
-                                                        <input type="text" name="solicitante" value="" class="form-control">
+                                                        <input id="solicitante" type="text" name="solicitante" maxlength="50" value="" onblur="setMedicos()" onkeyup="maiuscula('solicitante')" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Telefone</label>
-                                                        <input id="telefone" type="text" name="telefone" maxlength="15" value="" class="form-control">
+                                                        <input id="telefone" type="text" name="telefone" maxlength="15" value="" onblur="setMedicos()" class="form-control">
                                                     </div>
                                                 </div>                                                
                                             </div>
                                             <div class="row ">
                                                 <div class="col-md-6">                                                     
                                                     <div class="form-group"  style="margin-top: 0px">
-                                                        <label class="control-label" style="position: static">MÃ©dico Regulador</label>                                                        
-                                                        <select autofocus id="combobox" name="medico" class="form-control selectpicker" data-style="select-with-transition" data-size="7">                                                                                                                        
-                                                            <!--                                                             <option class="form-control" value="nenhum">Nenhum</option>-->
-                                                            <option value="nenhum"></option>
+                                                        <label class="control-label" style="position: static">Médico Regulador</label>                                                        
+                                                        <select autofocus id="combobox" name="medicoCPF" class="form-control selectpicker" data-style="select-with-transition" data-size="7">                                                                                                                        
+                                                            <!--                                                             <option class="form-control" value="nenhum">Nenhum</option>-->                                                            
                                                         </select>                                                        
                                                     </div>                                                                                                                                                     
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating" style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">TARM</label>
-                                                        <input type="text" name="nomeTarm" value="${sessionScope.dadosTarm.nome}" class="form-control ">
+                                                        <input id="tarm" type="text" name="nomeTarm" maxlength="50" value="${sessionScope.dadosTarm.nome}" onkeyup="maiuscula('tarm')" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>   
@@ -204,13 +204,13 @@
                                                 <div class="col-md-4">
                                                     <div class="radio">
                                                         <label> 
-                                                            <input type="radio" name="motivo" value="Informacao">
-                                                            <p style="color: #AAAAAA;">InformaÃ§Ã£o</p>
+                                                            <input type="radio" name="motivo" value="Informação">
+                                                            <p style="color: #AAAAAA;">Informação</p>
                                                         </label>
                                                     </div>
                                                 </div>      
                                             </div>                                            
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="ChamadoPaciente">PrÃ³ximo</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="ChamadoPaciente">Próximo</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -220,7 +220,7 @@
                     </div>
                 </div>               
             </div>
-        </div>
+        </div>                        
     </body>
 
     <!--   Core JS Files   -->
@@ -250,7 +250,6 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
 
-
     <script type="text/javascript">
         $(function () {
             setNumChamado();
@@ -267,6 +266,7 @@
                 });
             }
         });
+        
     </script>
 
     <script type="text/javascript">
@@ -293,69 +293,55 @@
     </script>
 
     <script>
+        
+        setMedicos();
 
-        $(document).ready(function () {
+        function setMedicos() {
 
-            setMedicos();
+            console.log("Atualizou 1");
 
-            function setMedicos() {
+            combobox.innerHTML = "";
 
-                console.log("Atualizou 1");
+            $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax&data=nenhum", function (data, status) {
 
-                combobox.innerHTML = "<option value='nenhum'>Nenhum</option>";
+                //NATIVO
+                //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
+                var objDados = JSON.parse(data);
 
-                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax&data=nenhum", function (data, status) {
+                combobox = document.getElementById("combobox");
 
-                    //NATIVO
-                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"JosÃ©", "email":"jose.gs@gmail.com"}]}';
-                    var objDados = JSON.parse(data);
+                for (i = 0; i < objDados.length; i++) {
+                    //conteudo.innerHTML += objDados.clientes[i].id + "| " + objDados.clientes[i].nome + " | " + objDados.clientes[i].email + "<br>";
+                    //combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados.clientes[i].nome + "</option>";
 
-                    combobox = document.getElementById("combobox");
+                    combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados[i].nome + "</option>";
+                }
 
-                    for (i = 0; i < objDados.length; i++) {
-                        //conteudo.innerHTML += objDados.clientes[i].id + "| " + objDados.clientes[i].nome + " | " + objDados.clientes[i].email + "<br>";
-                        //combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados.clientes[i].nome + "</option>";
-
-                        combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados[i].nome + "</option>";
-                    }
-
-                    $('.selectpicker').selectpicker('refresh');
-
-                });
-            }
-
-            $("#telefone").click(function () {
-                console.log("Atualizou 2");
-
-                combobox.innerHTML = "<option value='nenhum'>Nenhum</option>";
-
-                $.get("AjaxControle?logicaAjax=ChamadoSolicitanteAjax&data=nenhum", function (data, status) {
-
-                    //NATIVO
-                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"JosÃ©", "email":"jose.gs@gmail.com"}]}';
-                    var objDados = JSON.parse(data);
-
-                    combobox = document.getElementById("combobox");
-
-                    for (i = 0; i < objDados.length; i++) {
-                        //combobox.innerHTML += objDados.clientes[i].id + "| " + objDados.clientes[i].nome + " | " + objDados.clientes[i].email + "<br>";
-                        //combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados.clientes[i].nome + "</option>";
-
-                        combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados[i].nome + "</option>";
-                    }
-
-                    $('.selectpicker').selectpicker('refresh');
-
-                });
+                $('.selectpicker').selectpicker('refresh');
 
             });
+        }
 
-        });
+    </script>
+    
+    <script>
+        function maiuscula(id){
 
+            var letra=document.getElementById(id).value;
+            letra=letra.split("");
+            var tmp="";
+            for(i=0;i<letra.length;i++){
+                if(letra[i-1]){
+                    if(letra[i-1]===" "){letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
+                }else{letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
+                tmp+=letra[i];
+            }
+            document.getElementById(id).value=tmp;
+        }
     </script>
 
     <script type="text/javascript">
-        /* MÃ¡scaras ER */
+        /* Máscaras ER */
         function mascara(o, f) {
             v_obj = o;
             v_fun = f;
@@ -365,9 +351,9 @@
             v_obj.value = v_fun(v_obj.value);
         }
         function mtel(v) {
-            v = v.replace(/\D/g, "");             //Remove tudo o que nÃ£o Ã© dÃ­gito
-            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parÃªnteses em volta dos dois primeiros dÃ­gitos
-            v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hÃ­fen entre o quarto e o quinto dÃ­gitos
+            v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+            v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
             return v;
         }
         function id(el) {
@@ -380,5 +366,20 @@
         };
     </script>
 
+    <script>
+        $("#formSolicitante").submit(function () {
+            if ($("#telefone").val() === "" || $("#solicitante").val() === "") {
+                swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
+                return false;
+            }
+        });
+    </script>
+
+    <!-- Primeiro POG (Não consegui usar jax)-->
+    <script>
+        <c:if test="${not empty resultado.tipoAlerta}">
+        swal({type: '${resultado.tipoAlerta}', title: 'Ok...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 2500});
+        </c:if>
+    </script>
 
 </html>

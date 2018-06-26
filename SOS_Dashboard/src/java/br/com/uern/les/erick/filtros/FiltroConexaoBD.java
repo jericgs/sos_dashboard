@@ -31,11 +31,12 @@ public class FiltroConexaoBD implements Filter {
             throws IOException, ServletException {
 
         try {
-            Connection connection = new ConexaoBD().getConnection();
-            // pendurando conexão ne requisição 
-            request.setAttribute("conexao", connection);
-            chain.doFilter(request, response);
-            connection.close();
+            // pendurando conexão ne requisição
+            try (Connection connection = new ConexaoBD().getConnection()) {
+                // pendurando conexão ne requisição
+                request.setAttribute("conexao", connection);
+                chain.doFilter(request, response);
+            }
         } catch (SQLException e) {
             throw new ServletException(e);
         } catch (ClassNotFoundException ex) {

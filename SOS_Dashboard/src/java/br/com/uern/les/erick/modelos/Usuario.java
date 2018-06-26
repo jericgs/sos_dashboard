@@ -10,7 +10,7 @@ package br.com.uern.les.erick.modelos;
  * @author jerick.gs
  */
 public class Usuario {
-    
+        
     private String nomeUsuario;
     private String senha;
     private String status;
