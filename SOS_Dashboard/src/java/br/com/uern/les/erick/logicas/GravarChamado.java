@@ -144,7 +144,7 @@ public class GravarChamado implements Logica {
             Alerta alerta = new Alerta();
             alerta.setTipoAlerta("success");
             alerta.setMsnAlerta("Gravado com Sucesso!");
-            req.setAttribute("resultado", alerta);
+            req.setAttribute("confirmacao", alerta);
 
             return "chamadoSolicitante.jsp";
 
@@ -331,7 +331,7 @@ public class GravarChamado implements Logica {
             Alerta alerta = new Alerta();
             alerta.setTipoAlerta("success");
             alerta.setMsnAlerta("Gravado com Sucesso!");
-            req.setAttribute("resultado", alerta);
+            req.setAttribute("confirmacao", alerta);
 
             return "chamadoSolicitante.jsp";
         }

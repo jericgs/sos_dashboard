@@ -377,9 +377,11 @@
 
     <!-- Primeiro POG (Não consegui usar jax)-->
     <script>
-        <c:if test="${not empty resultado.tipoAlerta}">
-        swal({type: '${resultado.tipoAlerta}', title: 'Ok...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 2500});
-        </c:if>
+        <c:if test="${not empty confirmacao.tipoAlerta}">
+            swal({type: '${confirmacao.tipoAlerta}', title: 'Hey...', text: '${confirmacao.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
+                location.href="controle?logica=ChamadoSolicitante&nomeUsuario=${sessionScope.tarm.nomeUsuario}";
+            });                                                            
+        </c:if>                   
     </script>
-
+   
 </html>
