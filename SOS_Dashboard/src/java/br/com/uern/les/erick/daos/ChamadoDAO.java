@@ -28,6 +28,7 @@ public class ChamadoDAO {
     public int getNumeroDeChamado(String DataMomento) {
 
         int numChamado = 0;
+        
         try {
 
             String sql = "SELECT COUNT('NumChamado') FROM registrodechamado WHERE DataDeRegistro = ?";
@@ -47,6 +48,101 @@ public class ChamadoDAO {
         }
 
         return numChamado;
+
+    }
+
+    public int getNumChamadoSocorro(String DataMomento) {
+
+        int numChamadoSocorro = 0;
+                
+        try {
+            
+            String sql = "SELECT COUNT('NumChamado') FROM registrodechamado WHERE DataDeRegistro = ? AND Motivo = ?";
+            PreparedStatement ps = this.connection.prepareStatement(sql);
+            ps.setString(1, DataMomento);
+            ps.setString(2, "Socorro");
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                numChamadoSocorro = rs.getInt("COUNT('NumChamado')");
+            }
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return numChamadoSocorro;
+
+    }
+    
+    public int getNumChamadoTransporte(String DataMomento) {
+
+        int numChamadoTransporte = 0;
+                
+        try {
+            
+            String sql = "SELECT COUNT('NumChamado') FROM registrodechamado WHERE DataDeRegistro = ? AND Motivo = ?";
+            PreparedStatement ps = this.connection.prepareStatement(sql);
+            ps.setString(1, DataMomento);
+            ps.setString(2, "Transporte");
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                numChamadoTransporte = rs.getInt("COUNT('NumChamado')");
+            }
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return numChamadoTransporte;
+
+    }
+    
+    public int getNumChamadoInformacao(String DataMomento) {
+
+        int numChamadoInformacao = 0;
+                
+        try {
+            
+            String sql = "SELECT COUNT('NumChamado') FROM registrodechamado WHERE DataDeRegistro = ? AND Motivo = ?";
+            PreparedStatement ps = this.connection.prepareStatement(sql);
+            ps.setString(1, DataMomento);
+            ps.setString(2, "Informação");
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                numChamadoInformacao = rs.getInt("COUNT('NumChamado')");
+            }
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return numChamadoInformacao;
+
+    }
+    
+    public int getNumChamadoMes(String DataMomento) {
+
+        int numChamadoMes = 0;
+                
+        try {
+            
+            String sql = "SELECT COUNT('NumChamado') FROM registrodechamado WHERE SUBSTRING(DataDeRegistro, 4, 10) = ?";
+            PreparedStatement ps = this.connection.prepareStatement(sql);
+            ps.setString(1, DataMomento);            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                numChamadoMes = rs.getInt("COUNT('NumChamado')");
+            }
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return numChamadoMes;
 
     }
 
@@ -90,7 +186,7 @@ public class ChamadoDAO {
                 ps.setString(7, registroChamado.getDataDeRegistro());
                 ps.setString(8, registroChamado.getQueixa());
                 ps.setString(9, registroChamado.getMotivo());
-                
+
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
@@ -104,4 +200,5 @@ public class ChamadoDAO {
 
         return idRC;
     }
+
 }

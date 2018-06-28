@@ -5,7 +5,6 @@
  */
 package br.com.uern.les.erick.teste;
 
-
 import br.com.uern.les.erick.conexao.ConexaoBD;
 import br.com.uern.les.erick.daos.ChamadoDAO;
 import br.com.uern.les.erick.daos.EnderecoDAO;
@@ -39,8 +38,6 @@ public class ParaTesta {
 //        Usuario usuarioB = dAO.getLogin(usuario, senha);
 //        
 //        System.out.println(usuarioB.getStatus());
-        
-
 //        //Teste MedicoDao
 //        List<MedicoRegulador> medicoReguladorsOn = new ArrayList<MedicoRegulador>();
 //        String tipoDeUsuario = "Médico";
@@ -52,7 +49,6 @@ public class ParaTesta {
 //        for (int i = 0; i < medicoReguladorsOn.size(); i++) {
 //            System.out.println(medicoReguladorsOn.get(i).getCPFM());
 //        }
-
 //          String data = "18/05/2018";
 //          int numchamdo = 0;
 //          
@@ -61,13 +57,10 @@ public class ParaTesta {
 //          numchamdo = chamadoDAO.getNumeroDeChamado(data);
 //          
 //          System.out.println(numchamdo);
-            
-
 //            InformacaoDeTempo informacaoDeTempo = new InformacaoDeTempo();
 //            
 //            System.out.println(informacaoDeTempo.getDate());
 //            System.out.println(informacaoDeTempo.getHora());
-    
 //        Endereco endereco = new Endereco();
 //        endereco.setLogradouro("João Marcelino");
 //        endereco.setNumero(9);
@@ -83,7 +76,6 @@ public class ParaTesta {
 //        int num = enderecoDAO.seEnderecoExiste(endereco);
 //        
 //        System.out.println(num);
-
 //          Solicitante s = new Solicitante();
 //          s.setNome("Erick");
 //          s.setTel("(84) 99636-9155");
@@ -93,7 +85,6 @@ public class ParaTesta {
 //          int resul = solicitanteDAO.inserirSolicitante(s);
 //          
 //          System.out.println(resul);
-
 //            Paciente paciente = new Paciente();
 //            paciente.setNome("Ana Eduarda Nunes");
 //            paciente.setIdade("17");
@@ -103,7 +94,6 @@ public class ParaTesta {
 //            int result = pacienteDAO.inserirPaciente(paciente);
 //            
 //            System.out.println(result);
-
 //              PossuiTabela pt = new PossuiTabela();
 //              pt.setIdP(1);
 //              pt.setIdE(4);
@@ -113,6 +103,23 @@ public class ParaTesta {
 //              int num = pdao.inserirPaciente(pt);
 //              
 //              System.out.println(num);
-              
+        
+//        Connection connection = new ConexaoBD().getConnection();
+//        ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
+//        int num = chamadoDAO.getNumChamadoSocorro("27/06/2018");
+//
+//        System.out.println(num);
+
+//          Connection connection = new ConexaoBD().getConnection();
+//          ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
+//          int num = chamadoDAO.getNumChamadoInformacao("27/06/2018");
+//          
+//          System.out.println(num);
+
+//          Connection connection = new ConexaoBD().getConnection();
+//          ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
+//          int num = chamadoDAO.getNumChamadoMes("06/2018");
+//          
+//          System.out.println(num);
     }
 }

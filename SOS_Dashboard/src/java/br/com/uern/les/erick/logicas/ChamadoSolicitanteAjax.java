@@ -49,7 +49,7 @@ public class ChamadoSolicitanteAjax implements LogicaAjax {
             String numchamado = Integer.toString(chamadoDAO.getNumeroDeChamado(data));
                     
 
-            //INVERSÃO DE CONTROLE (IOC) - JACKSON -- Parei aqui
+            //INVERSÃO DE CONTROLE (IOC) - JACKSON
             ObjectMapper mapper = new ObjectMapper();
             ArrayNode arrayNode = mapper.createArrayNode();
 
