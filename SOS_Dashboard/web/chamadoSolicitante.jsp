@@ -274,8 +274,11 @@
             setHora();
             function setHora() {
                 setTimeout(setHora, 1000);
-                $('#setHora').val(moment().format("hh:mm:ss a"));
+                  $('#setHora').val(moment().format("hh:mm:ss a"));
                 //            console.log(moment().format("hh:mm:ss a"));
+                
+                
+                
             }
         });
     </script>

@@ -135,9 +135,7 @@
                                     </div>
                                     <div class="card-content">
                                         <p class="category">Socorro</p>
-                                        <h3 class="title">49/50
-                                            <small>GB</small>
-                                        </h3>
+                                        <h3 id="numSocorro" class="title"></h3>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -153,7 +151,7 @@
                                     </div>
                                     <div class="card-content">
                                         <p class="category">Transporte</p>
-                                        <h3 class="title">$34,245</h3>
+                                        <h3 id="numTransporte" class="title"></h3>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -169,7 +167,7 @@
                                     </div>
                                     <div class="card-content">
                                         <p class="category">Informação</p>
-                                        <h3 class="title">75</h3>
+                                        <h3 id="numInformacao" class="title"></h3>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -185,7 +183,7 @@
                                     </div>
                                     <div class="card-content">
                                         <p class="category">Chamados</p>
-                                        <h3 class="title">+245</h3>
+                                        <h3 id="numMes" class="title"></h3>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -270,6 +268,85 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material-dashboard.js?v=1.2.0"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
+    <!-- momentjs.com -->        
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>     
+
+    <script type="text/javascript">
+        $(function () {
+            setNumChamadoSocorro();
+            function setNumChamadoSocorro() {
+                setTimeout(setNumChamadoSocorro, 1000);
+
+                dataMomento = moment().format("DD/MM/YYYY");
+
+                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxSocorro", dataSocorro: dataMomento}, function (data, status) {
+
+                    var objDados = JSON.parse(data);
+                    numSocorro.innerHTML = objDados[0].numChamadoSocorro;
+
+                });
+            }
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            setNumChamadoTransporte();
+            function setNumChamadoTransporte() {
+                setTimeout(setNumChamadoTransporte, 1000);
+
+                dataMomento = moment().format("DD/MM/YYYY");
+
+                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxTransporte", dataTransporte: dataMomento}, function (data, status) {
+
+                    var objDados = JSON.parse(data);
+                    numTransporte.innerHTML = objDados[0].numChamadoTransporte;
+
+                });
+            }
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            setNumChamadoInformacao();
+            function setNumChamadoInformacao() {
+                setTimeout(setNumChamadoInformacao, 1000);
+
+                dataMomento = moment().format("DD/MM/YYYY");
+
+                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxInformacao", dataInformacao: dataMomento}, function (data, status) {
+
+                    var objDados = JSON.parse(data);
+                    numInformacao.innerHTML = objDados[0].numChamadoInformacao;
+
+                });
+            }
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            setNumChamadoMes();
+            function setNumChamadoMes() {
+                setTimeout(setNumChamadoMes, 1000);
+
+                dataMomento = moment().format("MM/YYYY");
+
+                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxMes", dataMes: dataMomento}, function (data, status) {
+
+                    var objDados = JSON.parse(data);
+                    numMes.innerHTML = objDados[0].numChamadoMes;                    
+
+                });
+            }
+        });
+
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -277,6 +354,6 @@
             demo.initDashboardPageCharts();
 
         });
-    </script>    
+    </script>
 
 </html>
