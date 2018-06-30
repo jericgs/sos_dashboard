@@ -200,5 +200,29 @@ public class ChamadoDAO {
 
         return idRC;
     }
+    
+    public int getNumDeChamado(String DataMomento) {
+
+        int numChamado = 0;
+        
+        try {
+
+            String sql = "SELECT COUNT('NumChamado') FROM registrodechamado WHERE DataDeRegistro = ?";
+            PreparedStatement ps = this.connection.prepareStatement(sql);
+            ps.setString(1, DataMomento);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                numChamado = rs.getInt("COUNT('NumChamado')");
+            }            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return numChamado;
+
+    }
 
 }

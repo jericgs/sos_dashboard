@@ -6,7 +6,6 @@
 package br.com.uern.les.erick.logicas;
 
 import br.com.uern.les.erick.daos.ChamadoDAO;
-import br.com.uern.les.erick.modelos.InformacaoDeTempo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jerick.gs
  */
-public class AreaTarmAjaxMes implements LogicaAjax {
+public class AreaAjaxMes implements LogicaAjax {
 
     @Override
     public String executaAjax(HttpServletRequest req, HttpServletResponse res) throws Exception {

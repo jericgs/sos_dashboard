@@ -194,55 +194,39 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header card-chart" data-background-color="green">
-                                        <div class="ct-chart" id="dailySalesChart"></div>
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="title">Daily Sales</h4>
-                                        <p class="category">
-                                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 30% </span> increase in today sales.</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">access_time</i> updated 4 minutes ago
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header card-chart" data-background-color="orange">
-                                        <div class="ct-chart" id="emailsSubscriptionChart"></div>
-                                    </div>
-                                    <div class="card-content">
-                                        <h4 class="title">Email Subscriptions</h4>
-                                        <p class="category">Last Campaign Performance</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header card-chart" data-background-color="red">
-                                        <div class="ct-chart" id="completedTasksChart"></div>
+                                        <div class="ct-chart" id="dailyCallsChart"></div>
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="title">Completed Tasks</h4>
-                                        <p class="category">Last Campaign Performance</p>
+                                        <h4 class="title">Chamados Diários</h4>
+                                        <p class="category">
+                                            <span class="text-primary"><i class="material-icons">trending_up</i> 30% </span> de aumento nos chamados de hoje.</p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                            <i class="material-icons">access_time</i> atualizado a 4 minutos atrás
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header card-chart" data-background-color="green">
+                                        <div class="ct-chart" id="monthlyCallsChart"></div>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="title">Chamados Mensais</h4>
+                                        <p class="category">Último mês</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">access_time</i> atualizado a 1 mês atrás
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
                         </div>                                                                        
                     </div>
                 </div>                
@@ -279,7 +263,7 @@
 
                 dataMomento = moment().format("DD/MM/YYYY");
 
-                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxSocorro", dataSocorro: dataMomento}, function (data, status) {
+                $.post("AjaxControle", {logicaAjax: "AreaAjaxSocorro", dataSocorro: dataMomento}, function (data, status) {
 
                     var objDados = JSON.parse(data);
                     numSocorro.innerHTML = objDados[0].numChamadoSocorro;
@@ -298,7 +282,7 @@
 
                 dataMomento = moment().format("DD/MM/YYYY");
 
-                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxTransporte", dataTransporte: dataMomento}, function (data, status) {
+                $.post("AjaxControle", {logicaAjax: "AreaAjaxTransporte", dataTransporte: dataMomento}, function (data, status) {
 
                     var objDados = JSON.parse(data);
                     numTransporte.innerHTML = objDados[0].numChamadoTransporte;
@@ -317,7 +301,7 @@
 
                 dataMomento = moment().format("DD/MM/YYYY");
 
-                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxInformacao", dataInformacao: dataMomento}, function (data, status) {
+                $.post("AjaxControle", {logicaAjax: "AreaAjaxInformacao", dataInformacao: dataMomento}, function (data, status) {
 
                     var objDados = JSON.parse(data);
                     numInformacao.innerHTML = objDados[0].numChamadoInformacao;
@@ -336,10 +320,10 @@
 
                 dataMomento = moment().format("MM/YYYY");
 
-                $.post("AjaxControle", {logicaAjax: "AreaTarmAjaxMes", dataMes: dataMomento}, function (data, status) {
+                $.post("AjaxControle", {logicaAjax: "AreaAjaxMes", dataMes: dataMomento}, function (data, status) {
 
                     var objDados = JSON.parse(data);
-                    numMes.innerHTML = objDados[0].numChamadoMes;                    
+                    numMes.innerHTML = objDados[0].numChamadoMes;
 
                 });
             }
@@ -350,8 +334,29 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            // Javascript method's body can be found in assets/js/demos.js
-            demo.initDashboardPageCharts();
+            // O corpo do método Javascript pode ser encontrado em Resources/node_modules/bootstrap/js/disp-dasboard/demo.js            
+
+            $.post("AjaxControle", {logicaAjax: "AreaAjaxGraficoCD"}, function (data, status) {
+
+                var objDadosSemana = JSON.parse(data);
+                demo.initDashboardPageChartsGraficoSemana(objDadosSemana);
+
+            });
+
+        });
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // O corpo do método Javascript pode ser encontrado em Resources/node_modules/bootstrap/js/disp-dasboard/demo.js            
+
+            $.post("AjaxControle", {logicaAjax: "AreaAjaxGraficoCM"}, function (data, status) {
+                                
+                var objDadosMes = JSON.parse(data);
+                demo.initDashboardPageChartsGraficoMes(objDadosMes);
+
+            });
 
         });
     </script>

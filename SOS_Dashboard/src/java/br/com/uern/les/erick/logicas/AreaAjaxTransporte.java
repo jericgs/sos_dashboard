@@ -18,35 +18,35 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jerick.gs
  */
-public class AreaTarmAjaxSocorro implements LogicaAjax {
+public class AreaAjaxTransporte implements LogicaAjax{
 
     @Override
     public String executaAjax(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-        String dataSocorro = req.getParameter("dataSocorro");
+        
+        String dataTransporte = req.getParameter("dataTransporte");
         InformacaoDeTempo informacaoDeTempo = new InformacaoDeTempo();
-
-        if (dataSocorro.equalsIgnoreCase(informacaoDeTempo.getDate())) {
-
+        
+        if(dataTransporte.equalsIgnoreCase(informacaoDeTempo.getDate())){
+            
             Connection connection = (Connection) req.getAttribute("conexao");
             ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-            String numChamadoSocorro = Integer.toString(chamadoDAO.getNumChamadoSocorro(dataSocorro));
-
+            String numChamadoTransporte = Integer.toString(chamadoDAO.getNumChamadoTransporte(dataTransporte));
+            
             //INVERSÃO DE CONTROLE (IOC) - JACKSON
             ObjectMapper mapper = new ObjectMapper();
             ArrayNode arrayNode = mapper.createArrayNode();
-
+            
             ObjectNode objectNode = mapper.createObjectNode();
-            objectNode.put("numChamadoSocorro", numChamadoSocorro);
+            objectNode.put("numChamadoTransporte", numChamadoTransporte);
             arrayNode.add(objectNode);
-
+            
             String json = mapper.writeValueAsString(arrayNode);
-            return json;
-
+            return json;  
+            
         }
         
-        return null;              
+        return null;
         
     }
-
+    
 }
