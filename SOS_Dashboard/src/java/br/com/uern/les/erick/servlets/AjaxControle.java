@@ -31,6 +31,7 @@ public class AjaxControle extends HttpServlet {
             Class classe = Class.forName(nomeDaClasse);
             LogicaAjax logicaAjax = (LogicaAjax) classe.newInstance();
             String json = logicaAjax.executaAjax(request, response);
+            response.setContentType("text/plain"); 
             response.setCharacterEncoding("UTF-8");
             response.getWriter().println(json);
         } catch (Exception e) {
@@ -51,6 +52,7 @@ public class AjaxControle extends HttpServlet {
             Class classe = Class.forName(nomeDaClasse);
             LogicaAjax logicaAjax = (LogicaAjax) classe.newInstance();
             String json = logicaAjax.executaAjax(request, response);
+            response.setContentType("text/plain"); 
             response.setCharacterEncoding("UTF-8");
             response.getWriter().println(json);
         } catch (Exception e) {

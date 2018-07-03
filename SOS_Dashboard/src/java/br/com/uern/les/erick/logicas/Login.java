@@ -57,7 +57,7 @@ public class Login implements Logica {
 
                         HttpSession session = req.getSession();
                         session.setAttribute("status", "logado");                        
-                        session.setAttribute("tarm", usuarioB); //Lembre de trocar os outros
+                        session.setAttribute("tarm", usuarioB);
                         return "areaTarm.jsp";
                     }
 
@@ -65,7 +65,7 @@ public class Login implements Logica {
 
                         HttpSession session = req.getSession();
                         session.setAttribute("status", "logado");                        
-                        req.setAttribute("medico", usuarioB);
+                        session.setAttribute("medico", usuarioB);//Lembre de trocar os outros
                         return "areaMedico.jsp";
                     }
 

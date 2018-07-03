@@ -27,6 +27,39 @@ public class MedicoDAO {
         this.connection = connection;
     }
 
+    public MedicoRegulador getDadosMedicoRegulador(String nomeUsuario) {
+
+        MedicoRegulador medicoRegulador = new MedicoRegulador();
+        
+        try {
+            String sql = "SELECT * FROM medicoregulador WHERE NomeUsuario = ?";
+            try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
+                ps.setString(1, nomeUsuario);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        
+                        medicoRegulador.setCPFM(rs.getString("CPFM"));
+                        medicoRegulador.setUsuario(rs.getString("NomeUsuario"));
+                        medicoRegulador.setContato(rs.getInt("IdC"));
+                        medicoRegulador.setEndereco(rs.getInt("IdE"));
+                        medicoRegulador.setCRM(rs.getString("CRM"));
+                        medicoRegulador.setNascimento(rs.getString("Nascimento"));
+                        medicoRegulador.setRG(rs.getString("RG"));
+                        medicoRegulador.setNome(rs.getString("Nome"));
+                        medicoRegulador.setGenero(rs.getString("Genero"));
+                        medicoRegulador.setSituacao(rs.getString("Situacao"));
+                        
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TarmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return medicoRegulador;
+    }
+
     public List<MedicoRegulador> getMedicoRegulador() {
 
         List<String> usuariosLogados = new ArrayList<>();

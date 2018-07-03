@@ -18,17 +18,17 @@ import java.util.logging.Logger;
  * @author jerick.gs
  */
 public class PacienteDAO {
-    
+
     private Connection connection;
 
     public PacienteDAO(Connection connection) {
         this.connection = connection;
     }
-    
-    public int inserirPaciente(Paciente paciente){
-        
+
+    public int inserirPaciente(Paciente paciente) {
+
         int idPacient = 0;
-        
+
         try {
 
             String sql1 = "INSERT INTO paciente "
@@ -58,7 +58,36 @@ public class PacienteDAO {
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return idPacient;        
+
+        return idPacient;
     }
+
+    public Paciente getPacienteRegulacao(int idP) {
+
+        Paciente paciente = new Paciente();
+
+        try {
+
+            String sql = "SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(Nome, ' ', 1), ' ', -1) AS "
+                    + "PrimeiroNome, Idade FROM paciente WHERE IdP = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idP);
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {
+                    paciente.setNome(rs.getString("PrimeiroNome"));
+                    paciente.setIdade(rs.getString("Idade"));                
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PacienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return paciente;
+
+    }
+
 }

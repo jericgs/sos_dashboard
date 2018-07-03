@@ -201,12 +201,11 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="title">Chamados Diários</h4>
-                                        <p class="category">
-                                            <span class="text-primary"><i class="material-icons">trending_up</i> 30% </span> de aumento nos chamados de hoje.</p>
+                                        <p class="category">Número de chamados dos últimos dias</p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">access_time</i> atualizado a 4 minutos atrás
+                                            <i class="material-icons">access_time</i> atualizado em tempo real
                                         </div>
                                     </div>
                                 </div>
@@ -218,11 +217,11 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="title">Chamados Mensais</h4>
-                                        <p class="category">Último mês</p>
+                                        <p class="category">Número de chamados dos últimos meses</p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">access_time</i> atualizado a 1 mês atrás
+                                            <i class="material-icons">access_time</i> atualizado em tempo real
                                         </div>
                                     </div>
                                 </div>

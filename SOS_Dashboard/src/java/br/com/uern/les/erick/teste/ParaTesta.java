@@ -8,18 +8,24 @@ package br.com.uern.les.erick.teste;
 import br.com.uern.les.erick.conexao.ConexaoBD;
 import br.com.uern.les.erick.daos.ChamadoDAO;
 import br.com.uern.les.erick.daos.EnderecoDAO;
+import br.com.uern.les.erick.daos.MedicoDAO;
 import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.PossuiDAO;
+import br.com.uern.les.erick.daos.RegulacaoDAO;
 import br.com.uern.les.erick.daos.SolicitanteDAO;
 import br.com.uern.les.erick.daos.UsuarioDAO;
+import br.com.uern.les.erick.modelos.ChamadoMedico;
 import br.com.uern.les.erick.modelos.Endereco;
 import br.com.uern.les.erick.modelos.InformacaoDeTempo;
+import br.com.uern.les.erick.modelos.MedicoRegulador;
 import br.com.uern.les.erick.modelos.Paciente;
 import br.com.uern.les.erick.modelos.PossuiTabela;
+import br.com.uern.les.erick.modelos.Regulacao;
 import br.com.uern.les.erick.modelos.Solicitante;
 import br.com.uern.les.erick.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -121,5 +127,60 @@ public class ParaTesta {
 //          int num = chamadoDAO.getNumChamadoMes("06/2018");
 //          
 //          System.out.println(num);
+
+//          Connection connection = new ConexaoBD().getConnection();
+//          RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
+//          Regulacao regulacao = new Regulacao();
+//          
+//          regulacao.setIdRC(2);
+//          regulacao.setGe(0);
+//          regulacao.setGs(0);
+//          regulacao.setAtencao(0);
+//          regulacao.setSocial(0);
+//          regulacao.setTempo(0);
+//          regulacao.setGu(0);
+//          regulacao.setStatus("Andamento");          
+//                  
+//          int num = regulacaoDAO.inserindoRegulacao(regulacao);
+//          
+//          System.out.println(num);
+    
+//        Connection connection = new ConexaoBD().getConnection();
+//        ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
+//        List<ChamadoMedico> chamadosMedico = chamadoDAO.getListaDeChamados("999.446.765-01", "02/07/2018");
+//        
+//        for(int i = 0; i < chamadosMedico.size(); i++){
+//            
+//            System.out.println(chamadosMedico.get(i).getIdRC());
+//            System.out.println(chamadosMedico.get(i).getIdP());
+//            System.out.println(chamadosMedico.get(i).getHora());
+//            System.out.println(chamadosMedico.get(i).getMotivo());
+//            System.out.println(chamadosMedico.get(i).getQueixa()+ "\n\n");
+//                                    
+//        }
+//        
+//        if(chamadosMedico.isEmpty()){
+//            System.out.println("Vazio");
+//        }
+
+//        Connection connection = new ConexaoBD().getConnection();
+//        RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
+//        
+//        int idR = regulacaoDAO.verificarStatusRegulacao(32);
+//        
+//        System.out.println(idR);
+        
+//        Connection connection = new ConexaoBD().getConnection();
+//        PacienteDAO pacienteDAO = new PacienteDAO(connection);
+//        Paciente p = pacienteDAO.getPacienteRegulacao(1); //se 0 vem null.
+//        
+//        System.out.println(p.getNome());
+//        System.out.println(p.getIdade());
+             
+//        Connection connection = new ConexaoBD().getConnection();  
+//        MedicoDAO medicoDAO = new MedicoDAO(connection);
+//        MedicoRegulador mr = medicoDAO.getDadosMedicoRegulador("carlos.edu");
+//        
+//        System.out.println(mr.getCPFM());
     }
 }

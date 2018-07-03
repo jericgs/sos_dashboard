@@ -9,12 +9,14 @@ import br.com.uern.les.erick.daos.ChamadoDAO;
 import br.com.uern.les.erick.daos.EnderecoDAO;
 import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.PossuiDAO;
+import br.com.uern.les.erick.daos.RegulacaoDAO;
 import br.com.uern.les.erick.daos.SolicitanteDAO;
 import br.com.uern.les.erick.modelos.Alerta;
 import br.com.uern.les.erick.modelos.Endereco;
 import br.com.uern.les.erick.modelos.Paciente;
 import br.com.uern.les.erick.modelos.PossuiTabela;
 import br.com.uern.les.erick.modelos.RegistroChamado;
+import br.com.uern.les.erick.modelos.Regulacao;
 import br.com.uern.les.erick.modelos.Solicitante;
 import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +30,6 @@ public class GravarChamado implements Logica {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        
 
         //INSTANCIANDO CONEXÃO
         Connection connection = (Connection) req.getAttribute("conexao");
@@ -46,7 +47,7 @@ public class GravarChamado implements Logica {
         //CAMPOS FORMULÁRIO PART2
         String nomePaciente = req.getParameter("nomePaciente");
         String idadePaciente = req.getParameter("idadePaciente");
-        String queixa = req.getParameter("queixa");                        
+        String queixa = req.getParameter("queixa");
 
         if (motivo.equalsIgnoreCase("Socorro") || motivo.equalsIgnoreCase("Informação")) {
 
@@ -138,7 +139,24 @@ public class GravarChamado implements Logica {
 
             //INSTÂNCIA CHAMADODAO E REALIZA A INSERÇÃO
             ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-            chamadoDAO.inserindoChamado(registroChamado);
+            int idRC = chamadoDAO.inserindoChamado(registroChamado);
+
+            //MODELO REGULAÇÃO
+            Regulacao regulacao = new Regulacao();
+            regulacao.setIdRC(idRC);
+            regulacao.setGe(0);
+            regulacao.setGs(0);
+            regulacao.setAtencao(0);
+            regulacao.setSocial(0);
+            regulacao.setTempo(0);
+            regulacao.setGu(0);
+            regulacao.setStatus("Andamento");
+            regulacao.setTipoDeCaso("Nenhum");
+            regulacao.setMensagem("Nenhum");
+
+            //INSTÂNCIA REGULACAODAO E REALIZA A INSERÇÃO
+            RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
+            regulacaoDAO.inserindoRegulacao(regulacao);
 
             //PARAMETROS PARA O ALERTA
             Alerta alerta = new Alerta();
@@ -322,10 +340,27 @@ public class GravarChamado implements Logica {
             registroChamado.setDataDeRegistro(data);
             registroChamado.setQueixa(queixa);
             registroChamado.setMotivo(motivo);
-            
+
             //INSTÂNCIA CHAMADODAO E REALIZA A INSERÇÃO
             ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-            chamadoDAO.inserindoChamado(registroChamado);
+            int idRC = chamadoDAO.inserindoChamado(registroChamado);            
+
+            //MODELO REGULAÇÃO
+            Regulacao regulacao = new Regulacao();
+            regulacao.setIdRC(idRC);
+            regulacao.setGe(0);
+            regulacao.setGs(0);
+            regulacao.setAtencao(0);
+            regulacao.setSocial(0);
+            regulacao.setTempo(0);
+            regulacao.setGu(0);
+            regulacao.setStatus("Andamento");
+            regulacao.setTipoDeCaso("Nenhum");
+            regulacao.setMensagem("Nenhum");
+
+            //INSTÂNCIA REGULACAODAO E REALIZA A INSERÇÃO
+            RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
+            regulacaoDAO.inserindoRegulacao(regulacao);
             
             //PARAMETROS PARA O ALERTA
             Alerta alerta = new Alerta();

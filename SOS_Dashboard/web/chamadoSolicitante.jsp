@@ -133,7 +133,7 @@
                                         <p class="category">Solicitante - 1/2</p>
                                     </div>
                                     <div class="card-content">
-                                        <form id="formSolicitante" action="controle" method="post">
+                                        <form id="formSolicitante" action="controle" method="get">
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
@@ -172,7 +172,7 @@
                                                 <div class="col-md-6">                                                     
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Médico Regulador</label>                                                        
-                                                        <select autofocus id="combobox" name="medicoCPF" class="form-control selectpicker" data-style="select-with-transition" data-size="7">                                                                                                                        
+                                                        <select autofocus id="combobox" name="medicoCPF" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="7">                                                                                                                        
                                                             <!--                                                             <option class="form-control" value="nenhum">Nenhum</option>-->                                                            
                                                         </select>                                                        
                                                     </div>                                                                                                                                                     
@@ -371,7 +371,7 @@
 
     <script>
         $("#formSolicitante").submit(function () {
-            if ($("#telefone").val() === "" || $("#solicitante").val() === "") {
+            if ($("#telefone").val() === "" || $("#solicitante").val() === "" || $("#combobox").val() === "") {
                 swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
                 return false;
             }
