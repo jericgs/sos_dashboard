@@ -234,7 +234,7 @@ public class ChamadoDAO {
 
         try {
             String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFM = ? AND "
-                    + "DataDeRegistro = ? ORDER BY Hora ASC";
+                    + "DataDeRegistro = ? ORDER BY Hora DESC";
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
                 stmt.setString(1, cpfm);

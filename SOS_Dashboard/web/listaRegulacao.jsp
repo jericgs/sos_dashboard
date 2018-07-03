@@ -131,21 +131,13 @@
                                     <div class="card-content table-responsive">
                                         <table class="table table-hover">
                                             <thead class="text-primary">
-                                            <th>ID Regulação</th>
-                                            <th>Paciente</th>
-                                            <th>Idade</th>
-                                            <th>Motivo</th>
-                                            <th>Queixa</th>
+                                                <th>ID Regulação</th>
+                                                <th>Paciente</th>
+                                                <th>Idade</th>
+                                                <th>Motivo</th>
+                                                <th>Queixa</th>
                                             </thead>
-                                            <tbody>
-                                                <tr style='cursor:pointer' onclick="document.location='http://lattes.cnpq.br/1048245272218464'">
-                                                    <td>Dakota Rice</td>
-                                                    <td>Niger</td>
-                                                    <td>Niger</td>
-                                                    <td>Oud-Turnhout</td>
-                                                    <td>$36,738</td>
-                                                </tr>                                                                                                                                           
-                                            </tbody>
+                                            <tbody id="listaRegulacao"></tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -154,10 +146,7 @@
                     </div>
                 </div>            
             </div>
-
-
         </div>
-
     </body>
 
     <!--   Core JS Files   -->
@@ -186,9 +175,7 @@
             setChamadosEmRegulacao();
             function setChamadosEmRegulacao() {
 
-                setTimeout(setChamadosEmRegulacao, 1000);
-                
-                //combobox.innerHTML = "";
+                setTimeout(setChamadosEmRegulacao, 1000);                                
 
                $.post("AjaxControle", {logicaAjax: "AreaAjaxListaRegulacao", cpfm: "${sessionScope.dadosMedicoRegulador.CPFM}"}, function (data, status) {
 
@@ -196,17 +183,29 @@
                     //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
                     var objDados = JSON.parse(data);
 
-//                    combobox = document.getElementById("combobox");
-//
-//                    for (i = 0; i < objDados.length; i++) {
-//                        //conteudo.innerHTML += objDados.clientes[i].id + "| " + objDados.clientes[i].nome + " | " + objDados.clientes[i].email + "<br>";
-//                        //combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados.clientes[i].nome + "</option>";
-//
-//                        combobox.innerHTML += "<option value='" + objDados[i].cpfm + "'>" + objDados[i].nome + "</option>";
-//                    }
-//
-//                    $('.selectpicker').selectpicker('refresh');
+                    listaRegulacao = document.getElementById("listaRegulacao");
 
+                    var socorro = "Socorro";
+                    var informacao = "Informação";
+                    var transporte = "Transporte";                    
+                    
+                    listaRegulacao.innerHTML = "";
+                    for (i = 0; i < objDados.length; i++) {                                                                        
+                        
+                        if(socorro.toUpperCase() === objDados[i].motivo.toUpperCase()){
+                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='http://lattes.cnpq.br/1048245272218464'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
+                        }
+                        
+                        if(informacao.toUpperCase() === objDados[i].motivo.toUpperCase()){
+                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='http://lattes.cnpq.br/1048245272218464'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
+                        }
+                        
+                        if(transporte.toUpperCase() === objDados[i].motivo.toUpperCase()){
+                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='http://lattes.cnpq.br/1048245272218464'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
+                        }
+                                                
+                    }
+                                                            
                });
                 
             }
