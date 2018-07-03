@@ -263,4 +263,33 @@ public class ChamadoDAO {
 
         return lisChamadosDoMedico;
     }
+    
+    public ChamadoMedico getChamado(int idRC) {
+
+        //INSTÂNCIO O MODELO E CRIO O CHAMADOMEDICO
+        ChamadoMedico chamadoMedico = new ChamadoMedico();
+
+        try {
+            String sql = "SELECT IdP, Motivo, Queixa FROM registrodechamado WHERE IdRC = ?";                    
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idRC);                                              
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {                                        
+                                        
+                    chamadoMedico.setIdP(rs.getInt("IdP"));                    
+                    chamadoMedico.setMotivo(rs.getString("Motivo"));
+                    chamadoMedico.setQueixa(rs.getString("Queixa"));
+                    
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return chamadoMedico;
+    }
 }

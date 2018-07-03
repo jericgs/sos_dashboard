@@ -105,5 +105,30 @@ public class RegulacaoDAO {
 
         return idR;
     }
+    
+    public int getIdRegistroChamado(int idR) {
+
+        int idRC = 0;
+
+        try {
+
+            String sql = "SELECT IdRC FROM regulacao WHERE IdR = ?";
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idR);                
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {
+                    idRC = rs.getInt("IdRC");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return idRC;
+    }
 
 }

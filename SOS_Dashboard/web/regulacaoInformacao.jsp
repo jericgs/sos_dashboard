@@ -1,6 +1,6 @@
 <%-- 
-    Document   : listaRegulacao
-    Created on : 01/07/2018, 11:44:35
+    Document   : regulacaoInformacao
+    Created on : 03/07/2018, 16:59:07
     Author     : jerick.gs
 --%>
 
@@ -11,22 +11,21 @@
 
     <head>
 
-        <title>Médico</title>
+        <title>Médico</title>       
 
-        <!-- Required meta tags -->                    
-        <meta charset="utf-8">                     
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">                
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">
 
-
-        <!--  Material Dashboard CSS    -->
-        <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" />
+        <!--  Material Dashboard CSS -->
+        <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="Resources/node_modules/bootstrap/compiler/demo.css" rel="stylesheet" />        
+        <link href="Resources/node_modules/bootstrap/compiler/demo.css" rel="stylesheet" />  
 
         <!-- Icone -->        
         <link rel="icon" type="image/png" href="Resources/imagens/icons/icon.ico">
@@ -74,9 +73,9 @@
                             </a>
                         </li>                                                
                         <li class="active">
-                            <a href="controle?logica=ListaRegulacoes&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                            <a href="controle?logica=RegulacaoInformacao&nomeUsuario=${sessionScope.medico.nomeUsuario}">
                                 <i class="material-icons">library_books</i>
-                                <p>Regulação</p>
+                                <p>Regulações</p>
                             </a>
                         </li>
                         <li>
@@ -104,7 +103,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand">Chamados</a>
+                            <a class="navbar-brand"> Regulação Informação </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
@@ -122,31 +121,67 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div>
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Esperando Regulação</h4>
-                                        <p class="category">Pacientes - 1/N</p>
+                                        <h4 class="title">Registro de Regulação</h4>
+                                        <p class="category">Paciente - 2/N</p>
                                     </div>
-                                    <div class="card-content table-responsive">
-                                        <table class="table table-hover">
-                                            <thead class="text-primary">
-                                                <th>ID Regulação</th>
-                                                <th>Paciente</th>
-                                                <th>Idade</th>
-                                                <th>Motivo</th>
-                                                <th>Queixa</th>
-                                            </thead>
-                                            <tbody id="listaRegulacao"></tbody>
-                                        </table>
+                                    <div class="card-content">
+                                        <form id="formSolicitante" action="controle" method="post">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Paciente</label>
+                                                        <input id="paciente" type="text" name="nomePaciente" maxlength="50" value="${sessionScope.dadosPaciente.nomePaciente}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
+                                                    </div>
+                                                </div>                                                
+                                                <div class="col-md-2">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Idade</label>
+                                                        <input id="idade" type="text" name="idadePaciente" maxlength="3" value="${sessionScope.dadosPaciente.idade}" class="form-control" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Motivo</label>
+                                                        <input id="motivo" type="text" name="motivo" maxlength="20" value="${sessionScope.dadosPaciente.motivo}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
+                                                    </div>
+                                                </div>  
+                                            </div>                                                                                   
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">                                                       
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Queixa</label>
+                                                            <textarea id="queixa" class="form-control" maxlength="144" name="queixa" form="formSolicitante" rows="3" disabled>${sessionScope.dadosPaciente.queixa}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">                                                        
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Qual informação foi solicitada?</label>
+                                                            <textarea id="justificativa" class="form-control" maxlength="144" name="justificativa" form="formSolicitante" rows="3"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="ChamadoPaciente">Gravar</button>
+                                            <div class="clearfix"></div>
+                                        </form>
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>                           
                         </div>
                     </div>
-                </div>            
+                </div>               
             </div>
-        </div>
+        </div> 
+
     </body>
 
     <!--   Core JS Files   -->
@@ -168,48 +203,6 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
-    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>   
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>  
 
-    <script type="text/javascript">
-        $(function () {
-            setChamadosEmRegulacao();
-            function setChamadosEmRegulacao() {
-
-                setTimeout(setChamadosEmRegulacao, 1000);                                
-
-               $.post("AjaxControle", {logicaAjax: "AreaAjaxListaRegulacao", cpfm: "${sessionScope.dadosMedicoRegulador.CPFM}"}, function (data, status) {
-
-                    //NATIVO
-                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
-                    var objDados = JSON.parse(data);
-
-                    listaRegulacao = document.getElementById("listaRegulacao");
-
-                    var socorro = "Socorro";
-                    var informacao = "Informação";
-                    var transporte = "Transporte";                    
-                    
-                    listaRegulacao.innerHTML = "";
-                    for (i = 0; i < objDados.length; i++) {                                                                        
-                        
-                        if(socorro.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='http://lattes.cnpq.br/1048245272218464'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
-                        }
-                        
-                        if(informacao.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='controle?logica=RegulacaoInformacao&nomeUsuario=${sessionScope.medico.nomeUsuario}&idR="+objDados[i].idR+"'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
-                        }
-                        
-                        if(transporte.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='http://lattes.cnpq.br/1048245272218464'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
-                        }
-                                                
-                    }
-                                                            
-               });
-                
-            }
-        });
-    </script>
-    
 </html>

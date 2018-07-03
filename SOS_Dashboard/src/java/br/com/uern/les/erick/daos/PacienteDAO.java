@@ -89,5 +89,32 @@ public class PacienteDAO {
         return paciente;
 
     }
+    
+    public Paciente getPacienteRegulacaoI(int idP) {
+
+        Paciente paciente = new Paciente();
+
+        try {
+
+            String sql = "SELECT Nome, Idade FROM paciente WHERE IdP = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idP);
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {
+                    paciente.setNome(rs.getString("Nome"));
+                    paciente.setIdade(rs.getString("Idade"));                
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PacienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return paciente;
+
+    }
 
 }

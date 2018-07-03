@@ -67,7 +67,7 @@
                 <div class="sidebar-wrapper">
                     <ul class="nav">
                         <li class="active">
-                            <a href="./areaTarm.jsp">
+                            <a href="./areaMedico.jsp">
                                 <i class="material-icons">dashboard</i>
                                 <p>Painel</p>
                             </a>
