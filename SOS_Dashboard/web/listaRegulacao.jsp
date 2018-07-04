@@ -4,14 +4,14 @@
     Author     : jerick.gs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
 
-        <title>MÃ©dico</title>
+        <title>Médico</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -76,7 +76,7 @@
                         <li class="active">
                             <a href="controle?logica=ListaRegulacoes&nomeUsuario=${sessionScope.medico.nomeUsuario}">
                                 <i class="material-icons">library_books</i>
-                                <p>RegulaÃ§Ã£o</p>
+                                <p>Regulação</p>
                             </a>
                         </li>
                         <li>
@@ -125,13 +125,13 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Esperando RegulaÃ§Ã£o</h4>
+                                        <h4 class="title">Esperando Regulação</h4>
                                         <p class="category">Pacientes - 1/N</p>
                                     </div>
                                     <div class="card-content table-responsive">
                                         <table class="table table-hover">
                                             <thead class="text-primary">
-                                                <th>ID RegulaÃ§Ã£o</th>
+                                                <th>ID Regulação</th>
                                                 <th>Paciente</th>
                                                 <th>Idade</th>
                                                 <th>Motivo</th>
@@ -180,13 +180,13 @@
                $.post("AjaxControle", {logicaAjax: "AreaAjaxListaRegulacao", cpfm: "${sessionScope.dadosMedicoRegulador.CPFM}"}, function (data, status) {
 
                     //NATIVO
-                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"JosÃ©", "email":"jose.gs@gmail.com"}]}';
+                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
                     var objDados = JSON.parse(data);
 
                     listaRegulacao = document.getElementById("listaRegulacao");
 
                     var socorro = "Socorro";
-                    var informacao = "InformaÃ§Ã£o";
+                    var informacao = "Informação";
                     var transporte = "Transporte";                    
                     
                     listaRegulacao.innerHTML = "";
@@ -210,6 +210,14 @@
                 
             }
         });
+    </script>
+        
+    <script>
+        <c:if test="${not empty confirmacao.tipoAlerta}">
+            swal({type: '${confirmacao.tipoAlerta}', title: 'Hey...', text: '${confirmacao.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
+                location.href="controle?logica=ListaRegulacoes&nomeUsuario=${sessionScope.medico.nomeUsuario}";
+            });                                                            
+        </c:if>                   
     </script>
     
 </html>

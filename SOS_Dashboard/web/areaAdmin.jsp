@@ -4,7 +4,7 @@
     Author     : jerick.gs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">    
@@ -19,7 +19,7 @@
         </c:if>
 
         <h1>Resultado Tipo de Session: ${sessionScope.status}</h1>
-        <h1>Resultado Tipo de Usu√°rio: ${admin.tipoDeUsuario}</h1>
+        <h1>Resultado Tipo de Usu·rio: ${admin.tipoDeUsuario}</h1>
         <h1>Resultado Senha: ${admin.senha}</h1>        
 
         <a href="controle?logica=Logout&status=${sessionScope.status}">Logout</a>

@@ -109,25 +109,21 @@ public class ParaTesta {
 //              int num = pdao.inserirPaciente(pt);
 //              
 //              System.out.println(num);
-        
 //        Connection connection = new ConexaoBD().getConnection();
 //        ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
 //        int num = chamadoDAO.getNumChamadoSocorro("27/06/2018");
 //
 //        System.out.println(num);
-
 //          Connection connection = new ConexaoBD().getConnection();
 //          ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
 //          int num = chamadoDAO.getNumChamadoInformacao("27/06/2018");
 //          
 //          System.out.println(num);
-
 //          Connection connection = new ConexaoBD().getConnection();
 //          ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
 //          int num = chamadoDAO.getNumChamadoMes("06/2018");
 //          
 //          System.out.println(num);
-
 //          Connection connection = new ConexaoBD().getConnection();
 //          RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
 //          Regulacao regulacao = new Regulacao();
@@ -144,7 +140,6 @@ public class ParaTesta {
 //          int num = regulacaoDAO.inserindoRegulacao(regulacao);
 //          
 //          System.out.println(num);
-    
 //        Connection connection = new ConexaoBD().getConnection();
 //        ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
 //        List<ChamadoMedico> chamadosMedico = chamadoDAO.getListaDeChamados("999.446.765-01", "02/07/2018");
@@ -162,25 +157,28 @@ public class ParaTesta {
 //        if(chamadosMedico.isEmpty()){
 //            System.out.println("Vazio");
 //        }
-
 //        Connection connection = new ConexaoBD().getConnection();
 //        RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
 //        
 //        int idR = regulacaoDAO.verificarStatusRegulacao(32);
 //        
 //        System.out.println(idR);
-        
 //        Connection connection = new ConexaoBD().getConnection();
 //        PacienteDAO pacienteDAO = new PacienteDAO(connection);
 //        Paciente p = pacienteDAO.getPacienteRegulacao(1); //se 0 vem null.
 //        
 //        System.out.println(p.getNome());
 //        System.out.println(p.getIdade());
-             
 //        Connection connection = new ConexaoBD().getConnection();  
 //        MedicoDAO medicoDAO = new MedicoDAO(connection);
 //        MedicoRegulador mr = medicoDAO.getDadosMedicoRegulador("carlos.edu");
 //        
 //        System.out.println(mr.getCPFM());
+        
+//        Connection connection = new ConexaoBD().getConnection();
+//        RegulacaoDAO rdao = new RegulacaoDAO(connection);
+//        int i = rdao.atualizarRegulacao(1, "Andamento", "Nenhum");
+//        
+//        System.out.println(i);
     }
 }

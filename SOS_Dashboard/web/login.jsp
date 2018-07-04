@@ -4,7 +4,7 @@
     Author     : jerick.gs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -102,7 +102,7 @@
             }
         </script>
 
-        <!-- Primeiro POG (NÃ£o consegui usar jax)-->
+        <!-- Primeiro POG (Não consegui usar jax)-->
         <script>
             <c:if test="${not empty resultado.tipoAlerta}">
             swal({type: '${resultado.tipoAlerta}', title: 'Oops...', text: '${resultado.msnAlerta}', showConfirmButton: false, timer: 2000});

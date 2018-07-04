@@ -4,7 +4,7 @@
     Author     : jerick.gs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.css">        
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/style.css">
 
-        <!-- Ãcone -->        
+        <!-- Ícone -->        
         <link rel="icon" type="image/png" href="Resources/imagens/icons/icon.ico">
 
         <!-- CSS Style-->
@@ -40,7 +40,7 @@
     </head>
     <body class="body" data-container="home"> 
 
-        <!-- NAVEGAÃ‡ÃƒO -->
+        <!-- NAVEGAÇÃO -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-light navbarSombra"style="background-color: #1B2B5E;" data-container="menu">
 
             <div class="container">
@@ -109,7 +109,7 @@
             <a class="carousel-control-next" href="#carouselSite" role="button" data-slide="next">
 
                 <span class="carousel-control-next-icon"></span>
-                <span class="sr-only">AvanÃ§ar</span>
+                <span class="sr-only">Avançar</span>
 
             </a>
 
@@ -118,10 +118,10 @@
         <!-- SOBRE -->
         <div data-container="sobre" class="section section-gray section-clients">
             <div class="container text-center">                    
-                <h4 class="header-text">SAMU 192 - MOSSORÃ“</h4>
+                <h4 class="header-text">SAMU 192 - MOSSORÓ</h4>
                 <hr>
                 <p>
-                    O ServiÃ§o de Atendimento MÃ³vel de UrgÃªncia (SAMU), acessado por chamada gratuita pelo nÃºmero 192 Ã© o principal componente da PolÃ­tica Nacional de AtenÃ§Ã£o Ã s UrgÃªncias, criada em 2003, que tem como finalidade proteger a vida das pessoas e garantir a qualidade no atendimento no SUS. O serviÃ§o funciona 24 horas por dia com equipes de profissionais de saÃºde e realiza o atendimento de urgÃªncia e emergÃªncia em qualquer lugar: residÃªncias, locais de trabalho e vias pÃºblicas. Na cidade de MossorÃ³, o serviÃ§o foi iniciado em 3 de marÃ§o de 2005 e atualmente sÃ£o cinco ambulÃ¢ncias, sendo duas Alfas e trÃªs Bravos, distribuÃ­dos estrategicamente.<br>
+                    O Serviço de Atendimento Móvel de Urgência (SAMU), acessado por chamada gratuita pelo número 192 é o principal componente da Política Nacional de Atenção às Urgências, criada em 2003, que tem como finalidade proteger a vida das pessoas e garantir a qualidade no atendimento no SUS. O serviço funciona 24 horas por dia com equipes de profissionais de saúde e realiza o atendimento de urgência e emergência em qualquer lugar: residências, locais de trabalho e vias públicas. Na cidade de Mossoró, o serviço foi iniciado em 3 de março de 2005 e atualmente são cinco ambulâncias, sendo duas Alfas e três Bravos, distribuídos estrategicamente.<br>
                 </p>
                 <div class="logos">
                     <ul class="list-unstyled">
@@ -146,8 +146,8 @@
 
                             <img class="card-img-top" src="Resources/imagens/body/SBV.png">
                             <div class="card-body">
-                                <h5 class="card-title">MinistÃ©rio da SaÃºde</h5>                                
-                                <h6 class="card-text">Protocolos de IntervenÃ§Ã£o para o SAMU 192 - ServiÃ§o de Atendimento MÃ³vel de UrgÃªncia. BrasÃ­lia: MinistÃ©rio da SaÃºde, 2016.</h6>                                
+                                <h5 class="card-title">Ministério da Saúde</h5>                                
+                                <h6 class="card-text">Protocolos de Intervenção para o SAMU 192 - Serviço de Atendimento Móvel de Urgência. Brasília: Ministério da Saúde, 2016.</h6>                                
                             </div>                          
                             <div class="card-body">                                
                                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#acessoSBV">Acesso</a>
@@ -163,8 +163,8 @@
 
                             <img class="card-img-top" src="Resources/imagens/body/SAV.png">
                             <div class="card-body">
-                                <h5 class="card-title">MinistÃ©rio da SaÃºde</h5>                                
-                                <h6 class="card-text">Protocolos de IntervenÃ§Ã£o para o SAMU 192 - ServiÃ§o de Atendimento MÃ³vel de UrgÃªncia. BrasÃ­lia: MinistÃ©rio da SaÃºde, 2a ediÃ§Ã£o, 2016.</h6>
+                                <h5 class="card-title">Ministério da Saúde</h5>                                
+                                <h6 class="card-text">Protocolos de Intervenção para o SAMU 192 - Serviço de Atendimento Móvel de Urgência. Brasília: Ministério da Saúde, 2a edição, 2016.</h6>
 
                             </div>                           
                             <div class="card-body">                                
@@ -181,8 +181,8 @@
 
                             <img class="card-img-top" src="Resources/imagens/body/RM.png">
                             <div class="card-body">
-                                <h5 class="card-title">MinistÃ©rio da SaÃºde</h5>                                
-                                <h6 class="card-text">Protocolo de RegulaÃ§Ã£o mÃ©dica das urgÃªncias, Secretaria de AtenÃ§Ã£o Ã  SaÃºde. SÃ©rie A. Normas e Manuais TÃ©cnicos, 2006.</h6>
+                                <h5 class="card-title">Ministério da Saúde</h5>                                
+                                <h6 class="card-text">Protocolo de Regulação médica das urgências, Secretaria de Atenção à Saúde. Série A. Normas e Manuais Técnicos, 2006.</h6>
 
                             </div>                         
                             <div class="card-body">
@@ -195,14 +195,14 @@
             </div>
         </div>               
 
-        <!-- LOCALIZAÃ‡ÃƒO -->
+        <!-- LOCALIZAÇÃO -->
         <section class="contact" data-container="local">
             <div id="map"></div>
             <div class="text-center">
                 <div class="container form-holder">
                     <header>
-                        <h4>ENDEREÃ‡O</h4>
-                        <h5>R. Seis de Janeiro, SN - Bom Jardim, MossorÃ³ - RN, 59611-030</h5>
+                        <h4>ENDEREÇO</h4>
+                        <h5>R. Seis de Janeiro, SN - Bom Jardim, Mossoró - RN, 59611-030</h5>
                     </header>                    
                 </div>
             </div>
@@ -219,7 +219,7 @@
                         <p class="lead mb-0"><span class="fa fa-phone-square"></span> (84) 3315-4917<br><span class="fa fa-phone-square"></span> (84) 3315-4883</p>
                     </div>
                     <div class="col-md-6 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">NÃ³s encontre</h4>
+                        <h4 class="text-uppercase mb-4">Nós encontre</h4>
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
                                 <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.facebook.com/SAMU-192-RN-Mossor%C3%B3-DJ-199721106877265/">
@@ -247,10 +247,10 @@
             </div>
         </footer>
 
-        <!-- RODAPÃ‰ -->        
+        <!-- RODAPÉ -->        
         <div class="copyright py-4 text-center text-white">
             <div class="container">
-                <small herf="http://lattes.cnpq.br/1048245272218464">&copy; Copyright Â· 2018 Â· <a class="styleLink" href="http://lattes.cnpq.br/1048245272218464">Erick Gomes</a></small>
+                <small herf="http://lattes.cnpq.br/1048245272218464">&copy; Copyright · 2018 · <a class="styleLink" href="http://lattes.cnpq.br/1048245272218464">Erick Gomes</a></small>
             </div>
         </div>
 
@@ -261,7 +261,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Protocolo de Suporte BÃ¡sico de Vida</h5>
+                        <h5 class="modal-title">Protocolo de Suporte Básico de Vida</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>                                
                         </button>
@@ -281,7 +281,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Protocolo de Suporte BÃ¡sico de Vida</h5>
+                        <h5 class="modal-title">Protocolo de Suporte Básico de Vida</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>                                
                         </button>
@@ -301,7 +301,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Protocolo de Suporte BÃ¡sico de Vida</h5>
+                        <h5 class="modal-title">Protocolo de Suporte Básico de Vida</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>&times;</span>                                
                         </button>
@@ -338,7 +338,7 @@
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
-                    title: 'SAMU MOSSORÃ“',
+                    title: 'SAMU MOSSORÓ',
                     icon: markerImage
                 });
 

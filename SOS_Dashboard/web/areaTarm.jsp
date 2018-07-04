@@ -4,7 +4,7 @@
     Author     : jerick.gs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -110,7 +110,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand"> OcorrÃªncias </a>
+                            <a class="navbar-brand"> Ocorrências </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
@@ -166,7 +166,7 @@
                                         <i class="material-icons">info_outline</i>
                                     </div>
                                     <div class="card-content">
-                                        <p class="category">InformaÃ§Ã£o</p>
+                                        <p class="category">Informação</p>
                                         <h3 id="numInformacao" class="title"></h3>
                                     </div>
                                     <div class="card-footer">
@@ -187,7 +187,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">date_range</i> Total no MÃªs
+                                            <i class="material-icons">date_range</i> Total no Mês
                                         </div>
                                     </div>
                                 </div>
@@ -200,8 +200,8 @@
                                         <div class="ct-chart" id="dailyCallsChart"></div>
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="title">Chamados DiÃ¡rios</h4>
-                                        <p class="category">NÃºmero de chamados dos Ãºltimos dias</p>
+                                        <h4 class="title">Chamados Diários</h4>
+                                        <p class="category">Número de chamados dos últimos dias</p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -217,7 +217,7 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="title">Chamados Mensais</h4>
-                                        <p class="category">NÃºmero de chamados dos Ãºltimos meses</p>
+                                        <p class="category">Número de chamados dos últimos meses</p>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
@@ -333,7 +333,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            // O corpo do mÃ©todo Javascript pode ser encontrado em Resources/node_modules/bootstrap/js/disp-dasboard/demo.js            
+            // O corpo do método Javascript pode ser encontrado em Resources/node_modules/bootstrap/js/disp-dasboard/demo.js            
 
             $.post("AjaxControle", {logicaAjax: "AreaAjaxGraficoCD"}, function (data, status) {
 
@@ -348,7 +348,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            // O corpo do mÃ©todo Javascript pode ser encontrado em Resources/node_modules/bootstrap/js/disp-dasboard/demo.js            
+            // O corpo do método Javascript pode ser encontrado em Resources/node_modules/bootstrap/js/disp-dasboard/demo.js            
 
             $.post("AjaxControle", {logicaAjax: "AreaAjaxGraficoCM"}, function (data, status) {
                                 

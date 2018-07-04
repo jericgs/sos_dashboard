@@ -45,6 +45,7 @@ public class RegulacaoInformacao implements Logica{
         
         //INSTÂNCIANDO MODELO E INSERINDO
         ChamadoEspera chamadoEspera = new ChamadoEspera();
+        chamadoEspera.setIdR(idR);
         chamadoEspera.setNomePaciente(paciente.getNome());
         chamadoEspera.setIdade(paciente.getIdade());
         chamadoEspera.setMotivo(chamado.getMotivo());

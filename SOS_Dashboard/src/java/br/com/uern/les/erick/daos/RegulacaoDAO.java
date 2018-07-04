@@ -87,13 +87,13 @@ public class RegulacaoDAO {
         try {
 
             String sql = "SELECT IdR FROM regulacao WHERE IdRC = ? AND Status = ?";
-            
+
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
                 stmt.setInt(1, idRC);
                 stmt.setString(2, "Andamento");
-                
+
                 ResultSet rs = stmt.executeQuery();
-                
+
                 while (rs.next()) {
                     idR = rs.getInt("IdR");
                 }
@@ -105,7 +105,7 @@ public class RegulacaoDAO {
 
         return idR;
     }
-    
+
     public int getIdRegistroChamado(int idR) {
 
         int idRC = 0;
@@ -113,12 +113,12 @@ public class RegulacaoDAO {
         try {
 
             String sql = "SELECT IdRC FROM regulacao WHERE IdR = ?";
-            
+
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
-                stmt.setInt(1, idR);                
-                
+                stmt.setInt(1, idR);
+
                 ResultSet rs = stmt.executeQuery();
-                
+
                 while (rs.next()) {
                     idRC = rs.getInt("IdRC");
                 }
@@ -129,6 +129,32 @@ public class RegulacaoDAO {
         }
 
         return idRC;
+    }
+
+    public int atualizarRegulacao(int idR, String tipoDeCaso, String mensagem) {        
+
+        int confirmacao = 0;
+
+        try {
+
+            String sql = "UPDATE regulacao SET Status = ?, TipoDeCaso = ?, Mensagem = ? "
+                    + "WHERE IdR = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, "Concluído");
+                stmt.setString(2, tipoDeCaso);
+                stmt.setString(3, mensagem);
+                stmt.setInt(4, idR);
+
+                stmt.execute();
+                confirmacao++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return confirmacao;
     }
 
 }

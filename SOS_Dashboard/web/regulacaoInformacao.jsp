@@ -4,14 +4,14 @@
     Author     : jerick.gs
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
 
-        <title>MÃ©dico</title>       
+        <title>Médico</title>       
 
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -75,7 +75,7 @@
                         <li class="active">
                             <a href="controle?logica=RegulacaoInformacao&nomeUsuario=${sessionScope.medico.nomeUsuario}">
                                 <i class="material-icons">library_books</i>
-                                <p>RegulaÃ§Ãµes</p>
+                                <p>Regulações</p>
                             </a>
                         </li>
                         <li>
@@ -103,7 +103,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand"> RegulaÃ§Ã£o InformaÃ§Ã£o </a>
+                            <a class="navbar-brand"> Regulação Informação </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
@@ -124,11 +124,16 @@
                             <div>
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Registro de RegulaÃ§Ã£o</h4>
+                                        <h4 class="title">Registro de Regulação</h4>
                                         <p class="category">Paciente - 2/N</p>
                                     </div>
                                     <div class="card-content">
-                                        <form id="formSolicitante" action="controle" method="post">
+                                        <form id="formRegulacao" action="controle" method="get">
+                                            
+                                            <!-- CAMPOS DA TELA ANTERIOR -->
+                                            <input type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
+                                            <input type="hidden" name="motivo" value="Informação">
+                                            
                                             <div class="row">
                                                 <div class="col-md-7">
                                                     <div class="form-group label-floating">
@@ -145,7 +150,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Motivo</label>
-                                                        <input id="motivo" type="text" name="motivo" maxlength="20" value="${sessionScope.dadosPaciente.motivo}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
+                                                        <input id="motivoD" type="text" name="motivoD" maxlength="20" value="${sessionScope.dadosPaciente.motivo}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
                                                     </div>
                                                 </div>  
                                             </div>                                                                                   
@@ -154,23 +159,57 @@
                                                     <div class="form-group">                                                       
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Queixa</label>
-                                                            <textarea id="queixa" class="form-control" maxlength="144" name="queixa" form="formSolicitante" rows="3" disabled>${sessionScope.dadosPaciente.queixa}</textarea>
+                                                            <textarea id="queixa" class="form-control" maxlength="144" name="queixa" rows="3" disabled>${sessionScope.dadosPaciente.queixa}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>                                            
                                             <hr>
+                                             <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="radio">
+                                                        <label> 
+                                                            <input type="radio" name="tipoCaso" value="Clínico" checked="true">
+                                                            <p style="color: #AAAAAA;">Caso Clínico</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="radio">
+                                                        <label> 
+                                                            <input type="radio" name="tipoCaso" value="Traumático">
+                                                            <p style="color: #AAAAAA;">Caso Traumático</p>
+                                                        </label>
+                                                    </div>
+                                                </div>      
+                                                <div class="col-md-3">
+                                                    <div class="radio">
+                                                        <label> 
+                                                            <input type="radio" name="tipoCaso" value="Psiquiátrico">
+                                                            <p style="color: #AAAAAA;">Caso Psiquiátrico</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="radio">
+                                                        <label> 
+                                                            <input type="radio" name="tipoCaso" value="Obstétrico">
+                                                            <p style="color: #AAAAAA;">Caso Obstétrico</p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">                                                        
                                                         <div class="form-group label-floating">
-                                                            <label class="control-label">Qual informaÃ§Ã£o foi solicitada?</label>
-                                                            <textarea id="justificativa" class="form-control" maxlength="144" name="justificativa" form="formSolicitante" rows="3"></textarea>
+                                                            <label class="control-label">Qual informação foi solicitada?</label>
+                                                            <textarea id="justificativa" class="form-control" maxlength="144" name="justificativa" form="formRegulacao" rows="3"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>                                            
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="ChamadoPaciente">Gravar</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarRegulacao">Gravar</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -205,4 +244,26 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>  
 
+    <script>
+        $("#formRegulacao").submit(function () {
+            if ($("#justificativa").val() === "") {
+                swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
+                return false;
+            }
+        });
+    </script>
+    
+    <script type = "text/javascript" >
+
+            function preventBack() {
+                window.history.forward();
+            }
+
+            setTimeout("preventBack()", 0);
+
+            window.onunload = function () {
+                null;
+            };
+    </script>
+    
 </html>
