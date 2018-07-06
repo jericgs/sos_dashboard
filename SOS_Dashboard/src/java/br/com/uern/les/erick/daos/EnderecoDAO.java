@@ -78,29 +78,19 @@ public class EnderecoDAO {
                 stmt.setString(8, endereco.getBairro());
 
                 stmt.execute();
-            }
-
-            String sql2 = "SELECT IdE FROM endereco WHERE Logradouro = ? AND "
-                    + "Numero = ? AND Complemento = ? AND Cidade = ? AND CEP = ? AND "
-                    + "Estado = ? AND Pais = ? AND Bairro = ?";
-
-            try (PreparedStatement ps = this.connection.prepareStatement(sql2)) {
-                ps.setString(1, endereco.getLogradouro());
-                ps.setInt(2, endereco.getNumero());
-                ps.setString(3, endereco.getComplemento());
-                ps.setString(4, endereco.getCidade());
-                ps.setString(5, endereco.getCep());
-                ps.setString(6, endereco.getEstado());
-                ps.setString(7, endereco.getPais());
-                ps.setString(8, endereco.getBairro());
-
+                
+                String sql2 = "SELECT LAST_INSERT_ID() FROM endereco";
+                
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                
                 ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    idE = rs.getInt("IdE");
+                
+                if (rs.next()) {
+                    idE = rs.getInt("LAST_INSERT_ID()");
                 }
+                
             }
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

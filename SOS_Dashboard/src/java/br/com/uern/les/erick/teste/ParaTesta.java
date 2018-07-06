@@ -12,7 +12,10 @@ import br.com.uern.les.erick.daos.MedicoDAO;
 import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.PossuiDAO;
 import br.com.uern.les.erick.daos.RegulacaoDAO;
+import br.com.uern.les.erick.daos.SinaisVitaisDAO;
 import br.com.uern.les.erick.daos.SolicitanteDAO;
+import br.com.uern.les.erick.daos.UmsaDAO;
+import br.com.uern.les.erick.daos.UmsbDAO;
 import br.com.uern.les.erick.daos.UsuarioDAO;
 import br.com.uern.les.erick.modelos.ChamadoMedico;
 import br.com.uern.les.erick.modelos.Endereco;
@@ -21,7 +24,10 @@ import br.com.uern.les.erick.modelos.MedicoRegulador;
 import br.com.uern.les.erick.modelos.Paciente;
 import br.com.uern.les.erick.modelos.PossuiTabela;
 import br.com.uern.les.erick.modelos.Regulacao;
+import br.com.uern.les.erick.modelos.SinaisVitais;
 import br.com.uern.les.erick.modelos.Solicitante;
+import br.com.uern.les.erick.modelos.UMSA;
+import br.com.uern.les.erick.modelos.UMSB;
 import br.com.uern.les.erick.modelos.Usuario;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -174,11 +180,62 @@ public class ParaTesta {
 //        MedicoRegulador mr = medicoDAO.getDadosMedicoRegulador("carlos.edu");
 //        
 //        System.out.println(mr.getCPFM());
-        
 //        Connection connection = new ConexaoBD().getConnection();
 //        RegulacaoDAO rdao = new RegulacaoDAO(connection);
 //        int i = rdao.atualizarRegulacao(1, "Andamento", "Nenhum");
 //        
 //        System.out.println(i);
+//        Connection connection = new ConexaoBD().getConnection();
+//        UsuarioDAO usuarioDAO =  new UsuarioDAO(connection);
+//        List<String> list = usuarioDAO.getUnidadesMoveis();
+//
+//        list.forEach((list1) -> {
+//            System.out.println(list1);
+//        });
+//        Connection connection = new ConexaoBD().getConnection();
+//        UmsbDAO umsbDAO = new UmsbDAO(connection);
+//        UMSB umsb = umsbDAO.getUnidadeMovel("bravo1");
+//        
+//        System.out.println(umsb.getPlaca());
+//        System.out.println(umsb.getCnh());
+//        System.out.println(umsb.getCpfa());
+//        System.out.println(umsb.getIdG());
+//        System.out.println(umsb.getNomeUsuario());
+//        System.out.println(umsb.getNome());
+//        Connection connection = new ConexaoBD().getConnection();
+//        UmsaDAO umsaDAO =  new UmsaDAO(connection);
+//        UMSA umsa = umsaDAO.getUnidadeMovel("alfa2");
+//        
+//        System.out.println(umsa);
+//        
+//        System.out.println(umsa.getPlaca());        
+//        System.out.println(umsa.getCnh());
+//        System.out.println(umsa.getCpfm());
+//        System.out.println(umsa.getCpfe());
+//        System.out.println(umsa.getCpfa());
+//        System.out.println(umsa.getNomeUsuario());
+//        System.out.println(umsa.getIdG());        
+//        System.out.println(umsa.getNome());
+//        Connection connection = new ConexaoBD().getConnection();
+//        UmsaDAO umsaDAO = new UmsaDAO(connection);
+//        int existe = umsaDAO.verificarSuportA("KEX-4250");
+//        
+//        System.out.println(existe);
+        
+//        Connection connection = new ConexaoBD().getConnection();
+//        SinaisVitais sinaisVitais = new SinaisVitais();
+//        sinaisVitais.setPa("NH");
+//        sinaisVitais.setFc("NH");
+//        sinaisVitais.setFr("NH");
+//        sinaisVitais.setSatSemSuport("NH");
+//        sinaisVitais.setSatComSuport("NH");
+//        sinaisVitais.setTemperatura("NH");
+//        sinaisVitais.setHgt("NH");
+//        sinaisVitais.setGlasgow("NH");
+//        
+//        SinaisVitaisDAO aO = new SinaisVitaisDAO(connection);
+//        int idV = aO.inserindoSinaisVitais(sinaisVitais);
+//        
+//        System.out.println(idV);
     }
 }

@@ -40,23 +40,20 @@ public class PacienteDAO {
                 stmt.setString(2, paciente.getIdade());
 
                 stmt.execute();
-            }
-
-            String sql2 = "SELECT IdP FROM paciente WHERE Nome = ? AND Idade = ?";
-
-            try (PreparedStatement ps = this.connection.prepareStatement(sql2)) {
-                ps.setString(1, paciente.getNome());
-                ps.setString(2, paciente.getIdade());
-
+                
+                String sql2 = "SELECT LAST_INSERT_ID() FROM paciente";
+                
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                
                 ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    idPacient = rs.getInt("IdP");
+                
+                if (rs.next()) {
+                    idPacient = rs.getInt("LAST_INSERT_ID()");
                 }
             }
-
+           
         } catch (SQLException ex) {
-            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PacienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return idPacient;

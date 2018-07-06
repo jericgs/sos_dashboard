@@ -47,32 +47,18 @@ public class RegulacaoDAO {
                 stmt.setString(10, regulacao.getMensagem());
 
                 stmt.execute();
-            }
-
-            String sql2 = "SELECT IdR FROM regulacao WHERE IdRC = ? AND "
-                    + "GE = ? AND GS = ? AND Atencao = ? AND Social = ? AND "
-                    + "Tempo = ? AND GU = ? AND Status = ? AND TipoDeCaso = ? AND "
-                    + "Mensagem = ?";
-
-            try (PreparedStatement ps = this.connection.prepareStatement(sql2)) {
-                ps.setInt(1, regulacao.getIdRC());
-                ps.setInt(2, regulacao.getGe());
-                ps.setInt(3, regulacao.getGs());
-                ps.setInt(4, regulacao.getAtencao());
-                ps.setInt(5, regulacao.getSocial());
-                ps.setInt(6, regulacao.getTempo());
-                ps.setDouble(7, regulacao.getGu());
-                ps.setString(8, regulacao.getStatus());
-                ps.setString(9, regulacao.getTipoDeCaso());
-                ps.setString(10, regulacao.getMensagem());
-
+                
+                String sql2 = "SELECT LAST_INSERT_ID() FROM regulacao";
+                
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                
                 ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    idR = rs.getInt("IdR");
+                
+                if (rs.next()) {
+                    idR = rs.getInt("LAST_INSERT_ID()");
                 }
             }
-
+                       
         } catch (SQLException ex) {
             Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -131,7 +117,7 @@ public class RegulacaoDAO {
         return idRC;
     }
 
-    public int atualizarRegulacao(int idR, String tipoDeCaso, String mensagem) {        
+    public int atualizarRegulacao(int idR, String status, String tipoDeCaso, String mensagem) {        
 
         int confirmacao = 0;
 
@@ -141,7 +127,7 @@ public class RegulacaoDAO {
                     + "WHERE IdR = ?";
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
-                stmt.setString(1, "Concluído");
+                stmt.setString(1, status);
                 stmt.setString(2, tipoDeCaso);
                 stmt.setString(3, mensagem);
                 stmt.setInt(4, idR);

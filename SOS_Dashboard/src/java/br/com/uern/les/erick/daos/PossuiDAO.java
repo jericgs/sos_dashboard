@@ -43,7 +43,7 @@ public class PossuiDAO {
             }                        
 
         } catch (SQLException ex) {
-            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PossuiDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return result;

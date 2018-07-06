@@ -73,7 +73,7 @@
                             </a>
                         </li>                                                
                         <li class="active">
-                            <a href="controle?logica=RegulacaoInformacao&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                            <a href="controle?logica=RegulacaoInformacao&nomeUsuario=${sessionScope.medico.nomeUsuario}&idR=${sessionScope.dadosPacienteInf.idR}">
                                 <i class="material-icons">library_books</i>
                                 <p>Regulações</p>
                             </a>
@@ -125,32 +125,32 @@
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Regulação</h4>
-                                        <p class="category">Paciente - 2/N</p>
+                                        <p class="category">Paciente - 1/1</p>
                                     </div>
                                     <div class="card-content">
                                         <form id="formRegulacao" action="controle" method="get">
                                             
                                             <!-- CAMPOS DA TELA ANTERIOR -->
-                                            <input type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
+                                            <input type="hidden" name="idR" value="${sessionScope.dadosPacienteInf.idR}">
                                             <input type="hidden" name="motivo" value="Informação">
                                             
                                             <div class="row">
                                                 <div class="col-md-7">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Paciente</label>
-                                                        <input id="paciente" type="text" name="nomePaciente" maxlength="50" value="${sessionScope.dadosPaciente.nomePaciente}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
+                                                        <input id="paciente" type="text" name="nomePaciente" maxlength="50" value="${sessionScope.dadosPacienteInf.nomePaciente}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
                                                     </div>
                                                 </div>                                                
                                                 <div class="col-md-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Idade</label>
-                                                        <input id="idade" type="text" name="idadePaciente" maxlength="3" value="${sessionScope.dadosPaciente.idade}" class="form-control" disabled>
+                                                        <input id="idade" type="text" name="idadePaciente" maxlength="3" value="${sessionScope.dadosPacienteInf.idade}" class="form-control" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Motivo</label>
-                                                        <input id="motivoD" type="text" name="motivoD" maxlength="20" value="${sessionScope.dadosPaciente.motivo}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
+                                                        <input id="motivoD" type="text" name="motivoD" maxlength="20" value="${sessionScope.dadosPacienteInf.motivo}" onkeyup="maiuscula('paciente')" class="form-control" disabled>
                                                     </div>
                                                 </div>  
                                             </div>                                                                                   
@@ -159,7 +159,7 @@
                                                     <div class="form-group">                                                       
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Queixa</label>
-                                                            <textarea id="queixa" class="form-control" maxlength="144" name="queixa" rows="3" disabled>${sessionScope.dadosPaciente.queixa}</textarea>
+                                                            <textarea id="queixa" class="form-control" maxlength="144" name="queixa" rows="3" disabled>${sessionScope.dadosPacienteInf.queixa}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>

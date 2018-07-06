@@ -20,10 +20,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author jerick.gs
  */
-public class RegulacaoInformacao implements Logica{
+public class RegulacaoTransporte implements Logica{
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        
+        String pagina = null;
         
         //PEGANDO DADOS DA REQUISIÇÃO
         int idR = Integer.parseInt(req.getParameter("idR"));
@@ -53,9 +55,9 @@ public class RegulacaoInformacao implements Logica{
         
         //INSTÂNCIANDO SESSÃO
         HttpSession session = req.getSession();
-        session.setAttribute("dadosPacienteInf", chamadoEspera);
+        session.setAttribute("dadosPacienteTrans", chamadoEspera);                
         
-        return "regulacaoInformacao.jsp";
+        return "regulacaoTransporte.jsp";
     }
     
 }

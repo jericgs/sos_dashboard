@@ -40,23 +40,21 @@ public class SolicitanteDAO {
                 stmt.setString(2, solicitante.getTel());
 
                 stmt.execute();
-            }
-
-            String sql2 = "SELECT IdS FROM solicitante WHERE Nome = ? AND Tel = ?";
-
-            try (PreparedStatement ps = this.connection.prepareStatement(sql2)) {
-                ps.setString(1, solicitante.getNome());
-                ps.setString(2, solicitante.getTel());
-
+                
+                String sql2 = "SELECT LAST_INSERT_ID() FROM solicitante";
+                
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                
                 ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    idSol = rs.getInt("IdS");
+                
+                if (rs.next()) {
+                    idSol = rs.getInt("LAST_INSERT_ID()");
                 }
+                
             }
-
+                       
         } catch (SQLException ex) {
-            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SolicitanteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return idSol;

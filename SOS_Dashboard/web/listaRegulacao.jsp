@@ -126,7 +126,7 @@
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Esperando Regulação</h4>
-                                        <p class="category">Pacientes - 1/N</p>
+                                        <p class="category">Pacientes</p>
                                     </div>
                                     <div class="card-content table-responsive">
                                         <table class="table table-hover">
@@ -201,7 +201,7 @@
                         }
                         
                         if(transporte.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='http://lattes.cnpq.br/1048245272218464'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
+                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='controle?logica=RegulacaoTransporte&nomeUsuario=${sessionScope.medico.nomeUsuario}&idR="+objDados[i].idR+"'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
                         }
                                                 
                     }

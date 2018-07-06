@@ -49,7 +49,7 @@ public class UsuarioDAO {
                 ps.setString(1, "Online");
                 ps.setString(2, usuario);
                 ps.setString(3, senha);
-                
+
                 //fecha atualização
                 ps.execute();
             }
@@ -61,7 +61,7 @@ public class UsuarioDAO {
                 usuarioL.setSenha(rs.getString("Senha"));
                 usuarioL.setTipoDeUsuario(rs.getString("TipoUsuario"));
                 usuarioL.setStatus(rs.getString("Status"));
-                
+
                 //fecha busca
                 rs.close();
                 stmt.close();
@@ -85,7 +85,7 @@ public class UsuarioDAO {
                 // seta os valores
                 ps.setString(1, "Offline");
                 ps.setString(2, nomeUsuario);
-                
+
                 //fecha atualização
                 ps.execute();
             }
@@ -102,18 +102,18 @@ public class UsuarioDAO {
                 + "VALUES (?,?,?,?)";
 
         try {
-            // prepared statement para inserção
-            PreparedStatement stmt = connection.prepareStatement(sql);
-
             // seta os valores
-            stmt.setString(1, usuario.getNomeUsuario());
-            stmt.setString(2, usuario.getSenha());
-            stmt.setString(4, usuario.getTipoDeUsuario());
-            stmt.setString(3, usuario.getStatus());
+            try ( // prepared statement para inserção
+                    PreparedStatement stmt = connection.prepareStatement(sql)) {
+                // seta os valores
+                stmt.setString(1, usuario.getNomeUsuario());
+                stmt.setString(2, usuario.getSenha());
+                stmt.setString(4, usuario.getTipoDeUsuario());
+                stmt.setString(3, usuario.getStatus());
 
-            // executa
-            stmt.execute();
-            stmt.close();
+                // executa
+                stmt.execute();
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -125,7 +125,7 @@ public class UsuarioDAO {
 
         try {
             try (PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM usuario"); ResultSet rs = stmt.executeQuery()) {
-                
+
                 while (rs.next()) {
                     // criando o objeto Usuario
                     Usuario usuarioB = new Usuario();
@@ -133,19 +133,50 @@ public class UsuarioDAO {
                     usuarioB.setSenha(rs.getString("Senha"));
                     usuarioB.setTipoDeUsuario(rs.getString("TipoUsuario"));
                     usuarioB.setStatus(rs.getString("Status"));
-                    
+
                     // adicionando o objeto à lista
                     usuarios.add(usuarioB);
-                    
+
                 }
-                
+
             }
-            return usuarios;
+            
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return null;
+        return usuarios;
+    }
+
+    public List<String> getUnidadesMoveis() {
+
+        List<String> listUnidadesMoveis = new ArrayList<>();
+
+        try {
+
+            String sql = "SELECT NomeUsuario FROM "
+                    + "usuario WHERE status = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, "Ativo");
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {
+                    
+                    String nomeUsuario;
+                    nomeUsuario = rs.getString("NomeUsuario");
+                    
+                    listUnidadesMoveis.add(nomeUsuario);
+                    
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listUnidadesMoveis;
     }
 
 }

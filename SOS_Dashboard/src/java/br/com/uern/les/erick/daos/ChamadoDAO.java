@@ -171,31 +171,18 @@ public class ChamadoDAO {
                 stmt.setString(9, registroChamado.getMotivo());
 
                 stmt.execute();
-
-            }
-
-            String sql2 = "SELECT IdRC FROM registrodechamado WHERE CPFT = ? AND "
-                    + "CPFM = ? AND IdS = ? AND IdP = ? AND NumChamado = ? AND "
-                    + "Hora = ? AND DataDeRegistro = ? AND Queixa = ? AND Motivo = ?";
-
-            try (PreparedStatement ps = this.connection.prepareStatement(sql2)) {
-
-                ps.setString(1, registroChamado.getCpft());
-                ps.setString(2, registroChamado.getCpfm());
-                ps.setInt(3, registroChamado.getIdS());
-                ps.setInt(4, registroChamado.getIdP());
-                ps.setInt(5, registroChamado.getNumChamado());
-                ps.setString(6, registroChamado.getHora());
-                ps.setString(7, registroChamado.getDataDeRegistro());
-                ps.setString(8, registroChamado.getQueixa());
-                ps.setString(9, registroChamado.getMotivo());
-
+                
+                String sql2 = "SELECT LAST_INSERT_ID() FROM registrodechamado";
+                
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                
                 ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    idRC = rs.getInt("IdRC");
+                
+                if (rs.next()) {
+                    idRC = rs.getInt("LAST_INSERT_ID()");
                 }
-            }
+
+            }                        
 
         } catch (SQLException ex) {
             Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -234,7 +221,7 @@ public class ChamadoDAO {
 
         try {
             String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFM = ? AND "
-                    + "DataDeRegistro = ? ORDER BY Hora DESC";
+                    + "DataDeRegistro = ? ORDER BY IdRC ASC";
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
                 stmt.setString(1, cpfm);

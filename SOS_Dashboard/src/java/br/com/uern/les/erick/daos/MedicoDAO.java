@@ -54,7 +54,7 @@ public class MedicoDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(TarmDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return medicoRegulador;
@@ -108,13 +108,11 @@ public class MedicoDAO {
                     }
                 }
             }
-
-            return medicoReguladorsOn;
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return null;
+        return medicoReguladorsOn;
     }
 }
