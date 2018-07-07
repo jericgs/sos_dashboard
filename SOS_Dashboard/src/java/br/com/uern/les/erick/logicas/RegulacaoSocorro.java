@@ -20,17 +20,19 @@ import javax.servlet.http.HttpSession;
  *
  * @author jerick.gs
  */
-public class RegulacaoTransporte implements Logica{
+public class RegulacaoSocorro implements Logica{
 
     @Override
-    public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {                
+    public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        
+        String pagina = null;
         
         //PEGANDO DADOS DA REQUISIÇÃO
         int idR = Integer.parseInt(req.getParameter("idR"));
         
         //CONEXÃO COM BD
         Connection connection = (Connection) req.getAttribute("conexao");
-                              
+        
         //INSTÂNCIANDO REGULAÇÃODAO E REALIZANDO BUSCA
         RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
         int idRC = regulacaoDAO.getIdRegistroChamado(idR);
@@ -53,9 +55,12 @@ public class RegulacaoTransporte implements Logica{
         
         //INSTÂNCIANDO SESSÃO
         HttpSession session = req.getSession();
-        session.setAttribute("dadosPacienteTrans", chamadoEspera);                
+        session.setAttribute("dadosPacienteSocorro", chamadoEspera);                
+                        
+        pagina = "regulacaoSocorro.jsp";
         
-        return "regulacaoTransporte.jsp";
+        return pagina;
+        
     }
     
 }

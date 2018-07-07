@@ -10,7 +10,7 @@
 <html lang="pt-br">
     <head>
 
-        <title>Tarm</title>       
+        <title>Tarm - Solicitante</title>       
 
         <!-- Required meta tags -->
         <meta charset="utf-8">

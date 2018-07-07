@@ -11,7 +11,7 @@
 
     <head>
 
-        <title>Médico</title>
+        <title>Médico - Regulações</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -193,7 +193,7 @@
                     for (i = 0; i < objDados.length; i++) {                                                                        
                         
                         if(socorro.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='http://lattes.cnpq.br/1048245272218464'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
+                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='controle?logica=RegulacaoSocorro&nomeUsuario=${sessionScope.medico.nomeUsuario}&idR="+objDados[i].idR+"'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
                         }
                         
                         if(informacao.toUpperCase() === objDados[i].motivo.toUpperCase()){

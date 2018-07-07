@@ -16,7 +16,16 @@ public class ChamadoEspera {
     private String idade;
     private String motivo;
     private String queixa;
+    private String tipoDeCaso;
 
+    public String getTipoDeCaso() {
+        return tipoDeCaso;
+    }
+
+    public void setTipoDeCaso(String tipoDeCaso) {
+        this.tipoDeCaso = tipoDeCaso;
+    }
+       
     public int getIdR() {
         return idR;
     }
