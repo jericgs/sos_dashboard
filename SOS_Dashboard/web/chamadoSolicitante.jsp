@@ -183,13 +183,14 @@
                                                         <input id="tarm" type="text" name="nomeTarm" maxlength="50" value="${sessionScope.dadosTarm.nome}" onkeyup="maiuscula('tarm')" class="form-control">
                                                     </div>
                                                 </div>
-                                            </div>   
+                                            </div>
+                                            <label class="control-label" style="position: static">Motivo</label>
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="radio">
                                                         <label> 
                                                             <input type="radio" name="motivo" value="Socorro" checked="true">
-                                                            <p style="color: #AAAAAA;">Socorro</p>
+                                                            <p style="color: #7f7f7f;">Socorro</p>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -197,7 +198,7 @@
                                                     <div class="radio">
                                                         <label> 
                                                             <input type="radio" name="motivo" value="Transporte">
-                                                            <p style="color: #AAAAAA;">Transporte</p>
+                                                            <p style="color: #7f7f7f;">Transporte</p>
                                                         </label>
                                                     </div>
                                                 </div>      
@@ -205,7 +206,7 @@
                                                     <div class="radio">
                                                         <label> 
                                                             <input type="radio" name="motivo" value="Informação">
-                                                            <p style="color: #AAAAAA;">Informação</p>
+                                                            <p style="color: #7f7f7f;">Informação</p>
                                                         </label>
                                                     </div>
                                                 </div>      

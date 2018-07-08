@@ -165,12 +165,13 @@
                                                 </div>
                                             </div>                                            
                                             <hr>
+                                            <label class="control-label" style="position: static">Tipo de Caso</label>
                                              <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="radio">
                                                         <label> 
                                                             <input type="radio" name="tipoCaso" value="Clínico" checked="true">
-                                                            <p style="color: #AAAAAA;">Caso Clínico</p>
+                                                            <p style="color: #7f7f7f;">Clínico</p>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -178,7 +179,7 @@
                                                     <div class="radio">
                                                         <label> 
                                                             <input type="radio" name="tipoCaso" value="Traumático">
-                                                            <p style="color: #AAAAAA;">Caso Traumático</p>
+                                                            <p style="color: #7f7f7f;">Traumático</p>
                                                         </label>
                                                     </div>
                                                 </div>      
@@ -186,7 +187,7 @@
                                                     <div class="radio">
                                                         <label> 
                                                             <input type="radio" name="tipoCaso" value="Psiquiátrico">
-                                                            <p style="color: #AAAAAA;">Caso Psiquiátrico</p>
+                                                            <p style="color: #7f7f7f;">Psiquiátrico</p>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -194,7 +195,7 @@
                                                     <div class="radio">
                                                         <label> 
                                                             <input type="radio" name="tipoCaso" value="Obstétrico">
-                                                            <p style="color: #AAAAAA;">Caso Obstétrico</p>
+                                                            <p style="color: #7f7f7f;">Obstétrico</p>
                                                         </label>
                                                     </div>
                                                 </div>
