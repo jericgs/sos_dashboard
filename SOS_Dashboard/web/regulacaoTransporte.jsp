@@ -169,7 +169,7 @@
                                                 <div class="col-md-6">                                                     
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Parecer do Médico</label>                                                        
-                                                        <select autofocus id="comboboxParecer" name="parecer" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="2">                                                                                                                                                                                    
+                                                        <select autofocus id="comboboxParecer" name="parecer" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="2">                                                                                                                                                                                    
                                                             <option name="aprovado" value="Aprovado">Aprovado</option>                                                            
                                                             <option name="negado" value="Negado">Negado</option>
                                                         </select>                                                        

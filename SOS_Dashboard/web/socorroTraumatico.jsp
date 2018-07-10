@@ -127,7 +127,7 @@
                                         <p class="category">Paciente - 2/N</p>
                                     </div>
                                     <div class="card-content">
-                                        <form id="formRegulacao" action="controle" method="post">
+                                        <form id="formRegulacao" action="controle" method="get">
 
                                             <!-- CAMPOS DA TELA ANTERIOR -->
                                             <input type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
@@ -266,8 +266,70 @@
 
                                             </div>
                                             <div id="secao"></div>
-                                            <button type="button" onclick='history.go(-1)' style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="">Próximo</button>
+                                            <div class="row ">
+                                                <div class="col-md-4">                                                     
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Gravidade do Caso</label>                                                        
+                                                        <select id="comboboxGravidade" name="gravidadeCaso" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="baixo" value="4">Baixo</option>                                                            
+                                                            <option name="moderado" value="3">Moderado</option>
+                                                            <option name="absoluto" value="0">Absoluto</option>
+                                                        </select>                                                        
+                                                    </div>                                                                                                                                                     
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Valor Social</label>                                                        
+                                                        <select id="comboboxSocial" name="valorSocial" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="minimo" value="4">Mínimo</option>                                                            
+                                                            <option name="baixo" value="3">Baixo</option>
+                                                            <option name="alto" value="0">Alto</option>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Recursos Necessários</label>                                                        
+                                                        <select id="comboboxRecursos" name="recursos" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="2">                                                                                                                                                                                    
+                                                            <option name="possui" value="4">Possui</option>                                                            
+                                                            <option name="naoPossui" value="0">Não Possui</option>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>                                                                                              
+                                            </div>
+                                            <div class="row ">                                                                                                                                               
+                                                <div class="col-md-6">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Tempo para Atendimento</label>                                                        
+                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="15min" value="4">Até 15 min</option>                                                            
+                                                            <option name="40min" value="3">Até 40 min</option>
+                                                            <option name="1h/M" value="0">1h ou Mais</option>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Tipo de Suporte</label>                                                        
+                                                        <select id="comboboxSuporte" name="suporte" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="20">                                                                                                                                                                                    
+                                                            
+                                                        </select>                                                        
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <!--<label class="form-group label-floating">Queixa</label>-->
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Enredo e OBS</label>
+                                                            <textarea id="mensagem" onfocus="limpandoCampo('mensagem');" onblur="preenchendoCampo('mensagem')" class="form-control" maxlength="144" name="mensagem" form="" rows="5">Nenhum</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" onclick="history.go(-1)" style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="">Gravar</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -299,7 +361,7 @@
     <!--  PerfectScrollbar Library -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/perfect-scrollbar.jquery.min.js"></script>
     <!--  Notifications Plugin    -->
-    <!-- <script src="Resources/node_modules/bootstrap/js/disp-dasboard/disp-dasboard/bootstrap-notify.js"></script>-->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-notify.js"></script>
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8kJ3p081G1hbsHQLkydJg8AtpVUznejw"></script>
     <!-- Material Dashboard javascript methods -->
@@ -309,6 +371,70 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
 
+    <script type="text/javascript">
+        //const toast = swal.mixin({toast: true, background: '#ffffff', position: 'top-end', showConfirmButton: false, timer: 25000});
+        //toast({type: 'success', title: 'Sugestão: Suporte Avançado', color: '#fff'});
+              
+        //demo.showNotification('top','right','Sugestão: Suporte Avançado','2');
+            
+    </script>
+    
+    <script>
+        $("#formRegulacao").submit(function () {
+            if ($("#mensagem").val() === "" || $("#comboboxGravidade").val() === "" || $("#comboboxSocial").val() === "" ||
+                $("#comboboxRecursos").val() === "" || $("#comboboxTempo").val() === "" || $("#comboboxSuporte").val() === "") {
+                swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
+                return false;
+            }
+        });
+    </script>
+    
+    <script>        
+        function limpandoCampo(id){                         
+            
+            if(id === "mensagem"){
+                
+                document.getElementById("mensagem").value = "";                
+                
+            }
+             
+        }        
+    </script>
+    
+    <script>        
+        function preenchendoCampo(id){                        
+            
+            if(id === "mensagem" && document.getElementById("mensagem").value === ""){
+                
+                document.getElementById("mensagem").value = "Nenhum";
+                
+            }
+             
+        }        
+    </script>
+    
+    <script>        
+        setSuport();
+
+        function setSuport() {
+                                         
+            $.post("AjaxControle", {logicaAjax: "AreaAjaxSuport"}, function (data, status) {
+                
+                var objDados = JSON.parse(data);
+
+                comboboxSuporte = document.getElementById("comboboxSuporte");
+                comboboxSuporte.innerHTML = "";
+                
+                for (i = 0; i < objDados.length; i++) {                    
+                    comboboxSuporte.innerHTML += "<option value='" + objDados[i].placa + "'>" + objDados[i].nome + "</option>";
+                }
+
+                $('.selectpicker').selectpicker('refresh');
+
+            });
+        }
+    </script>
+    
     <script>
         function secao(id){
                                         
@@ -317,19 +443,19 @@
             if(id === "transito"){
                 console.log("É NOS>>>>>> " + id);                                
                                                                               
-                secaoBox.innerHTML ="<div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologias Traumáticas: Acidente de Trânsito<center></h4></div>"
+                secaoBox.innerHTML ="<div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologia Traumática: Acidente de Trânsito<center></h4></div>"
                                    +"<div class='row'>"
                                    +"    <div class='col-md-3'>"
                                    +"        <label class='control' style='color: #7f7f7f;'>Local?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='local' value='BR'>"
+                                   +"                <input type='radio' name='local' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>BR</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='local' checked='true' value='Cidade'>"
+                                   +"                <input type='radio' name='local' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Cidade</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -338,13 +464,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Usava equipamentos de segurança?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='equipamentoSeguranca' checked='true' value='Sim'>"
+                                   +"                <input type='radio' name='equipamentoSeguranca' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='equipamentoSeguranca' value='Não'>"
+                                   +"                <input type='radio' name='equipamentoSeguranca' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -353,13 +479,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Vítima se move?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='vitimaMove' checked='true' value='Sim'>"
+                                   +"                <input type='radio' name='vitimaMove' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='vitimaMove' value='Não'>"
+                                   +"                <input type='radio' name='vitimaMove' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -368,13 +494,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Está acordado(a)?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='acordado' checked='true' value='Sim'>"
+                                   +"                <input type='radio' name='acordado' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='acordado' value='Não'>"
+                                   +"                <input type='radio' name='acordado' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -385,13 +511,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Está falando?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='falando' checked='true' value='Sim'>"
+                                   +"                <input type='radio' name='falando' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='falando' value='Não'>"
+                                   +"                <input type='radio' name='falando' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -400,13 +526,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Tem sangramento?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='sangramento' value='Sim'>"
+                                   +"                <input type='radio' name='sangramento' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='sangramento' checked='true' value='Não'>"
+                                   +"                <input type='radio' name='sangramento' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -415,13 +541,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Ejetada do veículo?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='ejetadaDoVeiculo' value='Sim'>"
+                                   +"                <input type='radio' name='ejetadaDoVeiculo' value='2.5'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='ejetadaDoVeiculo' checked='true' value='Não'>"
+                                   +"                <input type='radio' name='ejetadaDoVeiculo' checked='true' value='2.5'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -430,13 +556,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Presa nas ferragens?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='presaFerragens' value='Sim'>"
+                                   +"                <input type='radio' name='presaFerragens' value='2.5'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='presaFerragens' checked='true' value='Não'>"
+                                   +"                <input type='radio' name='presaFerragens' checked='true' value='2.5'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -447,19 +573,19 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Como respira?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='respiracao' checked='true' value='Normalmente'>"
+                                   +"                <input type='radio' name='respiracao' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Normalmente</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='respiracao' value='Respiração Alterada'>"
+                                   +"                <input type='radio' name='respiracao' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>Respiração Alterada</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='respiracao' value='Não Respira'>"
+                                   +"                <input type='radio' name='respiracao' value='0'>"
                                    +"                <p style='color: #7f7f7f;'>Não Respira</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -468,13 +594,13 @@
                                    +"        <label class='control' style='color: #7f7f7f;'>Morte de algum ocupante?</label>"
                                    +"        <div class='radio'>"
                                    +"            <label> "
-                                   +"                <input type='radio' name='morte' value='Sim'>"
+                                   +"                <input type='radio' name='morteOcupante' value='2'>"
                                    +"                <p style='color: #7f7f7f;'>Sim</p>"
                                    +"            </label>"
                                    +"        </div>"
                                    +"        <div class='radio'>"
                                    +"            <label>"
-                                   +"                <input type='radio' name='morte' checked='true' value='Não'>"
+                                   +"                <input type='radio' name='morteOcupante' checked='true' value='3'>"
                                    +"                <p style='color: #7f7f7f;'>Não</p>"
                                    +"            </label>"
                                    +"        </div>"
@@ -483,28 +609,541 @@
             }
             
             if(id === "queda"){
-                 console.log("É NOS>>>>>> " + id);
-                                  
+                console.log("É NOS>>>>>> " + id);
+                
+                secaoBox.innerHTML ="<div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologia Traumática: Queda<center></h4></div>"
+                                   +"<div class='row'>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Tipo de queda?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='tipoQueda' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Do mesmo nível</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='tipoQueda' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>De nível diferente</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Número de vítimas?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimas' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimas' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Mais de uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Vítima se move?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimaMove' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimaMove' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está acordado(a)?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='acordado' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='acordado' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"</div>"
+                                   +"<div class='row'>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Como respira?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='respiracao' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Normalmente</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Respiração Alterada</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='0'>"
+                                   +"                <p style='color: #7f7f7f;'>Não Respira</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                                                                                                     
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está falando?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='falando' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='falando' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Tem sangramento?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='sangramento' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='sangramento' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                                                                                       
+                                   +"</div>";
+                  
             }
             
             if(id === "queimaduras"){
-                 console.log("É NOS>>>>>> " + id);
+                console.log("É NOS>>>>>> " + id);
+                
+                secaoBox.innerHTML ="<div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologia Traumática: Queimadura<center></h4></div>"
+                                   +"<div class='row'>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Tipo de agente causador?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='agenteCausador' checked='true' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Calor</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='agenteCausador' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Eletricidade</p>"
+                                   +"            </label>"                                   
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='agenteCausador' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Substâncias Químicas</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Número de vítimas?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimas' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimas' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Mais de uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                  
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está acordado(a)?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='acordado' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='acordado' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está falando?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='falando' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='falando' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"</div>"
+                                   +"<div class='row'>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Como respira?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='respiracao' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Normalmente</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Respiração Alterada</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='0'>"
+                                   +"                <p style='color: #7f7f7f;'>Não Respira</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                                                                                                                                       
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Tem sangramento?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='sangramento' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='sangramento' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Atingiu a face?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='atingiuFace' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='atingiuFace' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Aspirou fumaça?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='aspirouFumaca' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='aspirouFumaca' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"</div>";
+            
             }
             
             if(id === "F.A.F/F.A.B"){
-                 console.log("É NOS>>>>>> " + id);
+                console.log("É NOS>>>>>> " + id);
+                
+                secaoBox.innerHTML ="<div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologia Traumática: Ferimentos por Arma<center></h4></div>"
+                                   +"<div class='row'>"                                   
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Número de vítimas?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimas' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimas' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Mais de uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Vítima se move?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimaMove' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimaMove' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está acordado(a)?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='acordado' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='acordado' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está falando?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='falando' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='falando' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"</div>"
+                                   +"<div class='row'>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Como respira?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='respiracao' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Normalmente</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Respiração Alterada</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='0'>"
+                                   +"                <p style='color: #7f7f7f;'>Não Respira</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                                                                                                                                       
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Presença de mais de um ferimento?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='ferimento' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='ferimento' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                   
+                                   +"</div>";
             }
             
             if(id === "desabamento/soterramento"){
-                 console.log("É NOS>>>>>> " + id);
+                console.log("É NOS>>>>>> " + id);
+                
+                secaoBox.innerHTML ="<div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologia Traumática: Desabamento ou Soterramento<center></h4></div>"
+                                   +"<div class='row'>"                                   
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Número de vítimas?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimas' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimas' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Mais de uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                                                      
+                                   +"</div>";
+                                   
             }
             
             if(id === "agressoesInterpessoais"){
-                 console.log("É NOS>>>>>> " + id);
+                console.log("É NOS>>>>>> " + id);
+                
+                secaoBox.innerHTML ="<div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologia Traumática: Ferimentos por Arma<center></h4></div>"
+                                   +"<div class='row'>"                                   
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Houve briga?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='houveBriga' checked='true' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='houveBriga' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Número de vítimas?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimas' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimas' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Mais de uma</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Vítima se move?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='vitimaMove' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='vitimaMove' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está acordado(a)?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='acordado' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='acordado' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"                                   
+                                   +"</div>"
+                                   +"<div class='row'>"                                   
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Como respira?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='respiracao' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Normalmente</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Respiração Alterada</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='respiracao' value='0'>"
+                                   +"                <p style='color: #7f7f7f;'>Não Respira</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Está falando?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='falando' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='falando' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Tem sangramento?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='sangramento' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='sangramento' checked='true' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"
+                                   +"    <div class='col-md-3'>"
+                                   +"        <label class='control' style='color: #7f7f7f;'>Agressão com socos?</label>"
+                                   +"        <div class='radio'>"
+                                   +"            <label> "
+                                   +"                <input type='radio' name='agressaoSocos' checked='true' value='2'>"
+                                   +"                <p style='color: #7f7f7f;'>Sim</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"        <div class='radio'>"
+                                   +"            <label>"
+                                   +"                <input type='radio' name='agressaoSocos' value='3'>"
+                                   +"                <p style='color: #7f7f7f;'>Não</p>"
+                                   +"            </label>"
+                                   +"        </div>"
+                                   +"    </div>"  
+                                   +"</div>";
             }
             
             if(id === "outrosTraumatismos"){
-                 console.log("É NOS>>>>>> " + id);
+                console.log("É NOS>>>>>> " + id);
+                
+                secaoBox.innerHTML ="";
+                
             }
             
         }

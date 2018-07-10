@@ -198,7 +198,162 @@
                                                     </div>
                                                 </div>
                                             </div>      
-                                            <hr>     
+                                            <hr>
+                                            <div class='hr-middle'><h4 style='color: #7f7f7f;'><center>Patologia Obstétrica<center></h4></div>
+                                            <div class='row'>
+                                                <div class='col-md-3'>
+                                                    <label class='control' style='color: #7f7f7f;'>Perda de líquido?</label>
+                                                    <div class='radio'>
+                                                        <label> 
+                                                            <input type='radio' name='perdaLiquido' value='2'>
+                                                            <p style='color: #7f7f7f;'>Claro com grumos</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='perdaLiquido' value='2'>
+                                                            <p style='color: #7f7f7f;'>Claro sem grumos</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='perdaLiquido' value='2'>
+                                                            <p style='color: #7f7f7f;'>Amarelado</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='perdaLiquido' value='2'>
+                                                            <p style='color: #7f7f7f;'>Esverdeado</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='perdaLiquido' checked='true' value='3'>
+                                                            <p style='color: #7f7f7f;'>Sem perda</p>
+                                                        </label>
+                                                    </div>
+                                                </div>                                                                                                                                                                               
+                                                <div class='col-md-3'>
+                                                    <label class='control' style='color: #7f7f7f;'>Dor e Intensidade?</label>
+                                                    <div class='radio'>
+                                                        <label> 
+                                                            <input type='radio' name='dorIntensidade' checked='true' value='3'>
+                                                            <p style='color: #7f7f7f;'>Sem dor</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='dorIntensidade' value='2'>
+                                                            <p style='color: #7f7f7f;'>Fraca</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='dorIntensidade' value='2'>
+                                                            <p style='color: #7f7f7f;'>Moderada</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='dorIntensidade' value='0'>
+                                                            <p style='color: #7f7f7f;'>Forte</p>
+                                                        </label>
+                                                    </div>
+                                                </div>                                                                                                                                                       
+                                                <div class='col-md-3'>
+                                                    <label class='control' style='color: #7f7f7f;'>Perda de sangue?</label>
+                                                    <div class='radio'>
+                                                        <label> 
+                                                            <input type='radio' name='perdaSangue' value='2'>
+                                                            <p style='color: #7f7f7f;'>Sim</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label> 
+                                                            <input type='radio' name='perdaSangue' checked='true' value='3'>
+                                                            <p style='color: #7f7f7f;'>Não</p>
+                                                        </label>
+                                                    </div>                                                   
+                                                </div>
+                                                <div class='col-md-3'>
+                                                    <label class='control' style='color: #7f7f7f;'>Fez pré-natal?</label>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='preNatal' checked='true' value='3'>
+                                                            <p style='color: #7f7f7f;'>Sim</p>
+                                                        </label>
+                                                    </div>
+                                                    <div class='radio'>
+                                                        <label>
+                                                            <input type='radio' name='preNatal' value='2'>
+                                                            <p style='color: #7f7f7f;'>Não</p>
+                                                        </label>
+                                                    </div>                                                    
+                                                </div> 
+                                            </div>                                            
+                                            <div class="row ">
+                                                <div class="col-md-4">                                                     
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Gravidade do Caso</label>                                                        
+                                                        <select id="comboboxGravidade" name="gravidadeCaso" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="baixo" value="4">Baixo</option>                                                            
+                                                            <option name="moderado" value="3">Moderado</option>
+                                                            <option name="absoluto" value="0">Absoluto</option>
+                                                        </select>                                                        
+                                                    </div>                                                                                                                                                     
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Valor Social</label>                                                        
+                                                        <select id="comboboxSocial" name="valorSocial" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="minimo" value="4">Mínimo</option>                                                            
+                                                            <option name="baixo" value="3">Baixo</option>
+                                                            <option name="alto" value="0">Alto</option>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Recursos Necessários</label>                                                        
+                                                        <select id="comboboxRecursos" name="recursos" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="2">                                                                                                                                                                                    
+                                                            <option name="possui" value="4">Possui</option>                                                            
+                                                            <option name="naoPossui" value="0">Não Possui</option>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>                                                                                              
+                                            </div>
+                                            <div class="row ">                                                                                                                                               
+                                                <div class="col-md-6">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Tempo para Atendimento</label>                                                        
+                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="15min" value="4">Até 15 min</option>                                                            
+                                                            <option name="40min" value="3">Até 40 min</option>
+                                                            <option name="1h/M" value="0">1h ou Mais</option>
+                                                        </select>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group"  style="margin-top: 0px">
+                                                        <label class="control-label" style="position: static">Tipo de Suporte</label>                                                        
+                                                        <select id="comboboxSuporte" name="suporte" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="20">                                                                                                                                                                                    
+
+                                                        </select>                                                        
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <!--<label class="form-group label-floating">Queixa</label>-->
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Enredo e OBS</label>
+                                                            <textarea id="mensagem" onfocus="limpandoCampo('mensagem');" onblur="preenchendoCampo('mensagem')" class="form-control" maxlength="144" name="mensagem" form="" rows="5">Nenhum</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <button type="button" onclick='history.go(-1)' style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>
                                             <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="">Próximo</button>
                                             <div class="clearfix"></div>
@@ -242,4 +397,68 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
 
+    <script type="text/javascript">
+        //const toast = swal.mixin({toast: true, background: '#ffffff', position: 'top-end', showConfirmButton: false, timer: 25000});
+        //toast({type: 'success', title: 'Sugestão: Suporte Avançado', color: '#fff'});
+              
+        //demo.showNotification('top','right','Sugestão: Suporte Avançado','2');
+            
+    </script>
+    
+    <script>
+        $("#formRegulacao").submit(function () {
+            if ($("#mensagem").val() === "" || $("#comboboxGravidade").val() === "" || $("#comboboxSocial").val() === "" ||
+                $("#comboboxRecursos").val() === "" || $("#comboboxTempo").val() === "" || $("#comboboxSuporte").val() === "") {
+                swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
+                return false;
+            }
+        });
+    </script>
+    
+    <script>        
+        function limpandoCampo(id){                         
+            
+            if(id === "mensagem"){
+                
+                document.getElementById("mensagem").value = "";                
+                
+            }
+             
+        }        
+    </script>
+    
+    <script>        
+        function preenchendoCampo(id){                        
+            
+            if(id === "mensagem" && document.getElementById("mensagem").value === ""){
+                
+                document.getElementById("mensagem").value = "Nenhum";
+                
+            }
+             
+        }        
+    </script>
+    
+    <script>        
+        setSuport();
+
+        function setSuport() {
+                                         
+            $.post("AjaxControle", {logicaAjax: "AreaAjaxSuport"}, function (data, status) {
+                
+                var objDados = JSON.parse(data);
+
+                comboboxSuporte = document.getElementById("comboboxSuporte");
+                comboboxSuporte.innerHTML = "";
+                
+                for (i = 0; i < objDados.length; i++) {                    
+                    comboboxSuporte.innerHTML += "<option value='" + objDados[i].placa + "'>" + objDados[i].nome + "</option>";
+                }
+
+                $('.selectpicker').selectpicker('refresh');
+
+            });
+        }
+    </script>
+    
 </html>
