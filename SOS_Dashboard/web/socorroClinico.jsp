@@ -130,7 +130,7 @@
                                         <form id="formRegulacao" action="controle" method="get">
 
                                             <!-- CAMPOS DA TELA ANTERIOR -->
-                                            <input type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
+                                            <input id="idR" type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
                                             <input type="hidden" name="tipoDeCaso" value="${sessionScope.dadosPaciente.tipoDeCaso}">
 
                                             <div class="row">
@@ -377,10 +377,10 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Tempo para Atendimento</label>                                                        
-                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
-                                                            <option name="15min" value="4">Até 15 min</option>                                                            
-                                                            <option name="40min" value="3">Até 40 min</option>
-                                                            <option name="1h/M" value="0">1h ou Mais</option>
+                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();aplicandoInteligencia();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="15min" value="1">Até 15 min</option>                                                            
+                                                            <option name="40min" value="2">Até 40 min</option>
+                                                            <option name="1h/M" value="4">1h ou Mais</option>
                                                         </select>                                                        
                                                     </div>
                                                 </div>
@@ -447,7 +447,42 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
     
-    <script type="text/javascript">
+    <script>
+        
+        function aplicandoInteligencia() {
+            
+            var valorIdR = document.getElementById("idR").value;
+            var comboboxGravidade = document.getElementById("comboboxGravidade").value;
+            var comboboxSocial = document.getElementById("comboboxSocial").value;
+            var comboboxRecursos = document.getElementById("comboboxRecursos").value;
+            var comboboxTempo = document.getElementById("comboboxTempo").value;
+            
+            var radios = document.getElementById("formRegulacao");            
+            var radiosChecked = [];            
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    radiosChecked.push(radios[i].value);                    
+                }
+            }
+            
+            $.post("AjaxControle", {logicaAjax: "AjaxGrauDeUgenciaClinica",
+                                    idR: valorIdR,
+                                    nivelConsciencia: radiosChecked[1],
+                                    estadoGeralVitima: radiosChecked[2],
+                                    respiracao: radiosChecked[3],
+                                    corVitima: radiosChecked[4],
+                                    dorIntensidade: radiosChecked[5],
+                                    aparecimentoDor: radiosChecked[6],
+                                    gravidadeCaso: comboboxGravidade,
+                                    valorSocial: comboboxSocial,
+                                    valorRecursos: comboboxRecursos,
+                                    valorTempo: comboboxTempo}, function (data, status) {
+            
+            });
+            
+            //console.log("Radios >>>>>> " + radiosChecked);
+        }
+        
         //const toast = swal.mixin({toast: true, background: '#ffffff', position: 'top-end', showConfirmButton: false, timer: 25000});
         //toast({type: 'success', title: 'Sugestão: Suporte Avançado', color: '#fff'});
               

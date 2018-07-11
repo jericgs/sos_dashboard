@@ -41,7 +41,7 @@ public class RegulacaoDAO {
                 stmt.setInt(4, regulacao.getAtencao());
                 stmt.setInt(5, regulacao.getSocial());
                 stmt.setInt(6, regulacao.getTempo());
-                stmt.setDouble(7, regulacao.getGu());
+                stmt.setInt(7, regulacao.getGu());
                 stmt.setString(8, regulacao.getStatus());
                 stmt.setString(9, regulacao.getTipoDeCaso());
                 stmt.setString(10, regulacao.getMensagem());
@@ -131,6 +131,35 @@ public class RegulacaoDAO {
                 stmt.setString(2, tipoDeCaso);
                 stmt.setString(3, mensagem);
                 stmt.setInt(4, idR);
+
+                stmt.execute();
+                confirmacao++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return confirmacao;
+    }
+    
+    public int atualizarRegulacaoInteligencia(Regulacao regulacao) {        
+
+        int confirmacao = 0;
+
+        try {
+
+            String sql = "UPDATE regulacao SET GE = ?, GS = ?, Atencao = ?, Social = ?, Tempo = ?, GU = ? "
+                    + "WHERE IdR = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, regulacao.getGe());
+                stmt.setInt(2, regulacao.getGs());
+                stmt.setInt(3, regulacao.getAtencao());
+                stmt.setInt(4, regulacao.getSocial());
+                stmt.setInt(5, regulacao.getTempo());
+                stmt.setInt(6, regulacao.getGu());
+                stmt.setInt(7, regulacao.getIdR());
 
                 stmt.execute();
                 confirmacao++;

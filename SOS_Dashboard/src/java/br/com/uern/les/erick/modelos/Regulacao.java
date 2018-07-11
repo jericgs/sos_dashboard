@@ -18,7 +18,7 @@ public class Regulacao {
     private int atencao;
     private int social;
     private int tempo;
-    private double gu;
+    private int gu;
     private String status;
     private String tipoDeCaso;
     private String mensagem;
@@ -79,11 +79,11 @@ public class Regulacao {
         this.tempo = Tempo;
     }
 
-    public double getGu() {
+    public int getGu() {
         return gu;
     }
 
-    public void setGu(double gu) {
+    public void setGu(int gu) {
         this.gu = gu;
     }
 
