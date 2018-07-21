@@ -197,10 +197,10 @@ public class GravarRegulacao implements Logica {
                 //INSTÂNCIA MODELO SINALVITAL
                 SinaisVitais sinaisVitais = new SinaisVitais();
                 sinaisVitais.setPa("NH");
-                sinaisVitais.setFc("NH");
+                sinaisVitais.setFc("200");
                 sinaisVitais.setFr("NH");
                 sinaisVitais.setSatSemSuport("NH");
-                sinaisVitais.setSatComSuport("NH");
+                sinaisVitais.setSatComSuport("95");
                 sinaisVitais.setTemperatura("NH");
                 sinaisVitais.setHgt("NH");
                 sinaisVitais.setGlasgow("NH");

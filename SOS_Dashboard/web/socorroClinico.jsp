@@ -466,7 +466,7 @@
                 }
             }
             
-            $.post("AjaxControle", {logicaAjax: "AjaxGrauDeUgenciaClinica",
+            $.post("AjaxControle", {logicaAjax: "AjaxGrauDeUrgenciaClinica",
                                     idR: valorIdR,
                                     nivelConsciencia: radiosChecked[1],
                                     estadoGeralVitima: radiosChecked[2],

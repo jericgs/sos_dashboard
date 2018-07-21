@@ -130,8 +130,9 @@
                                         <form id="formRegulacao" action="controle" method="post">
 
                                             <!-- CAMPOS DA TELA ANTERIOR -->
-                                            <input type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
+                                            <input id="idR" type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
                                             <input type="hidden" name="tipoDeCaso" value="${sessionScope.dadosPaciente.tipoDeCaso}">
+                                            <input type="hidden" name="motivo" value="Socorro">
 
                                             <div class="row">
                                                 <div class="col-md-7">
@@ -371,10 +372,10 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Tempo para Atendimento</label>                                                        
-                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
-                                                            <option name="15min" value="4">Até 15 min</option>                                                            
-                                                            <option name="40min" value="3">Até 40 min</option>
-                                                            <option name="1h/M" value="0">1h ou Mais</option>
+                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();aplicandoDados();getConhecimento();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                            <option name="15min" value="1">Até 15 min</option>                                                            
+                                                            <option name="40min" value="2">Até 40 min</option>
+                                                            <option name="1h/M" value="4">1h ou Mais</option>
                                                         </select>                                                        
                                                     </div>
                                                 </div>
@@ -393,13 +394,13 @@
                                                         <!--<label class="form-group label-floating">Queixa</label>-->
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Enredo e OBS</label>
-                                                            <textarea id="mensagem" onfocus="limpandoCampo('mensagem');" onblur="preenchendoCampo('mensagem')" class="form-control" maxlength="144" name="mensagem" form="" rows="5">Nenhum</textarea>
+                                                            <textarea id="mensagem" onfocus="limpandoCampo('mensagem');" onblur="preenchendoCampo('mensagem')" class="form-control" maxlength="144" name="mensagem" form="formRegulacao" rows="5">Nenhum</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <button type="button" onclick='history.go(-1)' style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="">Próximo</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarRegulacao">Próximo</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -441,13 +442,95 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
 
-    <script type="text/javascript">
-        //const toast = swal.mixin({toast: true, background: '#ffffff', position: 'top-end', showConfirmButton: false, timer: 25000});
-        //toast({type: 'success', title: 'Sugestão: Suporte Avançado', color: '#fff'});
-              
-        //demo.showNotification('top','right','Sugestão: Suporte Avançado','2');
+        <script>
+        
+        function aplicandoDados() {
             
-    </script>
+            var valorIdR = document.getElementById("idR").value;
+            var comboboxGravidade = document.getElementById("comboboxGravidade").value;
+            var comboboxSocial = document.getElementById("comboboxSocial").value;
+            var comboboxRecursos = document.getElementById("comboboxRecursos").value;
+            var comboboxTempo = document.getElementById("comboboxTempo").value;
+                                                          
+            var radios = document.getElementById("formRegulacao");            
+            var radiosChecked = [];            
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    radiosChecked.push(radios[i].value);                    
+                }
+            }
+            
+            $.post("AjaxControle", {logicaAjax: "AjaxGrauDeUrgenciaPsiquiatrico",
+                                    idR: valorIdR,
+                                    tratamento: radiosChecked[1],
+                                    tomaMedicacao: radiosChecked[2],
+                                    primeiroSurto: radiosChecked[3],
+                                    vitimaViaPublica: radiosChecked[4],
+                                    sintomasAssociados: radiosChecked[5],
+                                    comoEncontraVitima: radiosChecked[6],
+                                    vitimaAgressiva: radiosChecked[7],
+                                    ferimentoVisivel: radiosChecked[8],                                                                                                           
+                                    gravidadeCaso: comboboxGravidade,
+                                    valorSocial: comboboxSocial,
+                                    valorRecursos: comboboxRecursos,
+                                    valorTempo: comboboxTempo}, function (data, status) {
+                                                                                          
+            });
+                        
+        }
+        
+        function getConhecimento() {
+            
+            var valorIdR = document.getElementById("idR").value;
+                       
+            $.post("AjaxControle", {logicaAjax: "AjaxAlertaGrauDeUrgencia", idR: valorIdR}, function (data, status) {
+                                    
+                var objDados = JSON.parse(data);
+                
+                for(i = 0; i < objDados.length; i++){
+                    
+                    if(objDados[i].tipoDeSuporte === "Basic_Service"){
+                        
+                        var suporte = "Suporte Básico";
+                        var gravidade = "Moderada";     
+                       
+                        demo.showNotification('top','right','Gravidade: '+ gravidade +'<br/>Sugestao de Suporte: '+ suporte +'<br/>','1');
+                        
+                    }
+                    
+                    if(objDados[i].tipoDeSuporte === "Advanced_Service"){
+                        
+                        var suporte = "Suporte Avançado";
+                        var gravidade = "Absoluto"; 
+                        var gSindrome;
+                        
+                        if(objDados[i].grupoSindromico === "Etiologic"){
+                           gSindrome = "Etiológico";
+                        }
+                        
+                        if(objDados[i].grupoSindromico === "Semiological"){
+                           gSindrome = "Semiológico";
+                        }
+                        
+                        if(objDados[i].grupoSindromico === "Valency"){
+                           gSindrome = "Valência";
+                        }
+                        
+                        if(objDados[i].grupoSindromico === "WithoutCategory"){
+                           gSindrome = "Sem categoria";
+                        }
+                       
+                        demo.showNotification('top','right','Grupo Sindromico: '+ gSindrome +'<br/>Gravidade: '+ gravidade +'<br/>Sugestao de Suporte: '+ suporte +'<br/>','4');
+                        
+                    }
+                    
+                }
+            
+            });
+                        
+        }
+                                                                     
+    </script>   
     
     <script>
         $("#formRegulacao").submit(function () {
