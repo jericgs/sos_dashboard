@@ -31,18 +31,14 @@ public class AreaAjaxListaRegulacao implements LogicaAjax {
         List<ChamadoEspera> chamadosEspera = new ArrayList<>();
 
         //PEGANDO DADOS DA REQUISIÇÃO
-        String cpfm = req.getParameter("cpfm");
-
-        //GERANDO DATA DESTE MOMENTO
-        InformacaoDeTempo informacaoDeTempo = new InformacaoDeTempo();
-        String dataMomento = informacaoDeTempo.getDate();
+        String cpfm = req.getParameter("cpfm");        
 
         //CONEXÃO COM BD
         Connection connection = (Connection) req.getAttribute("conexao");
 
         //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
         ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-        List<ChamadoMedico> chamadosMedico = chamadoDAO.getListaDeChamados(cpfm, dataMomento);
+        List<ChamadoMedico> chamadosMedico = chamadoDAO.getListaDeChamados(cpfm);
 
         for (int i = 0; i < chamadosMedico.size(); i++) {
 

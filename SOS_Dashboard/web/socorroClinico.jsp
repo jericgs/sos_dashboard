@@ -127,11 +127,12 @@
                                         <p class="category">Paciente - 2/N</p>
                                     </div>
                                     <div class="card-content">
-                                        <form id="formRegulacao" action="controle" method="get">
+                                        <form id="formRegulacao" action="controle" method="post">
 
                                             <!-- CAMPOS DA TELA ANTERIOR -->
                                             <input id="idR" type="hidden" name="idR" value="${sessionScope.dadosPaciente.idR}">
                                             <input type="hidden" name="tipoDeCaso" value="${sessionScope.dadosPaciente.tipoDeCaso}">
+                                            <input type="hidden" name="motivo" value="Socorro">
 
                                             <div class="row">
                                                 <div class="col-md-7">
@@ -377,7 +378,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Tempo para Atendimento</label>                                                        
-                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();aplicandoInteligencia();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();aplicandoDados();getConhecimento()" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
                                                             <option name="15min" value="1">Até 15 min</option>                                                            
                                                             <option name="40min" value="2">Até 40 min</option>
                                                             <option name="1h/M" value="4">1h ou Mais</option>
@@ -399,13 +400,13 @@
                                                         <!--<label class="form-group label-floating">Queixa</label>-->
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Enredo e OBS</label>
-                                                            <textarea id="mensagem" onfocus="limpandoCampo('mensagem');" onblur="preenchendoCampo('mensagem')" class="form-control" maxlength="144" name="mensagem" form="" rows="5">Nenhum</textarea>
+                                                            <textarea id="mensagem" onfocus="limpandoCampo('mensagem');" onblur="preenchendoCampo('mensagem')" class="form-control" maxlength="144" name="mensagem" form="formRegulacao" rows="5">Nenhum</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <button type="button" onclick="history.go(-1)" style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="">Gravar</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarRegulacao">Gravar</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -437,7 +438,7 @@
     <!--  PerfectScrollbar Library -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/perfect-scrollbar.jquery.min.js"></script>
     <!--  Notifications Plugin    -->
-    <!-- <script src="Resources/node_modules/bootstrap/js/disp-dasboard/disp-dasboard/bootstrap-notify.js"></script>-->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-notify.js"></script>
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8kJ3p081G1hbsHQLkydJg8AtpVUznejw"></script>
     <!-- Material Dashboard javascript methods -->
@@ -449,14 +450,14 @@
     
     <script>
         
-        function aplicandoInteligencia() {
+        function aplicandoDados() {
             
             var valorIdR = document.getElementById("idR").value;
             var comboboxGravidade = document.getElementById("comboboxGravidade").value;
             var comboboxSocial = document.getElementById("comboboxSocial").value;
             var comboboxRecursos = document.getElementById("comboboxRecursos").value;
             var comboboxTempo = document.getElementById("comboboxTempo").value;
-            
+                                                          
             var radios = document.getElementById("formRegulacao");            
             var radiosChecked = [];            
             for (var i = 0; i < radios.length; i++) {
@@ -477,18 +478,63 @@
                                     valorSocial: comboboxSocial,
                                     valorRecursos: comboboxRecursos,
                                     valorTempo: comboboxTempo}, function (data, status) {
-            
+                                                                                          
             });
-            
-            //console.log("Radios >>>>>> " + radiosChecked);
+                        
         }
         
-        //const toast = swal.mixin({toast: true, background: '#ffffff', position: 'top-end', showConfirmButton: false, timer: 25000});
-        //toast({type: 'success', title: 'Sugestão: Suporte Avançado', color: '#fff'});
-              
-        //demo.showNotification('top','right','Sugestão: Suporte Avançado','2');
+        function getConhecimento() {
             
-    </script>
+            var valorIdR = document.getElementById("idR").value;
+                       
+            $.post("AjaxControle", {logicaAjax: "AjaxAlertaGrauDeUrgencia", idR: valorIdR}, function (data, status) {
+                                    
+                var objDados = JSON.parse(data);
+                
+                for(i = 0; i < objDados.length; i++){
+                    
+                    if(objDados[i].tipoDeSuporte === "Basic_Service"){
+                        
+                        var suporte = "Suporte Básico";
+                        var gravidade = "Moderada";     
+                       
+                        demo.showNotification('top','right','Gravidade: '+ gravidade +'<br/>Sugestao de Suporte: '+ suporte +'<br/>','1');
+                        
+                    }
+                    
+                    if(objDados[i].tipoDeSuporte === "Advanced_Service"){
+                        
+                        var suporte = "Suporte Avançado";
+                        var gravidade = "Absoluto"; 
+                        var gSindrome;
+                        
+                        if(objDados[i].grupoSindromico === "Etiologic"){
+                           gSindrome = "Etiológico";
+                        }
+                        
+                        if(objDados[i].grupoSindromico === "Semiological"){
+                           gSindrome = "Semiológico";
+                        }
+                        
+                        if(objDados[i].grupoSindromico === "Valency"){
+                           gSindrome = "Valência";
+                        }
+                        
+                        if(objDados[i].grupoSindromico === "WithoutCategory"){
+                           gSindrome = "Sem categoria";
+                        }
+                       
+                        demo.showNotification('top','right','Grupo Sindromico: '+ gSindrome +'<br/>Gravidade: '+ gravidade +'<br/>Sugestao de Suporte: '+ suporte +'<br/>','4');
+                        
+                    }
+                    
+                }
+            
+            });
+                        
+        }
+                                                                     
+    </script>   
     
     <script>
         $("#formRegulacao").submit(function () {
@@ -528,7 +574,7 @@
         setSuport();
 
         function setSuport() {
-                                         
+                                                                
             $.post("AjaxControle", {logicaAjax: "AreaAjaxSuport"}, function (data, status) {
                 
                 var objDados = JSON.parse(data);

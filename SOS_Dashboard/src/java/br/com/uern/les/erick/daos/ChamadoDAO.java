@@ -215,17 +215,16 @@ public class ChamadoDAO {
 
     }
 
-    public List<ChamadoMedico> getListaDeChamados(String cpfm, String dataMomento) {
+    public List<ChamadoMedico> getListaDeChamados(String cpfm) {
 
         List<ChamadoMedico> lisChamadosDoMedico = new ArrayList<>();
 
         try {
-            String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFM = ? AND "
-                    + "DataDeRegistro = ? ORDER BY IdRC ASC";
+            String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFM = ? "
+                    + "ORDER BY IdRC ASC";
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
-                stmt.setString(1, cpfm);
-                stmt.setString(2, dataMomento);                                
+                stmt.setString(1, cpfm);                                                
                 
                 ResultSet rs = stmt.executeQuery();
                 

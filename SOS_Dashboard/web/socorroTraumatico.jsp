@@ -375,7 +375,7 @@
         //const toast = swal.mixin({toast: true, background: '#ffffff', position: 'top-end', showConfirmButton: false, timer: 25000});
         //toast({type: 'success', title: 'Sugestão: Suporte Avançado', color: '#fff'});
               
-        //demo.showNotification('top','right','Sugestão: Suporte Avançado','2');
+        demo.showNotification('top','right','Sugestão: Suporte Avançado','2');
             
     </script>
     
