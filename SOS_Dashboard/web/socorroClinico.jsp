@@ -505,7 +505,7 @@
                     if(objDados[i].tipoDeSuporte === "Advanced_Service"){
                         
                         var suporte = "Suporte Avançado";
-                        var gravidade = "Absoluto"; 
+                        var gravidade = "Absoluta"; 
                         var gSindrome;
                         
                         if(objDados[i].grupoSindromico === "Etiologic"){

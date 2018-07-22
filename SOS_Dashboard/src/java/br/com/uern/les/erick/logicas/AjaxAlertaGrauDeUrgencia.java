@@ -25,7 +25,7 @@ public class AjaxAlertaGrauDeUrgencia implements LogicaAjax{
         
         String json = null;
         
-        Thread.sleep(1000);
+        Thread.sleep(1600);
         
         //LISTA CLASSIFICADA        
         List<Classificada> classificadas = new ArrayList<>();

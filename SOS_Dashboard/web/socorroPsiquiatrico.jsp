@@ -400,7 +400,7 @@
                                                 </div>
                                             </div>
                                             <button type="button" onclick='history.go(-1)' style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarRegulacao">Próximo</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarRegulacao">Gravar</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -432,7 +432,7 @@
     <!--  PerfectScrollbar Library -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/perfect-scrollbar.jquery.min.js"></script>
     <!--  Notifications Plugin    -->
-    <!-- <script src="Resources/node_modules/bootstrap/js/disp-dasboard/disp-dasboard/bootstrap-notify.js"></script>-->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-notify.js"></script>
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8kJ3p081G1hbsHQLkydJg8AtpVUznejw"></script>
     <!-- Material Dashboard javascript methods -->
@@ -501,7 +501,7 @@
                     if(objDados[i].tipoDeSuporte === "Advanced_Service"){
                         
                         var suporte = "Suporte Avançado";
-                        var gravidade = "Absoluto"; 
+                        var gravidade = "Absoluta"; 
                         var gSindrome;
                         
                         if(objDados[i].grupoSindromico === "Etiologic"){

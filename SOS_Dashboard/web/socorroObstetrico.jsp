@@ -356,7 +356,7 @@
                                                 </div>
                                             </div>
                                             <button type="button" onclick='history.go(-1)' style="text-transform: uppercase;" class="btn btn-primary pull-left">Voltar</button>
-                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarRegulacao">Próximo</button>
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarRegulacao">Gravar</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
@@ -453,7 +453,7 @@
                     if(objDados[i].tipoDeSuporte === "Advanced_Service"){
                         
                         var suporte = "Suporte Avançado";
-                        var gravidade = "Absoluto"; 
+                        var gravidade = "Absoluta"; 
                         var gSindrome;
                         
                         if(objDados[i].grupoSindromico === "Etiologic"){
