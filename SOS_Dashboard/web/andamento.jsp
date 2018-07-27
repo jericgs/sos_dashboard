@@ -1,6 +1,6 @@
 <%-- 
-    Document   : listaRegulacao
-    Created on : 01/07/2018, 11:44:35
+    Document   : andamento
+    Created on : 26/07/2018, 14:36:35
     Author     : jerick.gs
 --%>
 
@@ -11,7 +11,7 @@
 
     <head>
 
-        <title>Médico - Regulações</title>
+        <title>Médico - Andamento</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -73,13 +73,13 @@
                                 <p>Painel</p>
                             </a>
                         </li>                                                
-                        <li class="active">
+                        <li>
                             <a href="controle?logica=ListaRegulacoes&nomeUsuario=${sessionScope.medico.nomeUsuario}">
                                 <i class="material-icons">library_books</i>
-                                <p>Regulação</p>
+                                <p>Regulações</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Andamento</p>
@@ -104,7 +104,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand">Chamados</a>
+                            <a class="navbar-brand"> Ocorrências em Andamento </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
@@ -120,33 +120,86 @@
                     </div>
                 </nav>
                 <div class="content">
-                    <div class="container-fluid">
+                    <div class="container-fluid">                        
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Esperando Regulação</h4>
-                                        <p class="category">Pacientes</p>
-                                    </div>
-                                    <div class="card-content table-responsive">
-                                        <table class="table table-hover">
-                                            <thead class="text-primary">
-                                                <th>ID Regulação</th>
-                                                <th>Paciente</th>
-                                                <th>Idade</th>
-                                                <th>Motivo</th>
-                                                <th>Queixa</th>
-                                            </thead>
-                                            <tbody id="listaRegulacao"></tbody>
-                                        </table>
+                            <div class="card">
+                                <div class="card-header" data-background-color="red">
+                                    <h4 class="title">Gerência de Ações</h4>                                       
+                                </div>
+                                <div class="card-content">
+                                    <div class="tab-content">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>                                                    
+                                                    <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="material-icons">loupe</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
+                                                            <i class="material-icons">move_to_inbox</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>                                                    
+                                                    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="material-icons">loupe</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
+                                                            <i class="material-icons">move_to_inbox</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>                                                    
+                                                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="material-icons">loupe</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
+                                                            <i class="material-icons">move_to_inbox</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>                                                    
+                                                    <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                                    <td class="td-actions text-right">
+                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
+                                                            <i class="material-icons">edit</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="material-icons">loupe</i>
+                                                        </button>
+                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
+                                                            <i class="material-icons">move_to_inbox</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>                                        
                                     </div>
                                 </div>
-                            </div>                        
+                            </div>                           
                         </div>
                     </div>
-                </div>            
+                </div>                                       
+
             </div>
+
         </div>
+
     </body>
 
     <!--   Core JS Files   -->
@@ -168,56 +221,6 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
-    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>   
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
 
-    <script type="text/javascript">
-        $(function () {
-            setChamadosEmRegulacao();
-            function setChamadosEmRegulacao() {
-
-                setTimeout(setChamadosEmRegulacao, 1000);                                
-
-               $.post("AjaxControle", {logicaAjax: "AreaAjaxListaRegulacao", cpfm: "${sessionScope.dadosMedicoRegulador.CPFM}"}, function (data, status) {
-
-                    //NATIVO
-                    //var dados = '{"clientes": [{"id":"1", "nome":"Erick", "email":"jerick.gs@gmail.com"}, {"id":"2", "nome":"Marcos", "email":"marcos.gs@gmail.com"}, {"id":"3", "nome":"José", "email":"jose.gs@gmail.com"}]}';
-                    var objDados = JSON.parse(data);
-
-                    listaRegulacao = document.getElementById("listaRegulacao");
-
-                    var socorro = "Socorro";
-                    var informacao = "Informação";
-                    var transporte = "Transporte";                    
-                    
-                    listaRegulacao.innerHTML = "";
-                    for (i = 0; i < objDados.length; i++) {                                                                        
-                        
-                        if(socorro.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='controle?logica=RegulacaoSocorro&nomeUsuario=${sessionScope.medico.nomeUsuario}&idR="+objDados[i].idR+"'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
-                        }
-                        
-                        if(informacao.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='controle?logica=RegulacaoInformacao&nomeUsuario=${sessionScope.medico.nomeUsuario}&idR="+objDados[i].idR+"'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
-                        }
-                        
-                        if(transporte.toUpperCase() === objDados[i].motivo.toUpperCase()){
-                            listaRegulacao.innerHTML += "<tr style='cursor:pointer' onclick = document.location='controle?logica=RegulacaoTransporte&nomeUsuario=${sessionScope.medico.nomeUsuario}&idR="+objDados[i].idR+"'><td>"+objDados[i].idR+"</td><td>"+objDados[i].nomePaciente+"</td><td>"+objDados[i].idade+"</td><td>"+objDados[i].motivo+"</td><td>"+objDados[i].queixa+"</td></tr>";
-                        }
-                                                
-                    }
-                                                            
-               });
-                
-            }
-        });
-    </script>
-        
-    <script>
-        <c:if test="${not empty confirmacao.tipoAlerta}">
-            swal({type: '${confirmacao.tipoAlerta}', title: 'Hey...', text: '${confirmacao.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
-                location.href="controle?logica=ListaRegulacoes&nomeUsuario=${sessionScope.medico.nomeUsuario}";
-            });                                                            
-        </c:if>                   
-    </script>
-    
 </html>

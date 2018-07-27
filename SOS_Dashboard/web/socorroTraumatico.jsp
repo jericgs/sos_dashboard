@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./icons.html">
+                            <a href="controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Andamento</p>
                             </a>

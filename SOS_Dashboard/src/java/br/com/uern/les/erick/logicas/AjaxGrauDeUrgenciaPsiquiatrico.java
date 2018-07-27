@@ -52,7 +52,7 @@ public class AjaxGrauDeUrgenciaPsiquiatrico implements LogicaAjax {
         float G = grauDeUrgencia.calculoGravidade(GEf, GSf);
         float GUf = grauDeUrgencia.calculoGrauDeUrgencia(G, valorRecursos, valorSocial, valorTempo);
         
-         //AREDONDADNDO VALORES
+        //AREDONDADNDO VALORES
         int GS = Math.round(GSf);
         int GE = Math.round(GEf);
         int GU = Math.round(GUf);
