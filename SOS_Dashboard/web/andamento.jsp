@@ -128,65 +128,24 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="tab-content">
-                                        <table class="table">
+                                        <table style="border-collapse: collapse;" class="table">
                                             <tbody>
-                                                <tr>                                                    
-                                                    <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
-                                                            <i class="material-icons">loupe</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
-                                                            <i class="material-icons">move_to_inbox</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>                                                    
-                                                    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
-                                                            <i class="material-icons">loupe</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
-                                                            <i class="material-icons">move_to_inbox</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>                                                    
-                                                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                                    </td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
-                                                            <i class="material-icons">loupe</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
-                                                            <i class="material-icons">move_to_inbox</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>                                                    
-                                                    <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                                                    <td class="td-actions text-right">
-                                                        <button type="button" rel="tooltip" title="Editar Ocorrência" class="btn btn-warning btn-simple btn-xs">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Add Sinais Vitais" class="btn btn-info btn-simple btn-xs">
-                                                            <i class="material-icons">loupe</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
-                                                            <i class="material-icons">move_to_inbox</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                <!-- percorre contatos montando as linhas da tabela -->
+                                                <c:forEach var="dadosAndamento" items="${sessionScope.dadosAndamento}">               
+                                                    <tr>                                                    
+                                                        <td>${dadosAndamento.idR} - ${dadosAndamento.nome}</td>
+                                                        <td class="lista-margem" style="text-align: right;">
+                                                            
+                                                            <button onClick="javascript:window.location='controle?logica=SinaisVitais&idR=${dadosAndamento.idR}&nomePaciente=${dadosAndamento.nome}&idadePaciente=${dadosAndamento.idade}'" type="button" rel="tooltip" title="Add/atualizar os Sinais Vitais" class="btn btn-info btn-simple btn-xs">
+                                                                <i class="material-icons">loupe</i>
+                                                            </button>
+                                                            <button onClick="javascript:window.location='controle?logica=ArquivoSinaisVitais&idR=${dadosAndamento.idR}'" type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
+                                                                <i class="material-icons">move_to_inbox</i>
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>   
+                                                </c:forEach>                                                                                                                                                                                           
                                             </tbody>
                                         </table>                                        
                                     </div>
@@ -222,5 +181,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
+    
+    <script>        
+        <c:if test="${not empty informe.tipoAlerta}">            
+            swal({type: '${informe.tipoAlerta}', title: 'Hey...', text: '${informe.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
+                location.href="controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}";
+            });                                                            
+        </c:if>                   
+    </script>
 
 </html>

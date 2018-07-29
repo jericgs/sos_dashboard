@@ -47,18 +47,18 @@ public class RegulacaoDAO {
                 stmt.setString(10, regulacao.getMensagem());
 
                 stmt.execute();
-                
+
                 String sql2 = "SELECT LAST_INSERT_ID() FROM regulacao";
-                
+
                 PreparedStatement ps = this.connection.prepareStatement(sql2);
-                
+
                 ResultSet rs = ps.executeQuery();
-                
+
                 if (rs.next()) {
                     idR = rs.getInt("LAST_INSERT_ID()");
                 }
             }
-                       
+
         } catch (SQLException ex) {
             Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,7 +117,7 @@ public class RegulacaoDAO {
         return idRC;
     }
 
-    public int atualizarRegulacao(int idR, String status, String tipoDeCaso, String mensagem) {        
+    public int atualizarRegulacao(int idR, String status, String tipoDeCaso, String mensagem) {
 
         int confirmacao = 0;
 
@@ -142,8 +142,8 @@ public class RegulacaoDAO {
 
         return confirmacao;
     }
-    
-    public int atualizarRegulacaoInteligencia(Regulacao regulacao) {        
+
+    public int atualizarRegulacaoInteligencia(Regulacao regulacao) {
 
         int confirmacao = 0;
 
@@ -160,6 +160,70 @@ public class RegulacaoDAO {
                 stmt.setInt(5, regulacao.getTempo());
                 stmt.setInt(6, regulacao.getGu());
                 stmt.setInt(7, regulacao.getIdR());
+
+                stmt.execute();
+                confirmacao++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return confirmacao;
+    }
+
+    public Regulacao getRegulacaoAndamento(int idRC) {
+
+        Regulacao regulacao = null;
+
+        try {
+
+            String sql = "SELECT * FROM regulacao WHERE IdRC = ? AND (Status = 'AndamentoTroca' OR Status = 'AndamentoOB' OR Status = 'AndamentoOA')";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idRC);                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    // criando o objeto Regulação
+                    regulacao = new Regulacao();
+
+                    regulacao.setIdR(rs.getInt("IdR"));
+                    regulacao.setIdRC(rs.getInt("IdRC"));
+                    regulacao.setGe(rs.getInt("GE"));
+                    regulacao.setGs(rs.getInt("GS"));
+                    regulacao.setAtencao(rs.getInt("Atencao"));
+                    regulacao.setSocial(rs.getInt("Social"));
+                    regulacao.setTempo(rs.getInt("Tempo"));
+                    regulacao.setGu(rs.getInt("GU"));
+                    regulacao.setStatus(rs.getString("Status"));
+                    regulacao.setTipoDeCaso(rs.getString("TipoDeCaso"));
+                    regulacao.setMensagem(rs.getString("Mensagem"));
+
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return regulacao;
+    }
+    
+    public int atualizarStatusRegulacao(int idR) {
+
+        int confirmacao = 0;
+
+        try {
+
+            String sql = "UPDATE regulacao SET Status = ? "
+                    + "WHERE IdR = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, "Concluído");
+                stmt.setInt(4, idR);
 
                 stmt.execute();
                 confirmacao++;

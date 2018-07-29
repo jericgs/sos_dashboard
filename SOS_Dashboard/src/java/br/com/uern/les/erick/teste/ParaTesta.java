@@ -6,32 +6,11 @@
 package br.com.uern.les.erick.teste;
 
 import br.com.uern.les.erick.conexao.ConexaoBD;
-import br.com.uern.les.erick.daos.ChamadoDAO;
-import br.com.uern.les.erick.daos.EnderecoDAO;
-import br.com.uern.les.erick.daos.MedicoDAO;
-import br.com.uern.les.erick.daos.PacienteDAO;
-import br.com.uern.les.erick.daos.PossuiDAO;
-import br.com.uern.les.erick.daos.RegulacaoDAO;
-import br.com.uern.les.erick.daos.SinaisVitaisDAO;
-import br.com.uern.les.erick.daos.SolicitanteDAO;
-import br.com.uern.les.erick.daos.UmsaDAO;
-import br.com.uern.les.erick.daos.UmsbDAO;
-import br.com.uern.les.erick.daos.UsuarioDAO;
-import br.com.uern.les.erick.modelos.ChamadoMedico;
-import br.com.uern.les.erick.modelos.Endereco;
-import br.com.uern.les.erick.modelos.InformacaoDeTempo;
-import br.com.uern.les.erick.modelos.MedicoRegulador;
-import br.com.uern.les.erick.modelos.Paciente;
-import br.com.uern.les.erick.modelos.PossuiTabela;
-import br.com.uern.les.erick.modelos.Regulacao;
-import br.com.uern.les.erick.modelos.SinaisVitais;
-import br.com.uern.les.erick.modelos.Solicitante;
-import br.com.uern.les.erick.modelos.UMSA;
-import br.com.uern.les.erick.modelos.UMSB;
-import br.com.uern.les.erick.modelos.Usuario;
+import br.com.uern.les.erick.daos.OcorrenciasaDAO;
+import br.com.uern.les.erick.daos.OcorrenciasbDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
+
 
 /**
  *
@@ -237,5 +216,32 @@ public class ParaTesta {
 //        int idV = aO.inserindoSinaisVitais(sinaisVitais);
 //        
 //        System.out.println(idV);
+
+        
+//        Connection connection = new ConexaoBD().getConnection();
+//        RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
+//        Regulacao regulacao = regulacaoDAO.getRegulacaoAndamento(78);
+//        
+//        System.out.println("Aqui: " + regulacao.getIdR());
+//        
+//        if(regulacao != null){
+//            System.out.println("Passou");
+//        }
+//        
+//        //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
+//        ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
+//        List<ChamadoMedico> chamadosMedico = chamadoDAO.getListaDeChamados("999.446.765-01");                
+//                        
+//        System.out.println("ID Paciente: " + chamadosMedico.get(0).getIdRC());
+    
+//        Connection connection = new ConexaoBD().getConnection();
+//        OcorrenciasaDAO aO = new OcorrenciasaDAO(connection);
+//        OcorrenciasbDAO dAO  = new OcorrenciasbDAO(connection);
+//        
+//        int r = aO.buscandoSinaisVitaisSA(40);
+//        int r2 = dAO.buscandoSinaisVitaisSB(44);
+//        
+//        System.out.println("Aqui: " + r + " Aqui: " + r2);
+    
     }
 }

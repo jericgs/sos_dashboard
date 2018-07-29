@@ -25,7 +25,6 @@ public class OcorrenciasaDAO {
         this.connection = connection;
     }
 
-    
     public int inserindoOcorrencia(OcorrenciaSA ocorrencia) {
         int idOA = 0;
 
@@ -43,16 +42,16 @@ public class OcorrenciasaDAO {
                 stmt.setString(5, ocorrencia.getEnfermeiro());
                 stmt.setString(6, ocorrencia.getAuxiliar());
                 stmt.setString(7, ocorrencia.getMotorista());
-                stmt.setString(8, ocorrencia.getGravComprovada());                
-                
+                stmt.setString(8, ocorrencia.getGravComprovada());
+
                 stmt.execute();
-                
+
                 String sql2 = "SELECT LAST_INSERT_ID() FROM ocorrenciasa";
-                
+
                 PreparedStatement ps = this.connection.prepareStatement(sql2);
-                
+
                 ResultSet rs = ps.executeQuery();
-                
+
                 if (rs.next()) {
                     idOA = rs.getInt("LAST_INSERT_ID()");
                 }
@@ -64,5 +63,32 @@ public class OcorrenciasaDAO {
 
         return idOA;
     }
-    
+
+    public int buscandoSinaisVitaisSA(int idR) {
+
+        int idV = 0;
+
+        try {
+
+            String sql = "SELECT IdV FROM ocorrenciasa WHERE IdR = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idR);
+
+                stmt.execute();                                
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    idV = rs.getInt("IdV");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OcorrenciasaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return idV;
+    }
+
 }

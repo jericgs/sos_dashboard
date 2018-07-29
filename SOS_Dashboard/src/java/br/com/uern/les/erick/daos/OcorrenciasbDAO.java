@@ -61,4 +61,32 @@ public class OcorrenciasbDAO {
 
         return idOB;
     }
+    
+    public int buscandoSinaisVitaisSB(int idR) {
+
+        int idV = 0;
+
+        try {
+
+            String sql = "SELECT IdV FROM ocorrenciasb WHERE IdR = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idR);
+
+                stmt.execute();                                
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    idV = rs.getInt("IdV");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OcorrenciasbDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return idV;
+    }
+    
 }
