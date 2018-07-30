@@ -33,22 +33,20 @@ public class ArquivoSinaisVitais implements Logica {
 
         //INSTÂNCIANDO OCORRENCIASADAO E REALIZANDO BUSCA
         OcorrenciasaDAO ocorrenciasaDAO = new OcorrenciasaDAO(connection);
-        int idVsa = ocorrenciasaDAO.buscandoSinaisVitaisSA(idR);        
-        
+        int idVsa = ocorrenciasaDAO.buscandoSinaisVitaisSA(idR);
+
         //INSTÂNCIANDO OCORRENCIASBDAO E REALIZANDO BUSCA       
         OcorrenciasbDAO ocorrenciasbDAO = new OcorrenciasbDAO(connection);
         int idVsb = ocorrenciasbDAO.buscandoSinaisVitaisSB(idR);
-                
 
         if (idVsa != 0) {
-            
-            
+
             //INSTÂNCIANDO SINAISVITAISDAO E REALIZANDO BUSCA
             SinaisVitaisDAO sinaisVitaisDAO = new SinaisVitaisDAO(connection);
             SinaisVitais sv = sinaisVitaisDAO.buscandoSinaisVitais(idVsa);
-                       
-            if (!sv.getPa().equalsIgnoreCase("NH")) {                                 
-                
+
+            if (!sv.getPa().equalsIgnoreCase("NH")) {
+
                 //INSTÂNCIANDO REGULACAODAO E ATUALIZA
                 RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
                 int confimacao = regulacaoDAO.atualizarStatusRegulacao(idR);
@@ -64,10 +62,8 @@ public class ArquivoSinaisVitais implements Logica {
                 }
             }
 
-            if (sv.getPa().equalsIgnoreCase("NH")) {                
-                
+            if (sv.getPa().equalsIgnoreCase("NH")) {
 
-            }
                 //PARAMETROS PARA O ALERTA
                 Alerta alerta = new Alerta();
                 alerta.setTipoAlerta("info");
@@ -75,6 +71,9 @@ public class ArquivoSinaisVitais implements Logica {
                 req.setAttribute("informe", alerta);
 
                 pagina = "andamento.jsp";
+
+            }
+
         }
 
         if (idVsb != 0) {

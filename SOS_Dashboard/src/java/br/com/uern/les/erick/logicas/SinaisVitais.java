@@ -5,9 +5,13 @@
  */
 package br.com.uern.les.erick.logicas;
 
+import br.com.uern.les.erick.daos.RegulacaoDAO;
+import br.com.uern.les.erick.modelos.ChamadoEspera;
+import br.com.uern.les.erick.modelos.Regulacao;
 import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,9 +31,21 @@ public class SinaisVitais implements Logica{
         //CONEXÃO
         Connection connection = (Connection) req.getAttribute("conexao");
         
-        
+        //INSTÂNCIANDO REGULACAODAO E BUSCAR REGULAÇÃO
+        RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
+        Regulacao regulacao = regulacaoDAO.buscandoRegulacao(idR);                
 
         //MODELO CHAMADOESPERA
+        ChamadoEspera chamadoEspera = new ChamadoEspera();
+        chamadoEspera.setIdR(idR);
+        chamadoEspera.setNomePaciente(nomePaciente);
+        chamadoEspera.setIdade(idadePaciente);
+        chamadoEspera.setTipoDeCaso(regulacao.getTipoDeCaso());
+        chamadoEspera.setQueixa(regulacao.getMensagem());
+        
+        //SESSÃO
+        HttpSession session = req.getSession();
+        session.setAttribute("dadosSinaisVitais", chamadoEspera);
         
         pagina = "sinaisVitais.jsp";
         

@@ -91,12 +91,6 @@
                                 <p>Mapa</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="./table.html">
-                                <i class="material-icons">content_paste</i>
-                                <p>Arquivados</p>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>

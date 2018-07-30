@@ -69,7 +69,7 @@ public class SinaisVitaisDAO {
 
         try {
 
-            String sql = "UPDATE regulacao SET Pa = ?, Fc = ?, Fr = ?, SatSemSuport = ?, SatComSuport = ?, "
+            String sql = "UPDATE sinaisvitais SET Pa = ?, Fc = ?, Fr = ?, SatSemSuport = ?, SatComSuport = ?, "
                     + "Temperatura = ?, HGT = ?, Glasgow = ? WHERE IdV = ?";
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {

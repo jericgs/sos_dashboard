@@ -89,4 +89,27 @@ public class OcorrenciasbDAO {
         return idV;
     }
     
+    public int atualizarGravidadeOcorrenciaSB(int idR, String gravidadeComprovada){
+        int confirmacao = 0;
+        
+        try {
+
+            String sql = "UPDATE ocorrenciasb SET GravComprovada = ? "
+                    + "WHERE IdR = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, gravidadeComprovada);                
+                stmt.setInt(2, idR);
+
+                stmt.execute();
+                confirmacao++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OcorrenciasbDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return confirmacao;
+    }
+    
 }

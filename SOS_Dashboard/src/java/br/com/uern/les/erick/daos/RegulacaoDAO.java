@@ -223,7 +223,7 @@ public class RegulacaoDAO {
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
                 stmt.setString(1, "Concluído");
-                stmt.setInt(4, idR);
+                stmt.setInt(2, idR);
 
                 stmt.execute();
                 confirmacao++;
@@ -234,6 +234,46 @@ public class RegulacaoDAO {
         }
 
         return confirmacao;
+    }
+    
+    public Regulacao buscandoRegulacao(int idR){
+        
+        Regulacao regulacao = null;
+
+        try {
+
+            String sql = "SELECT * FROM regulacao WHERE IdR = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idR);                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    // criando o objeto Regulação
+                    regulacao = new Regulacao();
+
+                    regulacao.setIdR(rs.getInt("IdR"));
+                    regulacao.setIdRC(rs.getInt("IdRC"));
+                    regulacao.setGe(rs.getInt("GE"));
+                    regulacao.setGs(rs.getInt("GS"));
+                    regulacao.setAtencao(rs.getInt("Atencao"));
+                    regulacao.setSocial(rs.getInt("Social"));
+                    regulacao.setTempo(rs.getInt("Tempo"));
+                    regulacao.setGu(rs.getInt("GU"));
+                    regulacao.setStatus(rs.getString("Status"));
+                    regulacao.setTipoDeCaso(rs.getString("TipoDeCaso"));
+                    regulacao.setMensagem(rs.getString("Mensagem"));
+
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return regulacao;
     }
 
 }

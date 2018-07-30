@@ -35,6 +35,7 @@ public class Andamento implements Logica {
 
         List<ListaAndamento> chamadosListaAndamento = new ArrayList<>();
 
+        //CONEXÂO E SESSÃO
         Connection connection = (Connection) req.getAttribute("conexao");
         HttpSession session = req.getSession();
 
