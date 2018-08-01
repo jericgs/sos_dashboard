@@ -96,4 +96,70 @@ public class EnderecoDAO {
         }
         return idE;
     }
+    
+    public Endereco getEndereco(int idE) {
+
+        Endereco endereco = null;
+
+        try {
+
+            String sql = "SELECT * FROM endereco WHERE IdE = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idE);                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    //MODELO
+                    endereco = new Endereco();
+                    endereco.setIdE(rs.getInt("IdE"));
+                    endereco.setLogradouro(rs.getString("Logradouro"));
+                    endereco.setNumero(rs.getInt("Numero"));
+                    endereco.setComplemento(rs.getString("Complemento"));
+                    endereco.setCidade(rs.getString("Cidade"));
+                    endereco.setCep(rs.getString("CEP"));
+                    endereco.setEstado(rs.getString("Estado"));
+                    endereco.setPais(rs.getString("Pais"));
+                    endereco.setBairro(rs.getString("Bairro"));
+                                     
+                }
+            }
+                       
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return endereco;
+    }
+    
+    public int atualizarEndereco(Endereco endereco) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE endereco SET Logradouro = ?, Numero = ?, Complemento = ?, Cidade = ?, CEP = ?, "
+                    + "Estado = ?, Pais = ?, Bairro = ? WHERE IdE = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, endereco.getLogradouro());
+                stmt.setInt(2, endereco.getNumero());
+                stmt.setString(3, endereco.getComplemento());
+                stmt.setString(4, endereco.getCidade());
+                stmt.setString(5, endereco.getCep());
+                stmt.setString(6, endereco.getEstado());
+                stmt.setString(7, endereco.getPais());
+                stmt.setString(8, endereco.getBairro());
+                stmt.setInt(9, endereco.getIdE());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
+    
 }

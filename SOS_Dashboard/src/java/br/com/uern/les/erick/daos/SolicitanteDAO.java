@@ -59,4 +59,56 @@ public class SolicitanteDAO {
 
         return idSol;
     }
+    
+    public Solicitante getSolicitante(int idS) {
+
+        Solicitante solicitante = null;
+
+        try {
+
+            String sql = "SELECT * FROM solicitante WHERE IdS = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idS);                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    //MODELO
+                    solicitante = new Solicitante();
+                    solicitante.setNome(rs.getString("Nome"));
+                    solicitante.setTel(rs.getString("Tel"));                    
+                }
+            }
+                       
+        } catch (SQLException ex) {
+            Logger.getLogger(SolicitanteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return solicitante;
+    }
+    
+    public int atualizarSolicitante(Solicitante solicitante) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE solicitante SET Nome = ?, Tel = ? "
+                    + "WHERE IdS = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, solicitante.getNome());
+                stmt.setString(2, solicitante.getTel());
+                stmt.setInt(3, solicitante.getIdS());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SolicitanteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
+    
 }

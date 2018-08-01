@@ -314,4 +314,62 @@ public class ChamadoDAO {
         return lisChamadosDoTarm;
     }
     
+    public RegistroChamado getRegistroDeChamado(int idRC) {
+
+        //INSTÂNCIO O MODELO E CRIO O CHAMADOMEDICO
+        RegistroChamado registroChamado = null;
+
+        try {
+            String sql = "SELECT * FROM registrodechamado WHERE IdRC = ?";                    
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idRC);                                              
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {                                        
+                    //MODELO
+                    registroChamado = new RegistroChamado();                    
+                    registroChamado.setCpft(rs.getString("CPFT"));
+                    registroChamado.setCpfm(rs.getString("CPFM"));
+                    registroChamado.setIdS(rs.getInt("IdS"));
+                    registroChamado.setIdP(rs.getInt("IdP"));
+                    registroChamado.setNumChamado(rs.getInt("NumChamado"));
+                    registroChamado.setHora(rs.getString("Hora"));
+                    registroChamado.setDataDeRegistro(rs.getString("DataDeRegistro"));
+                    registroChamado.setQueixa(rs.getString("Queixa"));
+                    registroChamado.setMotivo(rs.getString("Motivo"));
+                    
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return registroChamado;
+    }
+    
+    public int atualizarChamado(Chamado chamado) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE registrodechamado SET Queixa = ? "
+                    + "WHERE IdRC = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, chamado.getQueixa());                
+                stmt.setInt(2, chamado.getIdRC());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SolicitanteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
+    
 }

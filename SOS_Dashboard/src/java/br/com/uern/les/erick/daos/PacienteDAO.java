@@ -113,5 +113,28 @@ public class PacienteDAO {
         return paciente;
 
     }
+    
+    public int atualizarPaciente(Paciente paciente) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE paciente SET Nome = ?, Idade = ? "
+                    + "WHERE IdP = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, paciente.getNome());
+                stmt.setString(2, paciente.getIdade());
+                stmt.setInt(3, paciente.getIdP());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PacienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
 
 }

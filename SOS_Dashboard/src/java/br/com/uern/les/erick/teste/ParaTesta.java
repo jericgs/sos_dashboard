@@ -254,5 +254,8 @@ public class ParaTesta {
             System.out.println("Aqui: " + list.get(i));
         }
         
+        if((false || false)){
+            System.out.println("Testes......");
+        }
     }
 }

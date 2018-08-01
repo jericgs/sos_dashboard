@@ -155,10 +155,9 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label class="form-group label-floating">Queixa</label>
+                                                    <div class="form-group">                                                        
                                                         <div class="form-group label-floating">
-                                                            <label class="control-label">Enredo resumido do fato.</label>
+                                                            <label class="control-label">Queixa (Enredo resumido do fato).</label>
                                                             <textarea id="queixa" class="form-control" maxlength="144" name="queixa" form="formSolicitante" rows="5"></textarea>
                                                         </div>
                                                     </div>

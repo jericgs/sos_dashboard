@@ -175,5 +175,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
+    
+    <script>        
+        <c:if test="${not empty alerta.tipoAlerta}">            
+            swal({type: '${alerta.tipoAlerta}', title: 'Hey...', text: '${alerta.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
+                location.href="controle?logica=Encaminhamento&nomeUsuario=${sessionScope.tarm.nomeUsuario}";
+            });                                                            
+        </c:if>                   
+    </script>
 
 </html>
