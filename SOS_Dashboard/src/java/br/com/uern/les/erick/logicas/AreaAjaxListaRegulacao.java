@@ -8,9 +8,8 @@ package br.com.uern.les.erick.logicas;
 import br.com.uern.les.erick.daos.ChamadoDAO;
 import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.RegulacaoDAO;
+import br.com.uern.les.erick.modelos.Chamado;
 import br.com.uern.les.erick.modelos.ChamadoEspera;
-import br.com.uern.les.erick.modelos.ChamadoMedico;
-import br.com.uern.les.erick.modelos.InformacaoDeTempo;
 import br.com.uern.les.erick.modelos.Paciente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Connection;
@@ -38,7 +37,7 @@ public class AreaAjaxListaRegulacao implements LogicaAjax {
 
         //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
         ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-        List<ChamadoMedico> chamadosMedico = chamadoDAO.getListaDeChamados(cpfm);
+        List<Chamado> chamadosMedico = chamadoDAO.getListaDeChamados(cpfm);
 
         for (int i = 0; i < chamadosMedico.size(); i++) {
 

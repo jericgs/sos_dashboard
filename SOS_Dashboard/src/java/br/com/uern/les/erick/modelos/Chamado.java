@@ -9,7 +9,7 @@ package br.com.uern.les.erick.modelos;
  *
  * @author jerick.gs
  */
-public class ChamadoMedico {
+public class Chamado {
     
     private int idRC;
     private int idP;

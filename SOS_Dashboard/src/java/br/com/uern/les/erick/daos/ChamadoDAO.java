@@ -5,7 +5,7 @@
  */
 package br.com.uern.les.erick.daos;
 
-import br.com.uern.les.erick.modelos.ChamadoMedico;
+import br.com.uern.les.erick.modelos.Chamado;
 import br.com.uern.les.erick.modelos.RegistroChamado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -215,9 +215,9 @@ public class ChamadoDAO {
 
     }
 
-    public List<ChamadoMedico> getListaDeChamados(String cpfm) {
+    public List<Chamado> getListaDeChamados(String cpfm) {
 
-        List<ChamadoMedico> lisChamadosDoMedico = new ArrayList<>();
+        List<Chamado> lisChamadosDoMedico = new ArrayList<>();
 
         try {
             String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFM = ? "
@@ -231,7 +231,7 @@ public class ChamadoDAO {
                 while (rs.next()) {
                     
                     //INSTÂNCIO O MODELO E CRIO O CHAMADOMEDICO
-                    ChamadoMedico chamadoMedico =  new ChamadoMedico();
+                    Chamado chamadoMedico =  new Chamado();
                     chamadoMedico.setIdRC(rs.getInt("IdRC"));
                     chamadoMedico.setIdP(rs.getInt("IdP"));
                     chamadoMedico.setHora(rs.getString("Hora"));
@@ -250,10 +250,10 @@ public class ChamadoDAO {
         return lisChamadosDoMedico;
     }
     
-    public ChamadoMedico getChamado(int idRC) {
+    public Chamado getChamado(int idRC) {
 
         //INSTÂNCIO O MODELO E CRIO O CHAMADOMEDICO
-        ChamadoMedico chamadoMedico = new ChamadoMedico();
+        Chamado chamadoMedico = new Chamado();
 
         try {
             String sql = "SELECT IdP, Motivo, Queixa FROM registrodechamado WHERE IdRC = ?";                    
@@ -278,4 +278,40 @@ public class ChamadoDAO {
 
         return chamadoMedico;
     }
+    
+    public List<Chamado> getListaDeChamadosTarm(String cpft) {
+
+        List<Chamado> lisChamadosDoTarm = new ArrayList<>();
+
+        try {
+            String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFT = ? "
+                    + "ORDER BY IdRC ASC";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpft);                                                
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {
+                    
+                    //INSTÂNCIO O MODELO E CRIO O CHAMADOMEDICO
+                    Chamado chamadoTarm =  new Chamado();
+                    chamadoTarm.setIdRC(rs.getInt("IdRC"));
+                    chamadoTarm.setIdP(rs.getInt("IdP"));
+                    chamadoTarm.setHora(rs.getString("Hora"));
+                    chamadoTarm.setMotivo(rs.getString("Motivo"));
+                    chamadoTarm.setQueixa(rs.getString("Queixa"));
+                    
+                    lisChamadosDoTarm.add(chamadoTarm);
+                    
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ChamadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lisChamadosDoTarm;
+    }
+    
 }

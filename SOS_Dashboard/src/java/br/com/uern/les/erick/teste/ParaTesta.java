@@ -8,8 +8,11 @@ package br.com.uern.les.erick.teste;
 import br.com.uern.les.erick.conexao.ConexaoBD;
 import br.com.uern.les.erick.daos.OcorrenciasaDAO;
 import br.com.uern.les.erick.daos.OcorrenciasbDAO;
+import br.com.uern.les.erick.daos.PossuiDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -243,5 +246,13 @@ public class ParaTesta {
 //        
 //        System.out.println("Aqui: " + r + " Aqui: " + r2);
     
+        Connection connection = new ConexaoBD().getConnection();
+        PossuiDAO possuiDAO = new PossuiDAO(connection);        
+        List<String> list = possuiDAO.buscandoEnderecos(51);
+        
+        for(int i = 0; i < list.size(); i++){
+            System.out.println("Aqui: " + list.get(i));
+        }
+        
     }
 }

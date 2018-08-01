@@ -9,7 +9,7 @@ import br.com.uern.les.erick.daos.ChamadoDAO;
 import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.RegulacaoDAO;
 import br.com.uern.les.erick.modelos.ChamadoEspera;
-import br.com.uern.les.erick.modelos.ChamadoMedico;
+import br.com.uern.les.erick.modelos.Chamado;
 import br.com.uern.les.erick.modelos.Paciente;
 import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +37,7 @@ public class RegulacaoInformacao implements Logica{
         
         //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
         ChamadoDAO chamadoDAO =  new ChamadoDAO(connection);
-        ChamadoMedico chamado = chamadoDAO.getChamado(idRC);
+        Chamado chamado = chamadoDAO.getChamado(idRC);
         
         //INSTÂNCIANDO PACIENTEDAO E REALIZANDO BUSCA
         PacienteDAO pacienteDAO = new PacienteDAO(connection);

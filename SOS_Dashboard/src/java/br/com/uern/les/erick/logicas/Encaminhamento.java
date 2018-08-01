@@ -6,14 +6,14 @@
 package br.com.uern.les.erick.logicas;
 
 import br.com.uern.les.erick.daos.ChamadoDAO;
-import br.com.uern.les.erick.daos.MedicoDAO;
 import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.RegulacaoDAO;
+import br.com.uern.les.erick.daos.TarmDAO;
 import br.com.uern.les.erick.modelos.Chamado;
 import br.com.uern.les.erick.modelos.ListaAndamento;
-import br.com.uern.les.erick.modelos.MedicoRegulador;
 import br.com.uern.les.erick.modelos.Paciente;
 import br.com.uern.les.erick.modelos.Regulacao;
+import br.com.uern.les.erick.modelos.Tarm;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,32 +25,35 @@ import javax.servlet.http.HttpSession;
  *
  * @author jerick.gs
  */
-public class Andamento implements Logica {
+public class Encaminhamento implements Logica {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        String pagina = null;        
+        String pagina = null;
 
+        //CAMPOS DE TELAS
         String nomeUsuario = req.getParameter("nomeUsuario");
-
-        List<ListaAndamento> chamadosListaAndamento = new ArrayList<>();
+        
+        //LISTA GLOBAL
+        List<ListaAndamento> chamadosListaEncaminhamento = new ArrayList<>();
 
         //CONEXÂO E SESSÃO
         Connection connection = (Connection) req.getAttribute("conexao");
         HttpSession session = req.getSession();
 
-        MedicoDAO medicoDAO = new MedicoDAO(connection);
-        MedicoRegulador medicoRegulador = medicoDAO.getDadosMedicoRegulador(nomeUsuario);
+        //INSTÂNCIANDO TARMDAO
+        TarmDAO tarmDAO = new TarmDAO(connection);
+        Tarm tarm = tarmDAO.getDadosTarm(nomeUsuario);
 
         //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
         ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-        List<Chamado> chamadosMedico = chamadoDAO.getListaDeChamados(medicoRegulador.getCPFM());
+        List<Chamado> chamadosTarm = chamadoDAO.getListaDeChamadosTarm(tarm.getCPFT());
 
-        for (int i = 0; i < chamadosMedico.size(); i++) {
+        for (int i = 0; i < chamadosTarm.size(); i++) {
 
             //INSTÂNCIANDO REGULACAODAO E REALIZANDO BUSCA
             RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
-            Regulacao regulacao = regulacaoDAO.getRegulacaoAndamento(chamadosMedico.get(i).getIdRC());
+            Regulacao regulacao = regulacaoDAO.getRegulacaoEncaminhamento(chamadosTarm.get(i).getIdRC());
 
             if (regulacao != null) {
 
@@ -59,23 +62,24 @@ public class Andamento implements Logica {
 
                 //INSTÂNCIANDO PACIENTEDAO E REALIZANDO BUSCA
                 PacienteDAO pacienteDAO = new PacienteDAO(connection);
-                paciente = pacienteDAO.getPacienteRegulacaoI(chamadosMedico.get(i).getIdP());
-
+                paciente = pacienteDAO.getPacienteRegulacaoI(chamadosTarm.get(i).getIdP());
+                                
                 //INSTÂNCIA MODULO CHAMADOESPERA
                 ListaAndamento listaAndamento = new ListaAndamento();
                 listaAndamento.setIdR(regulacao.getIdR());
+                listaAndamento.setIdRC(regulacao.getIdRC());
+                listaAndamento.setIdP(chamadosTarm.get(i).getIdP());
                 listaAndamento.setNome(paciente.getNome());
                 listaAndamento.setIdade(paciente.getIdade());
 
-                chamadosListaAndamento.add(listaAndamento);
-
-            }            
+                chamadosListaEncaminhamento.add(listaAndamento);
+            }
 
         }
+        
+        session.setAttribute("dadosEncaminhamento", chamadosListaEncaminhamento);
 
-        session.setAttribute("dadosAndamento", chamadosListaAndamento);
-
-        pagina = "andamento.jsp";
+        pagina = "encaminhamento.jsp";
 
         return pagina;
     }

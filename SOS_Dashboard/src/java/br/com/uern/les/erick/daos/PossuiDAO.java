@@ -8,7 +8,10 @@ package br.com.uern.les.erick.daos;
 import br.com.uern.les.erick.modelos.PossuiTabela;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,5 +50,33 @@ public class PossuiDAO {
         }
 
         return result;
+    }
+    
+    public List<String> buscandoEnderecos(int idP) {
+
+        List<String> listDeIdEs = null;
+
+        try {
+
+            listDeIdEs = new ArrayList<>();            
+            String sql1 = "SELECT IdE FROM possui WHERE IdP = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql1)) {
+                stmt.setInt(1, idP);                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                                                                                
+                    listDeIdEs.add(String.valueOf(rs.getInt("IdE")));
+
+                }
+            }                        
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PossuiDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listDeIdEs;
     }
 }

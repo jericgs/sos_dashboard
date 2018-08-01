@@ -78,13 +78,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./icons.html">
+                            <a href="controle?logica=Encaminhamento&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Andamento</p>
                             </a>
                         </li>
                         <li>
-                            <a href="./mapa.jsp">
+                            <a href="controle?logica=Mapa&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Mapa</p>
                             </a>

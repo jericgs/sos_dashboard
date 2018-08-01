@@ -275,5 +275,45 @@ public class RegulacaoDAO {
 
         return regulacao;
     }
+    
+    public Regulacao getRegulacaoEncaminhamento(int idRC) {
+
+        Regulacao regulacao = null;
+
+        try {
+
+            String sql = "SELECT * FROM regulacao WHERE IdRC = ? AND (Status = 'Andamento' OR Status = 'AndamentoTroca' OR Status = 'AndamentoOB' OR Status = 'AndamentoOA')";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setInt(1, idRC);                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    // criando o objeto Regulação
+                    regulacao = new Regulacao();
+
+                    regulacao.setIdR(rs.getInt("IdR"));
+                    regulacao.setIdRC(rs.getInt("IdRC"));
+                    regulacao.setGe(rs.getInt("GE"));
+                    regulacao.setGs(rs.getInt("GS"));
+                    regulacao.setAtencao(rs.getInt("Atencao"));
+                    regulacao.setSocial(rs.getInt("Social"));
+                    regulacao.setTempo(rs.getInt("Tempo"));
+                    regulacao.setGu(rs.getInt("GU"));
+                    regulacao.setStatus(rs.getString("Status"));
+                    regulacao.setTipoDeCaso(rs.getString("TipoDeCaso"));
+                    regulacao.setMensagem(rs.getString("Mensagem"));
+
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return regulacao;
+    }
 
 }

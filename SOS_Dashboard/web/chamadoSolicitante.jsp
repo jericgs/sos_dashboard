@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./icons.html">
+                            <a href="controle?logica=Encaminhamento&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Andamento</p>
                             </a>
