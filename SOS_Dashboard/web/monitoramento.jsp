@@ -1,6 +1,6 @@
 <%-- 
-    Document   : andamento
-    Created on : 26/07/2018, 14:36:35
+    Document   : monitoramento
+    Created on : 02/08/2018, 12:02:30
     Author     : jerick.gs
 --%>
 
@@ -11,7 +11,7 @@
 
     <head>
 
-        <title>Médico - Andamento</title>
+        <title>Admin - Monitoramento</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -68,23 +68,23 @@
                 <div class="sidebar-wrapper">
                     <ul class="nav">
                         <li>
-                            <a href="./areaMedico.jsp">
+                            <a href="./areaAdmin.jsp">
                                 <i class="material-icons">dashboard</i>
                                 <p>Painel</p>
                             </a>
-                        </li>                                                
+                        </li>
                         <li>
-                            <a href="controle?logica=ListaRegulacoes&nomeUsuario=${sessionScope.medico.nomeUsuario}">
-                                <i class="material-icons">library_books</i>
-                                <p>Regulações</p>
+                            <a href="controle?logica=Cadastro&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">person_add</i>
+                                <p>Cadastro</p>
                             </a>
                         </li>
                         <li class="active">
-                            <a href="controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}">
-                                <i class="material-icons">bubble_chart</i>
-                                <p>Andamento</p>
+                            <a href="controle?logica=Monitoramento&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">location_on</i>
+                                <p>Monitoramento</p>
                             </a>
-                        </li>                        
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -98,12 +98,12 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand"> Ocorrências em Andamento </a>
+                            <a class="navbar-brand"> Monitoramento das Unidades Móveis </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
                                 <li>
-                                    <a href="controle?logica=Logout&status=${sessionScope.status}&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                                    <a href="controle?logica=Logout&status=${sessionScope.status}&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                         <i class="material-icons">exit_to_app</i>
                                         <p class="hidden-lg hidden-md">Sair</p>
                                     </a>                                
@@ -113,48 +113,9 @@
                         </div>
                     </div>
                 </nav>
-                <div class="content">
-                    <div class="container-fluid">                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Gerência de Ações</h4>                                       
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="tab-content">
-                                            <table style="border-collapse: collapse;" class="table">
-                                                <tbody>
-                                                    <!-- percorre contatos montando as linhas da tabela -->
-                                                    <c:forEach var="dadosAndamento" items="${sessionScope.dadosAndamento}">               
-                                                        <tr>                                                    
-                                                            <td>${dadosAndamento.idR} - ${dadosAndamento.nome}</td>
-                                                            <td class="lista-margem" style="text-align: right;">
-
-                                                                <button onClick="javascript:window.location = 'controle?logica=SinaisVitais&idR=${dadosAndamento.idR}&nomePaciente=${dadosAndamento.nome}&idadePaciente=${dadosAndamento.idade}'" type="button" rel="tooltip" title="Add/atualizar os Sinais Vitais" class="btn btn-info btn-simple btn-xs">
-                                                                    <i class="material-icons">loupe</i>
-                                                                </button>
-                                                                <button onClick="javascript:window.location = 'controle?logica=ArquivoSinaisVitais&idR=${dadosAndamento.idR}'" type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
-                                                                    <i class="material-icons">move_to_inbox</i>
-                                                                </button>
-
-                                                            </td>
-                                                        </tr>   
-                                                    </c:forEach>                                                                                                                                                                                           
-                                                </tbody>
-                                            </table>                                        
-                                        </div>
-                                    </div>
-                                </div>                           
-                            </div>                            
-                        </div>
-                    </div>
-                </div>                                       
-
+                <div id="map"></div>
             </div>
-
         </div>
-
     </body>
 
     <!--   Core JS Files   -->
@@ -176,14 +137,18 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
-    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function () {
+        if ($('.main-panel > .content').length === 0) {
+            $('.main-panel').css('height', '100%');
+        }
 
-    <script>
-        <c:if test="${not empty informe.tipoAlerta}">
-            swal({type: '${informe.tipoAlerta}', title: 'Hey...', text: '${informe.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
-                location.href = "controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}";
-            });
-        </c:if>
-    </script>
+
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initGoogleMaps();
+    });
+</script>
 
 </html>

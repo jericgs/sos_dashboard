@@ -122,32 +122,34 @@
                 <div class="content">
                     <div class="container-fluid">                        
                         <div class="row">
-                            <div class="card">
-                                <div class="card-header" data-background-color="red">
-                                    <h4 class="title">Gerência de Ações</h4>                                       
-                                </div>
-                                <div class="card-content">
-                                    <div class="tab-content">
-                                        <table style="border-collapse: collapse;" class="table">
-                                            <tbody>
-                                                <!-- percorre contatos montando as linhas da tabela -->
-                                                <c:forEach var="dadosEncaminhamento" items="${sessionScope.dadosEncaminhamento}">            
-                                                    <tr>                                                    
-                                                        <td>${dadosEncaminhamento.idRC} - ${dadosEncaminhamento.nome}</td>
-                                                        <td class="lista-margem" style="text-align: right;">
-
-                                                            <button onClick="javascript:window.location = 'controle?logica=EditarChamado&idR=${dadosEncaminhamento.idR}&idRC=${dadosEncaminhamento.idRC}&idP=${dadosEncaminhamento.idP}&nomePaciente=${dadosEncaminhamento.nome}&idadePaciente=${dadosEncaminhamento.idade}'" type="button" rel="tooltip" title="Editar Chamado" class="btn btn-info btn-simple btn-xs">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>                                                            
-
-                                                        </td>
-                                                    </tr>   
-                                                </c:forEach>                                                                                                                                                                                           
-                                            </tbody>
-                                        </table>                                        
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header" data-background-color="red">
+                                        <h4 class="title">Gerência de Ações</h4>                                       
                                     </div>
-                                </div>
-                            </div>                           
+                                    <div class="card-content">
+                                        <div class="tab-content">
+                                            <table style="border-collapse: collapse;" class="table">
+                                                <tbody>
+                                                    <!-- percorre contatos montando as linhas da tabela -->
+                                                    <c:forEach var="dadosEncaminhamento" items="${sessionScope.dadosEncaminhamento}">            
+                                                        <tr>                                                    
+                                                            <td>${dadosEncaminhamento.idRC} - ${dadosEncaminhamento.nome}</td>
+                                                            <td class="lista-margem" style="text-align: right;">
+
+                                                                <button onClick="javascript:window.location = 'controle?logica=EditarChamado&idR=${dadosEncaminhamento.idR}&idRC=${dadosEncaminhamento.idRC}&idP=${dadosEncaminhamento.idP}&nomePaciente=${dadosEncaminhamento.nome}&idadePaciente=${dadosEncaminhamento.idade}'" type="button" rel="tooltip" title="Editar Chamado" class="btn btn-info btn-simple btn-xs">
+                                                                    <i class="material-icons">edit</i>
+                                                                </button>                                                            
+
+                                                            </td>
+                                                        </tr>   
+                                                    </c:forEach>                                                                                                                                                                                           
+                                                </tbody>
+                                            </table>                                        
+                                        </div>
+                                    </div>
+                                </div>                           
+                            </div>                            
                         </div>
                     </div>
                 </div>  
@@ -175,13 +177,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
-    
-    <script>        
-        <c:if test="${not empty alerta.tipoAlerta}">            
+
+    <script>
+        <c:if test="${not empty alerta.tipoAlerta}">
             swal({type: '${alerta.tipoAlerta}', title: 'Hey...', text: '${alerta.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
-                location.href="controle?logica=Encaminhamento&nomeUsuario=${sessionScope.tarm.nomeUsuario}";
-            });                                                            
-        </c:if>                   
+                location.href = "controle?logica=Encaminhamento&nomeUsuario=${sessionScope.tarm.nomeUsuario}";
+            });
+        </c:if>
     </script>
 
 </html>

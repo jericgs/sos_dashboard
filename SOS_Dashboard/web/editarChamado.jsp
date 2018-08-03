@@ -125,7 +125,7 @@
                     <div class="content">
                         <div class="container-fluid">
                             <div class="row">
-                                <div>
+                                <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header" data-background-color="red">
                                             <h4 class="title">Atualizar Registro</h4>

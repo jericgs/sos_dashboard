@@ -141,9 +141,10 @@
 <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material-dashboard.js?v=1.2.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-        if ($('.main-panel > .content').length == 0) {
+        if ($('.main-panel > .content').length === 0) {
             $('.main-panel').css('height', '100%');
         }
 
@@ -152,4 +153,5 @@
         demo.initGoogleMaps();
     });
 </script>
+
 </html>
