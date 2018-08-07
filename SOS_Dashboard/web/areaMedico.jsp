@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </nav>
-                <div class="content">
+                <div class="content" style="padding-left: 15px; padding-right: 15px;">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6">

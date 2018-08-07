@@ -71,11 +71,17 @@
                                 <i class="material-icons">dashboard</i>
                                 <p>Painel</p>
                             </a>
-                        </li>                       
+                        </li>
                         <li>
-                            <a href="">
+                            <a href="controle?logica=Cadastro&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">person_add</i>
+                                <p>Cadastro</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="controle?logica=Monitoramento&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
-                                <p>Mapa</p>
+                                <p>Monitoramento</p>
                             </a>
                         </li>
                     </ul>
@@ -106,7 +112,7 @@
                         </div>
                     </div>
                 </nav>
-                <div class="content">
+                <div class="content" style="padding-left: 15px; padding-right: 15px;">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6">

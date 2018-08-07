@@ -119,7 +119,7 @@
                         </div>
                     </div>
                 </nav>
-                <div class="content">
+                <div class="content" style="padding-left: 15px; padding-right: 15px;">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -338,14 +338,14 @@
 
         });
     </script>
-    
+
     <script type="text/javascript">
         $(document).ready(function () {
 
             // O corpo do método Javascript pode ser encontrado em Resources/node_modules/bootstrap/js/disp-dasboard/demo.js            
 
             $.post("AjaxControle", {logicaAjax: "AreaAjaxGraficoCM"}, function (data, status) {
-                                
+
                 var objDadosMes = JSON.parse(data);
                 demo.initDashboardPageChartsGraficoMes(objDadosMes);
 
