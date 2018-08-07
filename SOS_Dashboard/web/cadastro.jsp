@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
 
-        <!--  Material Dashboard CSS    -->
+        <!--  Material Dashboard CSS  -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" />
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
