@@ -116,35 +116,37 @@
                 <div class="content">
                     <div class="container-fluid">                        
                         <div class="row">
-                            <div class="card">
-                                <div class="card-header" data-background-color="red">
-                                    <h4 class="title">Gerência de Ações</h4>                                       
-                                </div>
-                                <div class="card-content">
-                                    <div class="tab-content">
-                                        <table style="border-collapse: collapse;" class="table">
-                                            <tbody>
-                                                <!-- percorre contatos montando as linhas da tabela -->
-                                                <c:forEach var="dadosAndamento" items="${sessionScope.dadosAndamento}">               
-                                                    <tr>                                                    
-                                                        <td>${dadosAndamento.idR} - ${dadosAndamento.nome}</td>
-                                                        <td class="lista-margem" style="text-align: right;">
-                                                            
-                                                            <button onClick="javascript:window.location='controle?logica=SinaisVitais&idR=${dadosAndamento.idR}&nomePaciente=${dadosAndamento.nome}&idadePaciente=${dadosAndamento.idade}'" type="button" rel="tooltip" title="Add/atualizar os Sinais Vitais" class="btn btn-info btn-simple btn-xs">
-                                                                <i class="material-icons">loupe</i>
-                                                            </button>
-                                                            <button onClick="javascript:window.location='controle?logica=ArquivoSinaisVitais&idR=${dadosAndamento.idR}'" type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
-                                                                <i class="material-icons">move_to_inbox</i>
-                                                            </button>
-
-                                                        </td>
-                                                    </tr>   
-                                                </c:forEach>                                                                                                                                                                                           
-                                            </tbody>
-                                        </table>                                        
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header" data-background-color="red">
+                                        <h4 class="title">Gerência de Ações</h4>                                       
                                     </div>
-                                </div>
-                            </div>                           
+                                    <div class="card-content">
+                                        <div class="tab-content">
+                                            <table style="border-collapse: collapse;" class="table">
+                                                <tbody>
+                                                    <!-- percorre contatos montando as linhas da tabela -->
+                                                    <c:forEach var="dadosAndamento" items="${sessionScope.dadosAndamento}">               
+                                                        <tr>                                                    
+                                                            <td>${dadosAndamento.idR} - ${dadosAndamento.nome}</td>
+                                                            <td class="lista-margem" style="text-align: right;">
+
+                                                                <button onClick="javascript:window.location = 'controle?logica=SinaisVitais&idR=${dadosAndamento.idR}&nomePaciente=${dadosAndamento.nome}&idadePaciente=${dadosAndamento.idade}'" type="button" rel="tooltip" title="Add/atualizar os Sinais Vitais" class="btn btn-info btn-simple btn-xs">
+                                                                    <i class="material-icons">loupe</i>
+                                                                </button>
+                                                                <button onClick="javascript:window.location = 'controle?logica=ArquivoSinaisVitais&idR=${dadosAndamento.idR}'" type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
+                                                                    <i class="material-icons">move_to_inbox</i>
+                                                                </button>
+
+                                                            </td>
+                                                        </tr>   
+                                                    </c:forEach>                                                                                                                                                                                           
+                                                </tbody>
+                                            </table>                                        
+                                        </div>
+                                    </div>
+                                </div>                           
+                            </div>                            
                         </div>
                     </div>
                 </div>                                       
@@ -175,13 +177,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
-    
-    <script>        
-        <c:if test="${not empty informe.tipoAlerta}">            
+
+    <script>
+        <c:if test="${not empty informe.tipoAlerta}">
             swal({type: '${informe.tipoAlerta}', title: 'Hey...', text: '${informe.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
-                location.href="controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}";
-            });                                                            
-        </c:if>                   
+                location.href = "controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}";
+            });
+        </c:if>
     </script>
 
 </html>

@@ -120,7 +120,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div>
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Chamado</h4>
@@ -209,8 +209,8 @@
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>
-                                </div>
-                            </div>                           
+                                </div>                            
+                            </div>                            
                         </div>
                     </div>
                 </div>               
@@ -246,22 +246,22 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
 
     <script type="text/javascript">
-        $(function () {
-            setNumChamado();
-            function setNumChamado() {
-                setTimeout(setNumChamado, 1000);
+                                                        $(function () {
+                                                            setNumChamado();
+                                                            function setNumChamado() {
+                                                                setTimeout(setNumChamado, 1000);
 
-                dataMomento = moment().format("DD/MM/YYYY");
+                                                                dataMomento = moment().format("DD/MM/YYYY");
 
-                $.post("AjaxControle", {logicaAjax: "ChamadoSolicitanteAjax", data: dataMomento}, function (data, status) {
+                                                                $.post("AjaxControle", {logicaAjax: "ChamadoSolicitanteAjax", data: dataMomento}, function (data, status) {
 
-                    var objDados = JSON.parse(data);
-                    $('#numChamado').val(objDados[0].numChamadoAtual);
+                                                                    var objDados = JSON.parse(data);
+                                                                    $('#numChamado').val(objDados[0].numChamadoAtual);
 
-                });
-            }
-        });
-        
+                                                                });
+                                                            }
+                                                        });
+
     </script>
 
     <script type="text/javascript">
@@ -269,11 +269,11 @@
             setHora();
             function setHora() {
                 setTimeout(setHora, 1000);
-                  $('#setHora').val(moment().format("hh:mm:ss a"));
+                $('#setHora').val(moment().format("hh:mm:ss a"));
                 //            console.log(moment().format("hh:mm:ss a"));
-                
-                
-                
+
+
+
             }
         });
     </script>
@@ -291,7 +291,7 @@
     </script>
 
     <script>
-        
+
         setMedicos();
 
         function setMedicos() {
@@ -321,20 +321,24 @@
         }
 
     </script>
-    
-    <script>
-        function maiuscula(id){
 
-            var letra=document.getElementById(id).value;
-            letra=letra.split("");
-            var tmp="";
-            for(i=0;i<letra.length;i++){
-                if(letra[i-1]){
-                    if(letra[i-1]===" "){letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
-                }else{letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
-                tmp+=letra[i];
+    <script>
+        function maiuscula(id) {
+
+            var letra = document.getElementById(id).value;
+            letra = letra.split("");
+            var tmp = "";
+            for (i = 0; i < letra.length; i++) {
+                if (letra[i - 1]) {
+                    if (letra[i - 1] === " ") {
+                        letra[i] = letra[i].replace(letra[i], letra[i].toUpperCase());
+                    }
+                } else {
+                    letra[i] = letra[i].replace(letra[i], letra[i].toUpperCase());
+                }
+                tmp += letra[i];
             }
-            document.getElementById(id).value=tmp;
+            document.getElementById(id).value = tmp;
         }
     </script>
 
@@ -376,10 +380,10 @@
     <!-- Primeiro POG (Não consegui usar jax)-->
     <script>
         <c:if test="${not empty confirmacao.tipoAlerta}">
-            swal({type: '${confirmacao.tipoAlerta}', title: 'Hey...', text: '${confirmacao.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
-                location.href="controle?logica=ChamadoSolicitante&nomeUsuario=${sessionScope.tarm.nomeUsuario}";
-            });                                                            
-        </c:if>                   
+        swal({type: '${confirmacao.tipoAlerta}', title: 'Hey...', text: '${confirmacao.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
+            location.href = "controle?logica=ChamadoSolicitante&nomeUsuario=${sessionScope.tarm.nomeUsuario}";
+        });
+        </c:if>
     </script>
-   
+
 </html>
