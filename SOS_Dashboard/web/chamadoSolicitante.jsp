@@ -246,21 +246,21 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
 
     <script type="text/javascript">
-                                                        $(function () {
-                                                            setNumChamado();
-                                                            function setNumChamado() {
-                                                                setTimeout(setNumChamado, 1000);
+        $(function () {
+            setNumChamado();
+            function setNumChamado() {
+                setTimeout(setNumChamado, 1000);
 
-                                                                dataMomento = moment().format("DD/MM/YYYY");
+                dataMomento = moment().format("DD/MM/YYYY");
 
-                                                                $.post("AjaxControle", {logicaAjax: "ChamadoSolicitanteAjax", data: dataMomento}, function (data, status) {
+                $.post("AjaxControle", {logicaAjax: "ChamadoSolicitanteAjax", data: dataMomento}, function (data, status) {
 
-                                                                    var objDados = JSON.parse(data);
-                                                                    $('#numChamado').val(objDados[0].numChamadoAtual);
+                    var objDados = JSON.parse(data);
+                    $('#numChamado').val(objDados[0].numChamadoAtual);
 
-                                                                });
-                                                            }
-                                                        });
+                });
+            }
+        });
 
     </script>
 

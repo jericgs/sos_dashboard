@@ -12,7 +12,7 @@
     <head>
 
         <title>Admin - Cadastro</title>
-       
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -130,7 +130,7 @@
                                 </div>
                                 <ul>
                                     <li>
-                                        <a href="#about" data-toggle="tab">
+                                        <a href="#sobre" data-toggle="tab">
                                             <div class="icon-circle">
                                                 <i class="ti-user"></i>
                                             </div>
@@ -138,11 +138,11 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#account" data-toggle="tab">
+                                        <a href="#trabalho" data-toggle="tab">
                                             <div class="icon-circle">
-                                                <i class="ti-settings"></i>
+                                                <i class="ti-briefcase"></i>
                                             </div>
-                                            Work
+                                            Trabalho
                                         </a>
                                     </li>
                                     <li>
@@ -156,7 +156,7 @@
                                 </ul>
                             </div>
                             <div class="tab-content">
-                                <div class="tab-pane" id="about">
+                                <div class="tab-pane" id="sobre">
                                     <h5 class="info-text"> Por favor, conte-nos mais. </h5>
                                     <div class="row">                                        
                                         <div class="col-md-4">
@@ -188,47 +188,52 @@
                                         <div class="col-md-4">                                                     
                                             <div class="form-group"  style="margin-top: 0px">
                                                 <label class="control-label" style="margin-top: 12px">Genero</label>                                                        
-                                                <select id="combobox" name="genero" class="form-control selectpicker required" data-style="select-with-transition" data-size="2">                                                                                                           
+                                                <select id="genero" name="genero" class="form-control selectpicker required" data-style="select-with-transition" data-size="2">                                                                                                           
                                                     <option name="feminino" value="feminino">Feminino</option>
                                                     <option name="masculino" value="masculino">Masculino</option>                                                    
                                                 </select>                                                        
                                             </div>                                                                                                                                                     
-                                        </div>
-                                    </div>
+                                        </div>                                        
+                                    </div>                                    
                                 </div>
-                                <div class="tab-pane" id="account">
-                                    <h5 class="info-text"> What are you doing? (checkboxes) </h5>
-                                    <div class="row">
-                                        <div class="col-sm-8 col-sm-offset-2">
-                                            <div class="col-sm-4">
-                                                <div class="choice" data-toggle="wizard-checkbox">
-                                                    <input type="checkbox" name="jobb" value="Design">
-                                                    <div class="card card-checkboxes card-hover-effect">
-                                                        <i class="ti-paint-roller"></i>
-                                                        <p>Design</p>
-                                                    </div>
-                                                </div>
+                                <div class="tab-pane" id="trabalho">
+                                    <h5 class="info-text"> Informações Profissionais </h5>                                    
+                                    <label class="control-label" style="position: static">Cargo</label>
+                                    <div class="row">                                        
+                                        <div class="col-md-3">
+                                            <div class="radio">
+                                                <label> 
+                                                    <input id="auxiliar/Enfermeiro" onclick="secao('auxiliar/Enfermeiro')" type="radio" name="cargo" value="Auxiliar/Enfermeiro">
+                                                    <p style="color: #7f7f7f; font-size: 14px;">Auxiliar/Enfermeiro</p>
+                                                </label>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="choice" data-toggle="wizard-checkbox">
-                                                    <input type="checkbox" name="jobb" value="Code">
-                                                    <div class="card card-checkboxes card-hover-effect">
-                                                        <i class="ti-pencil-alt"></i>
-                                                        <p>Code</p>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="radio">
+                                                <label> 
+                                                    <input id="medico" onclick="secao('medico')" type="radio" name="cargo" value="Médico">
+                                                    <p style="color: #7f7f7f; font-size: 14px;">Médico</p>
+                                                </label>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="choice" data-toggle="wizard-checkbox">
-                                                    <input type="checkbox" name="jobb" value="Develop">
-                                                    <div class="card card-checkboxes card-hover-effect">
-                                                        <i class="ti-star"></i>
-                                                        <p>Develop</p>
-                                                    </div>
-                                                </div>
+                                        </div>      
+                                        <div class="col-md-3">
+                                            <div class="radio">
+                                                <label> 
+                                                    <input id="motorista" onclick="secao('motorista')" type="radio" name="cargo" value="Motorista">
+                                                    <p style="color: #7f7f7f; font-size: 14px;">Motorista</p>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="radio">
+                                                <label> 
+                                                    <input id="tarm" onclick="secao('tarm')" type="radio" name="cargo" value="Tarm">
+                                                    <p style="color: #7f7f7f; font-size: 14px;">Tarm</p>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="secao"></div>                             
                                 </div>
                                 <div class="tab-pane" id="address">
                                     <div class="row">
@@ -342,13 +347,13 @@
         function rg(v) {
             v = v.replace(/\D/g, "");
             v = v.replace(/(\d{3})(\d)/, "$1.$2");
-            v = v.replace(/(\d{3})(\d)/, "$1.$2");            
+            v = v.replace(/(\d{3})(\d)/, "$1.$2");
             return v;
         }
         function data(v) {
             v = v.replace(/\D/g, "");
             v = v.replace(/(\d{2})(\d)/, "$1/$2");
-            v = v.replace(/(\d{2})(\d)/, "$1/$2");           
+            v = v.replace(/(\d{2})(\d)/, "$1/$2");
             return v;
         }
         function id(el) {
@@ -384,6 +389,35 @@
                 tmp += letra[i];
             }
             document.getElementById(id).value = tmp;
+        }
+    </script>
+
+    <script>
+        function secao(id) {
+
+            secaoBox = document.getElementById("secao");
+
+            if (id === "auxiliar/Enfermeiro") {                
+
+                secaoBox.innerHTML = "<div class='row'>"
+                        + "  <div class='col-md-6'>"
+                        + "      <div class='form-group label-floating'>"
+                        + "          <label class='control-label'>Nº Coren</label>"
+                        + "          <input id='coren' name='coren' type='text' class='form-control'>"
+                        + "      </div>"
+                        + "  </div>"
+                        + "  <div class='col-md-6'>"
+                        + "      <div class='form-group'  style='margin-top: 0px'>"
+                        + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
+                        + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
+                        + "                  <option name='ativo' value='ativo'>Ativo</option>"
+                        + "                  <option name='desativado' value='desativado'>Desativado</option>"
+                        + "              </select>"
+                        + "      </div>"
+                        + "  </div>"
+                        + "</div>";
+            }
+            $('.selectpicker').selectpicker('refresh');
         }
     </script>
 
