@@ -153,6 +153,14 @@
                                             Endereço
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#contato" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="ti-email"></i>
+                                            </div>
+                                            Contato
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -290,6 +298,50 @@
                                             </div>
                                         </div>  
                                     </div>
+                                </div>
+                                <div class="tab-pane" id="contato">
+                                    <h5 class="info-text"> Informações de contato. </h5>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Login</label>
+                                                <input id="login" type="text" name="login" onblur="verificandoUserName()" maxlength="30" value="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Senha</label>
+                                                <input id="senha" type="password" name="senha" value="" maxlength="8" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Repita a senha</label>
+                                                <input id="senhaR" type="password" name="senhaR"  maxlength="8" value="" class="form-control">
+                                            </div>
+                                        </div>                                                    
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Telefone</label>
+                                                <input id="telefone" type="text" name="telefone" maxlength="14" value="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Celular</label>
+                                                <input id="celular" type="text" name="celular" value="" maxlength="15" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">E-mail</label>
+                                                <input id="email" type="email" name="email" value="" class="form-control">
+                                            </div>
+                                        </div>                                                    
+                                    </div>                                                                        
                                 </div>
                             </div>
                             <div class="wizard-footer">
@@ -461,6 +513,12 @@
         function execmascara() {
             v_obj.value = v_fun(v_obj.value);
         }
+        function mtel(v) {
+            v = v.replace(/\D/g, "");
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+            v = v.replace(/(\d)(\d{4})$/, "$1-$2");
+            return v;
+        }
         function cpf(v) {
             v = v.replace(/\D/g, "");
             v = v.replace(/(\d{3})(\d)/, "$1.$2");
@@ -505,6 +563,12 @@
             };
             id('cep').onkeyup = function () {
                 mascara(this, mcep);
+            };
+            id('telefone').onkeyup = function () {
+                mascara(this, mtel);
+            };
+            id('celular').onkeyup = function () {
+                mascara(this, mtel);
             };
         };
     </script>
@@ -553,6 +617,28 @@
 
             });                                                         
         };
+        
+    </script>
+    
+    <script>
+        
+        function verificandoUserName() {
+            
+            var valorLogin = document.getElementById("login").value;
+                       
+            $.post("AjaxControle", {logicaAjax: "AjaxValidacaoUserName", login: valorLogin}, function (data, status) {
+                
+                var objDados = JSON.parse(data);
+                
+                if(objDados[0].confirmacao === 'false'){
+                    
+                    swal({type: 'info', title: 'Oops...', text: 'O usuário: '+ valorLogin +'. Já existe.', showConfirmButton: false, timer: 4000});
+                    
+                }                                
+                
+            });
+                        
+        }
         
     </script>
 

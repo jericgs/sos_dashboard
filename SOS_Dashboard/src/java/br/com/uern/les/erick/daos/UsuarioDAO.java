@@ -178,5 +178,29 @@ public class UsuarioDAO {
 
         return listUnidadesMoveis;
     }
+    
+    public String verificadoNomeUsuario(String nomeUsuario){
+        String usuario = null;
+        
+        try {
+
+            String sql = "SELECT NomeUsuario FROM usuario WHERE NomeUsuario = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, nomeUsuario);                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    usuario = rs.getString("NomeUsuario");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return usuario;
+    }
 
 }

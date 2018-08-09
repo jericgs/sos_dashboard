@@ -9,6 +9,7 @@ import br.com.uern.les.erick.conexao.ConexaoBD;
 import br.com.uern.les.erick.daos.OcorrenciasaDAO;
 import br.com.uern.les.erick.daos.OcorrenciasbDAO;
 import br.com.uern.les.erick.daos.PossuiDAO;
+import br.com.uern.les.erick.daos.UsuarioDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -247,15 +248,15 @@ public class ParaTesta {
 //        System.out.println("Aqui: " + r + " Aqui: " + r2);
     
         Connection connection = new ConexaoBD().getConnection();
-        PossuiDAO possuiDAO = new PossuiDAO(connection);        
-        List<String> list = possuiDAO.buscandoEnderecos(51);
+        UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
+        String confirmacao =  usuarioDAO.verificadoNomeUsuario("carlos.edu");                
         
-        for(int i = 0; i < list.size(); i++){
-            System.out.println("Aqui: " + list.get(i));
+        if(confirmacao == null){
+            System.out.println("Valor: " + confirmacao);
         }
         
-        if((false || false)){
-            System.out.println("Testes......");
+        if(confirmacao != null){
+            System.out.println("Valor: " + confirmacao);
         }
     }
 }
