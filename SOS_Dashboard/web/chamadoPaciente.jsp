@@ -149,7 +149,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Idade</label>
-                                                        <input id="idade" type="text" name="idadePaciente" maxlength="3" value="" class="form-control">
+                                                        <input id="idade" type="text" name="idadePaciente" onkeyup="apenasNumeros('idade')" maxlength="3" value="" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -181,7 +181,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Número</label>
-                                                            <input id="numero" type="text" name="numero" maxlength="11" value="" onblur="setSEP()" class="form-control ">
+                                                            <input id="numero" type="text" name="numero" maxlength="11" value="" onkeyup="apenasNumeros('numero')" onblur="setSEP()" class="form-control ">
                                                         </div>
                                                     </div>                                                    
                                                 </div>
@@ -237,7 +237,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Número(origem)</label>
-                                                            <input id="numero" type="text" name="numero" maxlength="11" value="" onblur="setSEP()" class="form-control ">
+                                                            <input id="numero" type="text" name="numero" maxlength="11" value="" onkeyup="apenasNumeros('numero')" onblur="setSEP()" class="form-control ">
                                                         </div>
                                                     </div>                                                    
                                                 </div>
@@ -291,7 +291,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Número(destino)</label>
-                                                            <input id="numeroD" type="text" name="numeroD" maxlength="11" value="" onblur="setSEPD()" class="form-control ">
+                                                            <input id="numeroD" type="text" name="numeroD" maxlength="11" value="" onkeyup="apenasNumeros('numeroD')" onblur="setSEPD()" class="form-control ">
                                                         </div>
                                                     </div>                                                    
                                                 </div>
@@ -369,6 +369,18 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
 
+    <script type="text/javascript">
+        
+        function apenasNumeros(id){
+                        
+            var valor = document.getElementById(id);
+            var novoTexto = valor.value.replace(/[^0-9]/g,'');
+            valor.value = novoTexto;
+            
+        }
+    
+    </script>
+    
     <script>
         $("#formSolicitante").submit(function () {
             if ($("#paciente").val() === "" || $("#idade").val() === "" ||

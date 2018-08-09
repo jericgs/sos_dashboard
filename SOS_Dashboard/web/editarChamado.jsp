@@ -164,7 +164,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Idade</label>
-                                                            <input id="idade" type="text" name="idadePaciente" maxlength="3" value="${sessionScope.dadosOcorrencia.idadePaciente}" class="form-control">
+                                                            <input id="idade" type="text" name="idadePaciente" onkeyup="apenasNumeros('idade')" maxlength="3" value="${sessionScope.dadosOcorrencia.idadePaciente}" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,7 +199,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">Número</label>
-                                                                <input id="numero" type="text" name="numero" maxlength="11" value="${sessionScope.dadosOcorrencia.endereco1.numero}" class="form-control">
+                                                                <input id="numero" type="text" name="numero" onkeyup="apenasNumeros('numero')" maxlength="11" value="${sessionScope.dadosOcorrencia.endereco1.numero}" class="form-control">
                                                             </div>
                                                         </div>                                                    
                                                     </div>
@@ -226,13 +226,13 @@
                                                         <div class="col-md-1">
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">Estado</label>
-                                                                <input id="estado" type="text" name="estado"  maxlength="2" value="${sessionScope.dadosOcorrencia.endereco1.estado}" onkeyup="maiusculaSigla('estado')" class="form-control">
+                                                                <input id="estado" type="text" name="estado" maxlength="2" value="${sessionScope.dadosOcorrencia.endereco1.estado}" onkeyup="maiusculaSigla('estado')" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1">
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">País</label>
-                                                                <input id="pais" type="text" name="pais"  maxlength="2" value="${sessionScope.dadosOcorrencia.endereco1.pais}" onkeyup="maiusculaSigla('pais')" class="form-control">
+                                                                <input id="pais" type="text" name="pais" maxlength="2" value="${sessionScope.dadosOcorrencia.endereco1.pais}" onkeyup="maiusculaSigla('pais')" class="form-control">
                                                             </div>
                                                         </div>  
                                                     </div>  
@@ -258,7 +258,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">Número(origem)</label>
-                                                                <input id="numero" type="text" name="numero" maxlength="11" value="${sessionScope.dadosOcorrencia.endereco1.numero}" class="form-control">
+                                                                <input id="numero" type="text" name="numero" onkeyup="apenasNumeros('numero')" maxlength="11" value="${sessionScope.dadosOcorrencia.endereco1.numero}" class="form-control">
                                                             </div>
                                                         </div>                                                    
                                                     </div>
@@ -315,7 +315,7 @@
                                                         <div class="col-md-4">
                                                             <div class="form-group label-floating">
                                                                 <label class="control-label">Número(destino)</label>
-                                                                <input id="numeroD" type="text" name="numeroD" maxlength="11" value="${sessionScope.dadosOcorrencia.endereco2.numero}" class="form-control">
+                                                                <input id="numeroD" type="text" name="numeroD" onkeyup="apenasNumeros('numeroD')" maxlength="11" value="${sessionScope.dadosOcorrencia.endereco2.numero}" class="form-control">
                                                             </div>
                                                         </div>                                                    
                                                     </div>
@@ -391,6 +391,27 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
+    
+    <script>
+        function maiusculaSigla(id){
+            
+            var x = document.getElementById(id);
+            x.value = x.value.toUpperCase();
+                       
+        }
+    </script>    
+    
+    <script type="text/javascript">
+        
+        function apenasNumeros(id){
+                        
+            var valor = document.getElementById(id);
+            var novoTexto = valor.value.replace(/[^0-9]/g,'');
+            valor.value = novoTexto;
+            
+        }
+    
+    </script>    
     
     <script>
         function maiuscula(id){

@@ -116,7 +116,7 @@
                 <div class="content">
 
                     <div class="card wizard-card" data-color="red" id="wizardProfile">
-                        <form action="" method="">
+                        <form id="formCadastro" action="" method="">
                             <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
                             <div class="wizard-header text-center">
@@ -146,11 +146,11 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#address" data-toggle="tab">
+                                        <a href="#endereco" data-toggle="tab">
                                             <div class="icon-circle">
-                                                <i class="ti-map"></i>
+                                                <i class="ti-map-alt"></i>
                                             </div>
-                                            Address
+                                            Endereço
                                         </a>
                                     </li>
                                 </ul>
@@ -197,7 +197,7 @@
                                     </div>                                    
                                 </div>
                                 <div class="tab-pane" id="trabalho">
-                                    <h5 class="info-text"> Informações Profissionais </h5>                                    
+                                    <h5 class="info-text"> Informações profissionais. </h5>                                    
                                     <label class="control-label" style="position: static">Cargo</label>
                                     <div class="row">                                        
                                         <div class="col-md-3">
@@ -235,45 +235,60 @@
                                     </div>
                                     <div id="secao"></div>                             
                                 </div>
-                                <div class="tab-pane" id="address">
+                                <div class="tab-pane" id="endereco">
+                                    <h5 class="info-text"> Endereco de correspondência. </h5>
+                                    <div class="row ">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Logradouro</label>
+                                                <input id="logradouro" type="text" name="logradouro" maxlength="50" onblur="setSEP()" value="" onkeyup="maiuscula('logradouro')" class="form-control ">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Bairro</label>
+                                                <input id="bairro" type="text" name="bairro" value="" maxlength="50" onblur="setSEP()" onkeyup="maiuscula('bairro')" class="form-control ">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Número</label>
+                                                <input id="numero" type="text" name="numero" maxlength="11" value="" onkeyup="apenasNumeros('numero')" onblur="setSEP()" class="form-control ">
+                                            </div>
+                                        </div>                                                    
+                                    </div>
+
                                     <div class="row">
-                                        <div class="col-sm-12">
-                                            <h5 class="info-text"> Are you living in a nice area? </h5>
-                                        </div>
-                                        <div class="col-sm-7 col-sm-offset-1">
-                                            <div class="form-group">
-                                                <label>Street Name</label>
-                                                <input type="text" class="form-control" placeholder="5h Avenue">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Complemento</label>
+                                                <input id="complemento" type="text" name="complemento" maxlength="144" value="" onblur="setSEP()" onkeyup="maiuscula('complemento')" class="form-control ">
+                                            </div>
+                                        </div>                                                                                                                                                            
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Cidade</label>
+                                                <input id="cidade" type="text" name="cidade" maxlength="50" value="Mossoró" onblur="setSEP()" onkeyup="maiuscula('cidade')" class="form-control ">
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label>Street Number</label>
-                                                <input type="text" class="form-control" placeholder="242">
+                                        <div class="col-md-2">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">CEP</label>
+                                                <input id="cep" type="text" name="cep"  maxlength="10" value="59.600-190" onblur="setSEP()" class="form-control ">
                                             </div>
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-1">
-                                            <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="New York...">
+                                        <div class="col-md-1">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Estado</label>
+                                                <input id="estado" type="text" name="estado"  maxlength="2" value="RN" onblur="setSEP()" onkeyup="maiusculaSigla('estado')" class="form-control ">
                                             </div>
                                         </div>
-                                        <div class="col-sm-5">
-                                            <div class="form-group">
-                                                <label>Country</label><br>
-                                                <select name="country" class="form-control">
-                                                    <option value="Afghanistan"> Afghanistan </option>
-                                                    <option value="Albania"> Albania </option>
-                                                    <option value="Algeria"> Algeria </option>
-                                                    <option value="American Samoa"> American Samoa </option>
-                                                    <option value="Andorra"> Andorra </option>
-                                                    <option value="Angola"> Angola </option>
-                                                    <option value="Anguilla"> Anguilla </option>
-                                                    <option value="Antarctica"> Antarctica </option>
-                                                    <option value="...">...</option>
-                                                </select>
+                                        <div class="col-md-1">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">País</label>
+                                                <input id="pais" type="text" name="pais"  maxlength="2" value="BR" onblur="setSEP()" onkeyup="maiusculaSigla('pais')" class="form-control ">
                                             </div>
-                                        </div>
+                                        </div>  
                                     </div>
                                 </div>
                             </div>
@@ -327,6 +342,115 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
 
+    <script>
+        function maiuscula(id){
+
+            var letra=document.getElementById(id).value;
+            letra=letra.split("");
+            var tmp="";
+            for(i=0;i<letra.length;i++){
+                if(letra[i-1]){
+                    if(letra[i-1]===" "){letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
+                }else{letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
+                tmp+=letra[i];
+            }
+            document.getElementById(id).value=tmp;
+        }
+    </script>
+    
+    <script>
+        function secao(id) {
+
+            secaoBox = document.getElementById("secao");
+
+            if (id === "auxiliar/Enfermeiro") {                
+
+                secaoBox.innerHTML = "<div class='row'>"
+                                   + "  <div class='col-md-6'>"
+                                   + "      <div class='form-group label-floating'>"
+                                   + "          <label class='control-label'>Nº Coren</label>"
+                                   + "          <input id='coren' onkeyup= maiusculaSigla('coren') maxlength='15' name='coren' type='text' class='form-control'>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "  <div class='col-md-6'>"
+                                   + "      <div class='form-group'  style='margin-top: 0px'>"
+                                   + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
+                                   + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
+                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "              </select>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "</div>";
+            }
+            
+            if(id === "medico"){
+                
+                secaoBox.innerHTML = "<div class='row'>"
+                                   + "  <div class='col-md-4'>"
+                                   + "      <div class='form-group label-floating'>"
+                                   + "          <label class='control-label'>UF do CRM</label>"
+                                   + "          <input id='uf' name='uf' onkeyup= maiusculaSigla('uf') maxlength='2' type='text' class='form-control'>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "  <div class='col-md-4'>"
+                                   + "      <div class='form-group label-floating'>"
+                                   + "          <label class='control-label'>Nº Crm</label>"
+                                   + "          <input id='crm' name='crm' onkeyup= apenasNumeros('crm') maxlength='10' type='text' class='form-control'>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "  <div class='col-md-4'>"
+                                   + "      <div class='form-group'  style='margin-top: 0px'>"
+                                   + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
+                                   + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
+                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "              </select>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "</div>";
+            }
+            
+            if(id === "motorista"){
+                
+                secaoBox.innerHTML = "<div class='row'>"
+                                   + "  <div class='col-md-6'>"
+                                   + "      <div class='form-group label-floating'>"
+                                   + "          <label class='control-label'>Nº CNH</label>"
+                                   + "          <input id='cnh' onkeyup= apenasNumeros('cnh') maxlength='11' name='cnh' type='text' class='form-control'>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "  <div class='col-md-6'>"
+                                   + "      <div class='form-group'  style='margin-top: 0px'>"
+                                   + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
+                                   + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
+                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "              </select>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "</div>";
+            }
+            
+            if(id === "tarm"){
+                
+                secaoBox.innerHTML = "<div class='row'>"                                  
+                                   + "  <div class='col-md-6'>"
+                                   + "      <div class='form-group'  style='margin-top: 0px'>"
+                                   + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
+                                   + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
+                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "              </select>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "</div>";
+            }
+            
+            $('.selectpicker').selectpicker('refresh');
+        }
+    </script>
+    
     <script type="text/javascript">
         /* Máscaras ER */
         function mascara(o, f) {
@@ -356,8 +480,18 @@
             v = v.replace(/(\d{2})(\d)/, "$1/$2");
             return v;
         }
+        function mcep(v) {
+            v = v.replace(/\D/g, ""); //Remove tudo o que não é dígito
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2");
+            v = v.replace(/(\d{3})(\d)/, "$1-$2"); //Esse é tão fácil que não merece explicações
+            return v;
+        }
         function id(el) {
             return document.getElementById(el);
+        }
+        function next(el, next){
+            if (el.value.length >= el.maxLength)
+                id(next).focus();
         }
         window.onload = function () {
             id('cpf').onkeyup = function () {
@@ -369,56 +503,57 @@
             id('nascimento').onkeyup = function () {
                 mascara(this, data);
             };
+            id('cep').onkeyup = function () {
+                mascara(this, mcep);
+            };
         };
     </script>
-
+    
     <script>
-        function maiuscula(id) {
-
-            var letra = document.getElementById(id).value;
-            letra = letra.split("");
-            var tmp = "";
-            for (i = 0; i < letra.length; i++) {
-                if (letra[i - 1]) {
-                    if (letra[i - 1] === " ") {
-                        letra[i] = letra[i].replace(letra[i], letra[i].toUpperCase());
-                    }
-                } else {
-                    letra[i] = letra[i].replace(letra[i], letra[i].toUpperCase());
-                }
-                tmp += letra[i];
-            }
-            document.getElementById(id).value = tmp;
+        function maiusculaSigla(id){
+            
+            var x = document.getElementById(id);
+            x.value = x.value.toUpperCase();
+                       
         }
     </script>
 
-    <script>
-        function secao(id) {
-
-            secaoBox = document.getElementById("secao");
-
-            if (id === "auxiliar/Enfermeiro") {                
-
-                secaoBox.innerHTML = "<div class='row'>"
-                        + "  <div class='col-md-6'>"
-                        + "      <div class='form-group label-floating'>"
-                        + "          <label class='control-label'>Nº Coren</label>"
-                        + "          <input id='coren' name='coren' type='text' class='form-control'>"
-                        + "      </div>"
-                        + "  </div>"
-                        + "  <div class='col-md-6'>"
-                        + "      <div class='form-group'  style='margin-top: 0px'>"
-                        + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
-                        + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
-                        + "                  <option name='ativo' value='ativo'>Ativo</option>"
-                        + "                  <option name='desativado' value='desativado'>Desativado</option>"
-                        + "              </select>"
-                        + "      </div>"
-                        + "  </div>"
-                        + "</div>";
-            }
-            $('.selectpicker').selectpicker('refresh');
+    <script type="text/javascript">
+        
+        function apenasNumeros(id){
+                        
+            var valor = document.getElementById(id);
+            var novoTexto = valor.value.replace(/[^0-9]/g,'');
+            valor.value = novoTexto;
+            
         }
+    
+    </script>        
+    
+    <script>
+        function setSEP() {
+            
+            var logradouro = document.getElementById('logradouro').value;
+            var cidade = document.getElementById('cidade').value;
+            var estado = document.getElementById('estado').value;
+            var url = "https://viacep.com.br/ws/" + estado + "/" + cidade + "/" + logradouro + "/json/";                        
+            
+            $.get(url, function (data, status) {
+
+                var objDados = data;
+                var bairro = document.getElementById('bairro').value;                
+                
+                for (i = 0; i < objDados.length; i++) {
+
+                    if (bairro.toUpperCase() === objDados[i].bairro.toUpperCase()) {
+                        $('#cep').val(mcep(objDados[i].cep));
+                    }
+                                       
+                }
+
+            });                                                         
+        };
+        
     </script>
 
 </html>
