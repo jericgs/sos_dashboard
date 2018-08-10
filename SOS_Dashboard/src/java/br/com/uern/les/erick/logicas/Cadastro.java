@@ -5,8 +5,10 @@
  */
 package br.com.uern.les.erick.logicas;
 
+import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -17,6 +19,11 @@ public class Cadastro implements Logica{
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
         String pagina = null;
+        
+        String nomeUsuario = req.getParameter("nomeUsuario");
+        
+        HttpSession session = req.getSession();
+        session.setAttribute("dadosAdmin", nomeUsuario);
         
         pagina = "cadastro.jsp";
         

@@ -197,8 +197,8 @@
                                             <div class="form-group"  style="margin-top: 0px">
                                                 <label class="control-label" style="margin-top: 12px">Genero</label>                                                        
                                                 <select id="genero" name="genero" class="form-control selectpicker required" data-style="select-with-transition" data-size="2">                                                                                                           
-                                                    <option name="feminino" value="feminino">Feminino</option>
-                                                    <option name="masculino" value="masculino">Masculino</option>                                                    
+                                                    <option name="feminino" value="Feminino">Feminino</option>
+                                                    <option name="masculino" value="Masculino">Masculino</option>                                                    
                                                 </select>                                                        
                                             </div>                                                                                                                                                     
                                         </div>                                        
@@ -301,7 +301,8 @@
                                 </div>
                                 <div class="tab-pane" id="contato">
                                     <h5 class="info-text"> Informações de contato. </h5>
-                                    <div class="row">
+                                    <div id="secaoLogin"></div>
+<!--                                    <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Login</label>
@@ -320,7 +321,7 @@
                                                 <input id="senhaR" type="password" name="senhaR"  maxlength="8" value="" class="form-control">
                                             </div>
                                         </div>                                                    
-                                    </div>
+                                    </div>-->
                                     
                                     <div class="row">
                                         <div class="col-md-4">
@@ -414,22 +415,32 @@
         function secao(id) {
 
             secaoBox = document.getElementById("secao");
+            secaoBoxLogin = document.getElementById("secaoLogin");
 
             if (id === "auxiliar/Enfermeiro") {                
 
                 secaoBox.innerHTML = "<div class='row'>"
-                                   + "  <div class='col-md-6'>"
+                                   + "  <div class='col-md-4'>"
                                    + "      <div class='form-group label-floating'>"
                                    + "          <label class='control-label'>Nº Coren</label>"
                                    + "          <input id='coren' onkeyup= maiusculaSigla('coren') maxlength='15' name='coren' type='text' class='form-control'>"
                                    + "      </div>"
                                    + "  </div>"
-                                   + "  <div class='col-md-6'>"
+                                   + "  <div class='col-md-4'>"
+                                   + "      <div class='form-group'  style='margin-top: 0px'>"
+                                   + "          <label class='control-label' style='margin-top: 12px'>Tipo de Coren</label>"
+                                   + "              <select id='tipoCoren' name='tipoCoren' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
+                                   + "                  <option name='ativo' value='Enfermeiro'>Enfermeiro</option>"
+                                   + "                  <option name='inativo' value='Técnico'>Técnico</option>"
+                                   + "              </select>"
+                                   + "      </div>"
+                                   + "  </div>"
+                                   + "  <div class='col-md-4'>"
                                    + "      <div class='form-group'  style='margin-top: 0px'>"
                                    + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
                                    + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
-                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
-                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "                  <option name='ativo' value='Ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='Inativo'>Inativo</option>"
                                    + "              </select>"
                                    + "      </div>"
                                    + "  </div>"
@@ -455,12 +466,33 @@
                                    + "      <div class='form-group'  style='margin-top: 0px'>"
                                    + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
                                    + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
-                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
-                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "                  <option name='ativo' value='Ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='Inativo'>Inativo</option>"
                                    + "              </select>"
                                    + "      </div>"
                                    + "  </div>"
                                    + "</div>";
+                           
+                secaoBoxLogin.innerHTML = "<div class='row'>"
+                                        +   "<div class='col-md-4'>"
+                                        +       "<div class='form-group label-floating'>"
+                                        +           "<label class='control-label'>Login</label>"
+                                        +           "<input id='login' type='text' name='login' onblur= verificandoUserName() maxlength='30' value='' class='form-control'>"
+                                        +       "</div>"
+                                        +   "</div>"
+                                        +   "<div class='col-md-4'>"
+                                        +       "<div class='form-group label-floating'>"
+                                        +           "<label class='control-label'>Senha</label>"
+                                        +           "<input id='senha' type='password' name='senha' value='' maxlength='8' class='form-control'>"
+                                        +       "</div>"
+                                        +   "</div>"
+                                        +   "<div class='col-md-4'>"
+                                        +       "<div class='form-group label-floating'>"
+                                        +           "<label class='control-label'>Repita a senha</label>"
+                                        +           "<input id='senhaR' type='password' name='senhaR'  maxlength='8' value='' class='form-control'>"
+                                        +       "</div>"
+                                        +   "</div>"
+                                        + "</div>";
             }
             
             if(id === "motorista"){
@@ -476,8 +508,8 @@
                                    + "      <div class='form-group'  style='margin-top: 0px'>"
                                    + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
                                    + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
-                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
-                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "                  <option name='ativo' value='Ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='Inativo'>Inativo</option>"
                                    + "              </select>"
                                    + "      </div>"
                                    + "  </div>"
@@ -491,12 +523,33 @@
                                    + "      <div class='form-group'  style='margin-top: 0px'>"
                                    + "          <label class='control-label' style='margin-top: 12px'>Situação</label>"
                                    + "              <select id='situacao' name='situacao' class='form-control selectpicker' data-style='select-with-transition' data-size='2'>"
-                                   + "                  <option name='ativo' value='ativo'>Ativo</option>"
-                                   + "                  <option name='inativo' value='inativo'>Inativo</option>"
+                                   + "                  <option name='ativo' value='Ativo'>Ativo</option>"
+                                   + "                  <option name='inativo' value='Inativo'>Inativo</option>"
                                    + "              </select>"
                                    + "      </div>"
                                    + "  </div>"
                                    + "</div>";
+                           
+               secaoBoxLogin.innerHTML = "<div class='row'>"
+                            +   "<div class='col-md-4'>"
+                            +       "<div class='form-group label-floating'>"
+                            +           "<label class='control-label'>Login</label>"
+                            +           "<input id='login' type='text' name='login' onblur= verificandoUserName() maxlength='30' value='' class='form-control'>"
+                            +       "</div>"
+                            +   "</div>"
+                            +   "<div class='col-md-4'>"
+                            +       "<div class='form-group label-floating'>"
+                            +           "<label class='control-label'>Senha</label>"
+                            +           "<input id='senha' type='password' name='senha' value='' maxlength='8' class='form-control'>"
+                            +       "</div>"
+                            +   "</div>"
+                            +   "<div class='col-md-4'>"
+                            +       "<div class='form-group label-floating'>"
+                            +           "<label class='control-label'>Repita a senha</label>"
+                            +           "<input id='senhaR' type='password' name='senhaR'  maxlength='8' value='' class='form-control'>"
+                            +       "</div>"
+                            +   "</div>"
+                            + "</div>";
             }
             
             $('.selectpicker').selectpicker('refresh');

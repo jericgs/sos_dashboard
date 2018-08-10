@@ -10,11 +10,11 @@ import br.com.uern.les.erick.daos.OcorrenciasaDAO;
 import br.com.uern.les.erick.daos.OcorrenciasbDAO;
 import br.com.uern.les.erick.daos.PossuiDAO;
 import br.com.uern.les.erick.daos.UsuarioDAO;
+import br.com.uern.les.erick.logicas.EnviarEmail;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  *
@@ -204,7 +204,6 @@ public class ParaTesta {
 //        int existe = umsaDAO.verificarSuportA("KEX-4250");
 //        
 //        System.out.println(existe);
-        
 //        Connection connection = new ConexaoBD().getConnection();
 //        SinaisVitais sinaisVitais = new SinaisVitais();
 //        sinaisVitais.setPa("NH");
@@ -220,8 +219,6 @@ public class ParaTesta {
 //        int idV = aO.inserindoSinaisVitais(sinaisVitais);
 //        
 //        System.out.println(idV);
-
-        
 //        Connection connection = new ConexaoBD().getConnection();
 //        RegulacaoDAO regulacaoDAO = new RegulacaoDAO(connection);
 //        Regulacao regulacao = regulacaoDAO.getRegulacaoAndamento(78);
@@ -237,7 +234,6 @@ public class ParaTesta {
 //        List<ChamadoMedico> chamadosMedico = chamadoDAO.getListaDeChamados("999.446.765-01");                
 //                        
 //        System.out.println("ID Paciente: " + chamadosMedico.get(0).getIdRC());
-    
 //        Connection connection = new ConexaoBD().getConnection();
 //        OcorrenciasaDAO aO = new OcorrenciasaDAO(connection);
 //        OcorrenciasbDAO dAO  = new OcorrenciasbDAO(connection);
@@ -246,17 +242,52 @@ public class ParaTesta {
 //        int r2 = dAO.buscandoSinaisVitaisSB(44);
 //        
 //        System.out.println("Aqui: " + r + " Aqui: " + r2);
-    
-        Connection connection = new ConexaoBD().getConnection();
-        UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
-        String confirmacao =  usuarioDAO.verificadoNomeUsuario("carlos.edu");                
+//        Connection connection = new ConexaoBD().getConnection();
+//        UsuarioDAO usuarioDAO = new UsuarioDAO(connection);
+//        String confirmacao =  usuarioDAO.verificadoNomeUsuario("carlos.edu");                
+//        
+//        if(confirmacao == null){
+//            System.out.println("Valor: " + confirmacao);
+//        }
+//        
+//        if(confirmacao != null){
+//            System.out.println("Valor: " + confirmacao);
+//        }
+
+        //INSTÂNCIANDO CLASSE DE E-MAIL
+        EnviarEmail enviar = new EnviarEmail();
+        enviar.setEmailDestinatario("jerick.gs@gmail.com");
+        enviar.setAssunto("Contato - SAMU MOSSORÓ");
+
+        //USO DE STRINGBUILDER PATA OTIMIZAZAR A CONCATENAÇÃO DE STRING
+        StringBuilder texto = new StringBuilder();
+        texto.append("<h2 align='center'>SOS DASHBOARD - Sistema de Gestão</h2>");
+        texto.append("Prezado Sr/Srª. Erico Gomes.<br/>");
+        texto.append("<br/>");
+        texto.append("Esse e-mail consta os dados de acesso ao sistema de gestão do SAMU Mossoró/RN. Por meio desse e-mail confirmamos seu cadastro na plataforma SOS DASHBOARD.<br/>");
+        texto.append("<br/>");
+        texto.append("Dados de Acesso ao Sistema:<br/>");
+        texto.append("Login: ");
+        texto.append("jerick.gs");
+        texto.append("<br/>");
+        texto.append("Senha: ");
+        texto.append("12345678");
+        texto.append("<br/>");
+        texto.append("<br/>");
         
-        if(confirmacao == null){
-            System.out.println("Valor: " + confirmacao);
-        }
+        //ENVIANDO MENSAGEM
+        enviar.setMsg(texto.toString());
+        boolean enviou = enviar.enviarGmail();
         
-        if(confirmacao != null){
-            System.out.println("Valor: " + confirmacao);
+        if (enviou) {
+
+            System.out.println("Dados enviados com sucesso");
+
+        } else {
+            
+            System.out.println("As informações não foram enviadas");
+
         }
+
     }
 }

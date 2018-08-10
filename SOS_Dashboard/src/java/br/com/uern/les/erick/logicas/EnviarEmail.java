@@ -6,13 +6,19 @@
 package br.com.uern.les.erick.logicas;
 
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -70,11 +76,23 @@ public class EnviarEmail {
         //compose message  
         try {
             MimeMessage message = new MimeMessage(s);
-            message.setFrom(new InternetAddress("programatche@gmail.com"));
+            message.setFrom(new InternetAddress("mossorosamu@gmail.com"));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.emailDestinatario));
-
             message.setSubject(this.assunto);
-            message.setContent(this.msg, "text/html; charset=utf-8");
+            MimeMultipart multipart = new MimeMultipart("related");
+            BodyPart messageBodyPart = new MimeBodyPart();
+            String htmlText = this.msg + "--<br/><img src=\"cid:image\">";
+            messageBodyPart.setContent(htmlText, "text/html; charset=utf-8");            
+            multipart.addBodyPart(messageBodyPart);
+            
+            messageBodyPart = new MimeBodyPart();
+            DataSource fds = new FileDataSource("C:\\xampp\\htdocs\\sos_dashboard\\SOS_Dashboard\\web\\Resources\\imagens\\body\\Assinatura.png");
+            messageBodyPart.setDataHandler(new DataHandler(fds));
+            messageBodyPart.setHeader("Content-ID","<image>");
+            
+            multipart.addBodyPart(messageBodyPart);
+            
+            message.setContent(multipart);
 
             //send message  
             Transport.send(message);
