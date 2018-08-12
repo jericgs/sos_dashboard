@@ -94,29 +94,42 @@ public class UsuarioDAO {
         }
     }
 
-    public void adiciona(Usuario usuario) {
+    public String inserindoUsuario(Usuario usuario) {
 
-        // cria um preparedStatement
-        String sql = "INSERT INTO usuario "
-                + "(NomeUsuario,Senha,TipoUsuario,Status) "
-                + "VALUES (?,?,?,?)";
+        String nomeUsuario = null;
 
         try {
-            // seta os valores
-            try ( // prepared statement para inserção
-                    PreparedStatement stmt = connection.prepareStatement(sql)) {
-                // seta os valores
+            String sql1 = "INSERT INTO usuario "
+                    + "(NomeUsuario,Senha,TipoUsuario,Status) "
+                    + "VALUES (?,?,?,?)";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql1);) {
+
                 stmt.setString(1, usuario.getNomeUsuario());
                 stmt.setString(2, usuario.getSenha());
-                stmt.setString(4, usuario.getTipoDeUsuario());
-                stmt.setString(3, usuario.getStatus());
+                stmt.setString(3, usuario.getTipoDeUsuario());
+                stmt.setString(4, usuario.getStatus());
 
-                // executa
                 stmt.execute();
+
+                String sql2 = "SELECT NomeUsuario FROM usuario WHERE NomeUsuario = ?";
+
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                ps.setString(1, usuario.getNomeUsuario());
+
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    nomeUsuario = rs.getString("NomeUsuario");
+                }
+
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return nomeUsuario;                
     }
 
     public List<Usuario> getUsuario() {
@@ -140,7 +153,7 @@ public class UsuarioDAO {
                 }
 
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -159,16 +172,16 @@ public class UsuarioDAO {
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
                 stmt.setString(1, "Ativo");
-                
+
                 ResultSet rs = stmt.executeQuery();
-                
+
                 while (rs.next()) {
-                    
+
                     String nomeUsuario;
                     nomeUsuario = rs.getString("NomeUsuario");
-                    
+
                     listUnidadesMoveis.add(nomeUsuario);
-                    
+
                 }
             }
 
@@ -178,16 +191,16 @@ public class UsuarioDAO {
 
         return listUnidadesMoveis;
     }
-    
-    public String verificadoNomeUsuario(String nomeUsuario){
+
+    public String verificadoNomeUsuario(String nomeUsuario) {
         String usuario = null;
-        
+
         try {
 
             String sql = "SELECT NomeUsuario FROM usuario WHERE NomeUsuario = ?";
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
-                stmt.setString(1, nomeUsuario);                
+                stmt.setString(1, nomeUsuario);
 
                 ResultSet rs = stmt.executeQuery();
 
@@ -199,7 +212,7 @@ public class UsuarioDAO {
         } catch (SQLException ex) {
             Logger.getLogger(RegulacaoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return usuario;
     }
 

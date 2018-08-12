@@ -25,7 +25,7 @@ public class EnfermeiroDAO {
         this.connection = connection;
     }
     
-    public String InserindoEnfermeiro(Enfermeiro enfermeiro){
+    public String inserindoEnfermeiro(Enfermeiro enfermeiro){
         String idE = null;
 
         try {

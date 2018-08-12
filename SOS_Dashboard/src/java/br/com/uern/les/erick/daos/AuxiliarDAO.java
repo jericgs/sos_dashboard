@@ -25,7 +25,7 @@ public class AuxiliarDAO {
         this.connection = connection;
     }
     
-    public String InserindoAuxiliar(Auxiliar auxiliar){
+    public String inserindoAuxiliar(Auxiliar auxiliar){
         String idA = null;
 
         try {

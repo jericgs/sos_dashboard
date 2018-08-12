@@ -25,7 +25,7 @@ public class ContatoDAO {
         this.connection = connection;
     }
     
-    public int InserindoChamado(Contato contato){
+    public int inserindoChamado(Contato contato){
         int idC = 0;
 
         try {

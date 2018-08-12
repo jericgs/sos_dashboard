@@ -11,7 +11,7 @@ package br.com.uern.les.erick.modelos;
  */
 public class ModeloEmail {
 
-    public StringBuilder Modelo1(String nome, String login, String senha) {
+    public StringBuilder modelo1(String nome, String login, String senha) {
 
         //USO DE STRINGBUILDER PATA OTIMIZAZAR A CONCATENAÇÃO DE STRING
         StringBuilder texto = new StringBuilder();
@@ -33,7 +33,7 @@ public class ModeloEmail {
 
     }
     
-    public StringBuilder Modelo2(String nome){
+    public StringBuilder modelo2(String nome){
         
         //USO DE STRINGBUILDER PATA OTIMIZAZAR A CONCATENAÇÃO DE STRING
         StringBuilder texto = new StringBuilder();

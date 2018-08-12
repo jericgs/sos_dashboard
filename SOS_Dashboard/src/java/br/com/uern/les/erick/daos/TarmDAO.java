@@ -59,4 +59,47 @@ public class TarmDAO {
         }
         return null;
     }
+    
+    public String inserindoTarm(Tarm tarm){
+        String cpft = null;
+
+        try {
+            String sql1 = "INSERT INTO tarm "
+                    + "(CPFT,NomeUsuario,IdC,IdE,Nascimento,RG,Nome,Genero,Situacao)"
+                    + " values (?,?,?,?,?,?,?,?,?)";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql1);) {
+
+                stmt.setString(1, tarm.getCPFT());
+                stmt.setString(2, tarm.getUsuario());
+                stmt.setInt(3, tarm.getContato());
+                stmt.setInt(4, tarm.getEndereco());                
+                stmt.setString(5, tarm.getNascimento());
+                stmt.setString(6, tarm.getRG());
+                stmt.setString(7, tarm.getNome());
+                stmt.setString(8, tarm.getGenero());
+                stmt.setString(9, tarm.getSituacao());
+                                
+                stmt.execute();
+                
+                String sql2 = "SELECT CPFT FROM tarm WHERE CPFT = ?";
+                
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                ps.setString(1, tarm.getCPFT());
+                
+                ResultSet rs = ps.executeQuery();
+                
+                if (rs.next()) {
+                    cpft = rs.getString("CPFT");
+                }
+
+            }                        
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TarmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpft;
+    }
+    
 }

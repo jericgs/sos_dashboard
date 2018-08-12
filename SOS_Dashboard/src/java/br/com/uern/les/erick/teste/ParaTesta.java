@@ -6,11 +6,13 @@
 package br.com.uern.les.erick.teste;
 
 import br.com.uern.les.erick.conexao.ConexaoBD;
+import br.com.uern.les.erick.daos.EnfermeiroDAO;
 import br.com.uern.les.erick.daos.OcorrenciasaDAO;
 import br.com.uern.les.erick.daos.OcorrenciasbDAO;
 import br.com.uern.les.erick.daos.PossuiDAO;
 import br.com.uern.les.erick.daos.UsuarioDAO;
 import br.com.uern.les.erick.logicas.EnviarEmail;
+import br.com.uern.les.erick.modelos.Enfermeiro;
 import br.com.uern.les.erick.modelos.ModeloEmail;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -254,7 +256,6 @@ public class ParaTesta {
 //        if(confirmacao != null){
 //            System.out.println("Valor: " + confirmacao);
 //        }
-
 //        //INSTÂNCIANDO CLASSE DE E-MAIL
 //        EnviarEmail enviar = new EnviarEmail();
 //        enviar.setEmailDestinatario("jerick.gs@gmail.com");
@@ -289,12 +290,28 @@ public class ParaTesta {
 //            System.out.println("As informações não foram enviadas");
 //
 //        }
-        
 //        ModeloEmail modeloEmail = new ModeloEmail();
 //        StringBuilder texto = modeloEmail.Modelo2("Erick Gomes");
 //        
 //        System.out.println(texto);
-        
+//        Connection connection = new ConexaoBD().getConnection();
+//        EnfermeiroDAO edao = new EnfermeiroDAO(connection);
+//        //MODELO ENFERMEIRO
+//        Enfermeiro enfermeiro = new Enfermeiro();
+//        enfermeiro.setCpfe("974.746.744-00");
+//        enfermeiro.setRg("004.847.484");
+//        enfermeiro.setNascimento("25/02/1994");
+//        enfermeiro.setNome("Carlos Augusto Da Silva");
+//        enfermeiro.setGenero("Masculino");
+//        enfermeiro.setIdC(7);
+//        enfermeiro.setIdE(100);
+//        enfermeiro.setSituacao("Ativo");
+//        enfermeiro.setNumCoren("ENF-8199999");
+//        String idEnfermeiro = edao.InserindoEnfermeiro(enfermeiro);
+//        
+//        if(idEnfermeiro != null){
+//            System.out.println("Entrou");
+//        }
         
     }
 }
