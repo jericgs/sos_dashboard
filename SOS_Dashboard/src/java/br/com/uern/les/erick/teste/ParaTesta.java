@@ -11,6 +11,7 @@ import br.com.uern.les.erick.daos.OcorrenciasbDAO;
 import br.com.uern.les.erick.daos.PossuiDAO;
 import br.com.uern.les.erick.daos.UsuarioDAO;
 import br.com.uern.les.erick.logicas.EnviarEmail;
+import br.com.uern.les.erick.modelos.ModeloEmail;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -254,40 +255,46 @@ public class ParaTesta {
 //            System.out.println("Valor: " + confirmacao);
 //        }
 
-        //INSTÂNCIANDO CLASSE DE E-MAIL
-        EnviarEmail enviar = new EnviarEmail();
-        enviar.setEmailDestinatario("jerick.gs@gmail.com");
-        enviar.setAssunto("Contato - SAMU MOSSORÓ");
-
-        //USO DE STRINGBUILDER PATA OTIMIZAZAR A CONCATENAÇÃO DE STRING
-        StringBuilder texto = new StringBuilder();
-        texto.append("<h2 align='center'>SOS DASHBOARD - Sistema de Gestão</h2>");
-        texto.append("Prezado Sr/Srª. Erico Gomes.<br/>");
-        texto.append("<br/>");
-        texto.append("Esse e-mail consta os dados de acesso ao sistema de gestão do SAMU Mossoró/RN. Por meio desse e-mail confirmamos seu cadastro na plataforma SOS DASHBOARD.<br/>");
-        texto.append("<br/>");
-        texto.append("Dados de Acesso ao Sistema:<br/>");
-        texto.append("Login: ");
-        texto.append("jerick.gs");
-        texto.append("<br/>");
-        texto.append("Senha: ");
-        texto.append("12345678");
-        texto.append("<br/>");
-        texto.append("<br/>");
+//        //INSTÂNCIANDO CLASSE DE E-MAIL
+//        EnviarEmail enviar = new EnviarEmail();
+//        enviar.setEmailDestinatario("jerick.gs@gmail.com");
+//        enviar.setAssunto("Contato - SAMU MOSSORÓ");
+//
+//        //USO DE STRINGBUILDER PATA OTIMIZAZAR A CONCATENAÇÃO DE STRING
+//        StringBuilder texto = new StringBuilder();
+//        texto.append("<h2 align='center'>SOS DASHBOARD - Sistema de Gestão</h2>");
+//        texto.append("Prezado Sr/Srª. Erico Gomes.<br/>");
+//        texto.append("<br/>");
+//        texto.append("Esse e-mail consta os dados de acesso ao sistema de gestão do SAMU Mossoró/RN. Por meio desse e-mail confirmamos seu cadastro na plataforma SOS DASHBOARD.<br/>");
+//        texto.append("<br/>");
+//        texto.append("Dados de Acesso ao Sistema:<br/>");
+//        texto.append("Login: ");
+//        texto.append("jerick.gs");
+//        texto.append("<br/>");
+//        texto.append("Senha: ");
+//        texto.append("12345678");
+//        texto.append("<br/>");
+//        texto.append("<br/>");
+//        
+//        //ENVIANDO MENSAGEM
+//        enviar.setMsg(texto.toString());
+//        boolean enviou = enviar.enviarGmail();
+//        
+//        if (enviou) {
+//
+//            System.out.println("Dados enviados com sucesso");
+//
+//        } else {
+//            
+//            System.out.println("As informações não foram enviadas");
+//
+//        }
         
-        //ENVIANDO MENSAGEM
-        enviar.setMsg(texto.toString());
-        boolean enviou = enviar.enviarGmail();
+//        ModeloEmail modeloEmail = new ModeloEmail();
+//        StringBuilder texto = modeloEmail.Modelo2("Erick Gomes");
+//        
+//        System.out.println(texto);
         
-        if (enviou) {
-
-            System.out.println("Dados enviados com sucesso");
-
-        } else {
-            
-            System.out.println("As informações não foram enviadas");
-
-        }
-
+        
     }
 }

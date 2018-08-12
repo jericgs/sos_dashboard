@@ -116,7 +116,7 @@
                 <div class="content">
 
                     <div class="card wizard-card" data-color="red" id="wizardProfile">
-                        <form id="formCadastro" action="" method="">
+                        <form id="formCadastro" action="controle" method="post">
                             <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
                             <div class="wizard-header text-center">
@@ -348,7 +348,7 @@
                             <div class="wizard-footer">
                                 <div class="pull-right">
                                     <button type="button" style="text-transform: uppercase;" class="btn btn-next btn-fill btn-primary" name="logica" value="Next">Próximo</button>                                    
-                                    <button type="submit" style="text-transform: uppercase;" class="btn btn-finish btn-fill btn-primary" name="logica" value="">Gravar</button>                                    
+                                    <button type="submit" style="text-transform: uppercase;" class="btn btn-finish btn-fill btn-primary" name="logica" value="GravarCadastro">Gravar</button>                                    
                                 </div>
 
                                 <div class="pull-left">
@@ -693,6 +693,14 @@
                         
         }
         
+    </script>
+    
+    <script>
+        <c:if test="${not empty alerta.tipoAlerta}">
+        swal({type: '${alerta.tipoAlerta}', title: 'Hey...', text: '${alerta.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
+            location.href = "controle?logica=Cadastro&nomeUsuario=${sessionScope.admin.nomeUsuario}";
+        });
+        </c:if>
     </script>
 
 </html>

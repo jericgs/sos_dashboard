@@ -5,7 +5,6 @@
  */
 package br.com.uern.les.erick.logicas;
 
-import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

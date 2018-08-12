@@ -5,11 +5,17 @@
  */
 package br.com.uern.les.erick.logicas;
 
+import br.com.uern.les.erick.daos.AuxiliarDAO;
+import br.com.uern.les.erick.daos.ContatoDAO;
 import br.com.uern.les.erick.daos.EnderecoDAO;
+import br.com.uern.les.erick.daos.EnfermeiroDAO;
 import br.com.uern.les.erick.daos.UsuarioDAO;
+import br.com.uern.les.erick.modelos.Alerta;
+import br.com.uern.les.erick.modelos.Auxiliar;
 import br.com.uern.les.erick.modelos.Contato;
 import br.com.uern.les.erick.modelos.Endereco;
-import br.com.uern.les.erick.modelos.PossuiTabela;
+import br.com.uern.les.erick.modelos.Enfermeiro;
+import br.com.uern.les.erick.modelos.ModeloEmail;
 import java.sql.Connection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,6 +61,10 @@ public class GravarCadastro implements Logica {
         contato.setCel(celular);
         contato.setEmail(email);
 
+        //INSTÂNCIA CONTATODAO E INSERIR
+        ContatoDAO contatoDAO = new ContatoDAO(connection);
+        int idC = contatoDAO.InserindoChamado(contato);
+
         //MODELO ENDEREÇO
         Endereco endereco = new Endereco();
         endereco.setLogradouro(logradouro);
@@ -68,14 +78,14 @@ public class GravarCadastro implements Logica {
 
         //INSTÂNCIA ENDERECODAO E VERIFICA SE O ENDEREÇO JÁ EXISTE NO BD
         EnderecoDAO enderecoDAO = new EnderecoDAO(connection);
-        int existe = enderecoDAO.seEnderecoExiste(endereco);
+        int idE = enderecoDAO.seEnderecoExiste(endereco);
 
-        if (existe == 0) {
+        if (idE == 0) {
             //REALIZA A INSERÇÃO
-            int idE = enderecoDAO.inserindoEndereco(endereco);
-            
+            idE = enderecoDAO.inserindoEndereco(endereco);
+
         }
-                
+
         //CAMPOS DE TELA-TRABALHO
         String cargo = req.getParameter("cargo");
         String situacao = req.getParameter("situacao");
@@ -88,10 +98,123 @@ public class GravarCadastro implements Logica {
 
             if (tipoCoren.equalsIgnoreCase("Enfermeiro")) {
 
+                //MODELO ENFERMEIRO
+                Enfermeiro enfermeiro = new Enfermeiro();
+                enfermeiro.setCpfe(cpf);
+                enfermeiro.setRg(rg);
+                enfermeiro.setNascimento(nascimento);
+                enfermeiro.setNome(nome);
+                enfermeiro.setGenero(genero);
+                enfermeiro.setIdC(idC);
+                enfermeiro.setIdE(idE);
+                enfermeiro.setNumCoren(coren);
+
+                //INSTÂNCIA ENFERMEIRODAO E INSERIR
+                EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO(connection);
+                String idEnfermeiro = enfermeiroDAO.InserindoEnfermeiro(enfermeiro);
+
+                if (idEnfermeiro != null) {
+
+                    //INSTÂNCIANDO CLASSE DE E-MAIL
+                    EnviarEmail enviar = new EnviarEmail();
+                    enviar.setEmailDestinatario(email);
+                    enviar.setAssunto("Contato - SAMU MOSSORÓ");
+
+                    //CHAMO MODELO DO E-MAIL
+                    ModeloEmail modeloEmail = new ModeloEmail();
+                    StringBuilder texto = modeloEmail.Modelo2(nome);
+
+                    //ENVIANDO MENSAGEM
+                    enviar.setMsg(texto.toString());
+                    boolean enviou = enviar.enviarGmail();
+
+                    if (enviou) {
+
+                        //PARAMETROS PARA O ALERTA
+                        Alerta alerta = new Alerta();
+                        alerta.setTipoAlerta("success");
+                        alerta.setMsnAlerta("Gravado com Sucesso!");
+                        req.setAttribute("alerta", alerta);
+
+                        //SETANDO PÁGINA
+                        pagina = "cadastro.jsp";
+
+                    } else {
+
+                        //PARAMETROS PARA O ALERTA
+                        Alerta alerta = new Alerta();
+                        alerta.setTipoAlerta("error");
+                        alerta.setMsnAlerta("Erro ao Gravar!");
+                        req.setAttribute("alerta", alerta);
+
+                        //SETANDO PÁGINA
+                        pagina = "cadastro.jsp";
+
+                    }
+
+                }
+
             }
 
             if (tipoCoren.equalsIgnoreCase("Técnico")) {
+                
+                //MODELO AUXILIAR
+                Auxiliar auxiliar = new Auxiliar();
+                auxiliar.setCpfa(cpf);
+                auxiliar.setIdC(idC);
+                auxiliar.setIdE(idE);
+                auxiliar.setNascimento(nascimento);
+                auxiliar.setRg(rg);
+                auxiliar.setNome(nome);
+                auxiliar.setGenero(genero);
+                auxiliar.setSituacao(situacao);
+                auxiliar.setNumCoren(coren);
+                
+                //INSTÂNCIA ENFERMEIRODAO E INSERIR
+                AuxiliarDAO auxiliarDAO = new AuxiliarDAO(connection);
+                String idAuxiliar = auxiliarDAO.InserindoAuxiliar(auxiliar);
+                
+                if (idAuxiliar != null) {
+                    
+                    //INSTÂNCIANDO CLASSE DE E-MAIL
+                    EnviarEmail enviar = new EnviarEmail();
+                    enviar.setEmailDestinatario(email);
+                    enviar.setAssunto("Contato - SAMU MOSSORÓ");
+                    
+                    //CHAMO MODELO DO E-MAIL
+                    ModeloEmail modeloEmail = new ModeloEmail();
+                    StringBuilder texto = modeloEmail.Modelo2(nome);
+                    
+                    //ENVIANDO MENSAGEM
+                    enviar.setMsg(texto.toString());
+                    boolean enviou = enviar.enviarGmail();
 
+                    if (enviou) {
+
+                        //PARAMETROS PARA O ALERTA
+                        Alerta alerta = new Alerta();
+                        alerta.setTipoAlerta("success");
+                        alerta.setMsnAlerta("Gravado com Sucesso!");
+                        req.setAttribute("alerta", alerta);
+
+                        //SETANDO PÁGINA
+                        pagina = "cadastro.jsp";
+
+                    } else {
+
+                        //PARAMETROS PARA O ALERTA
+                        Alerta alerta = new Alerta();
+                        alerta.setTipoAlerta("error");
+                        alerta.setMsnAlerta("Erro ao Gravar!");
+                        req.setAttribute("alerta", alerta);
+
+                        //SETANDO PÁGINA
+                        pagina = "cadastro.jsp";
+
+                    }
+                    
+                }                                
+                
             }
 
         }
