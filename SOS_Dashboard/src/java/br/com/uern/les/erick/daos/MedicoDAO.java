@@ -30,14 +30,14 @@ public class MedicoDAO {
     public MedicoRegulador getDadosMedicoRegulador(String nomeUsuario) {
 
         MedicoRegulador medicoRegulador = new MedicoRegulador();
-        
+
         try {
             String sql = "SELECT * FROM medicoregulador WHERE NomeUsuario = ?";
             try (PreparedStatement ps = this.connection.prepareStatement(sql)) {
                 ps.setString(1, nomeUsuario);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        
+
                         medicoRegulador.setCPFM(rs.getString("CPFM"));
                         medicoRegulador.setUsuario(rs.getString("NomeUsuario"));
                         medicoRegulador.setContato(rs.getInt("IdC"));
@@ -48,7 +48,7 @@ public class MedicoDAO {
                         medicoRegulador.setNome(rs.getString("Nome"));
                         medicoRegulador.setGenero(rs.getString("Genero"));
                         medicoRegulador.setSituacao(rs.getString("Situacao"));
-                        
+
                     }
                 }
             }
@@ -56,7 +56,7 @@ public class MedicoDAO {
         } catch (SQLException ex) {
             Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return medicoRegulador;
     }
 
@@ -108,15 +108,15 @@ public class MedicoDAO {
                     }
                 }
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return medicoReguladorsOn;
     }
-    
-    public String inserindoMedicoRegulador(MedicoRegulador medicoRegulador){
+
+    public String inserindoMedicoRegulador(MedicoRegulador medicoRegulador) {
         String cpfm = null;
 
         try {
@@ -126,7 +126,7 @@ public class MedicoDAO {
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql1);) {
 
-                stmt.setString(1, medicoRegulador.getCPFM()); 
+                stmt.setString(1, medicoRegulador.getCPFM());
                 stmt.setString(2, medicoRegulador.getUsuario());
                 stmt.setInt(3, medicoRegulador.getContato());
                 stmt.setInt(4, medicoRegulador.getEndereco());
@@ -136,22 +136,21 @@ public class MedicoDAO {
                 stmt.setString(8, medicoRegulador.getNome());
                 stmt.setString(9, medicoRegulador.getGenero());
                 stmt.setString(10, medicoRegulador.getSituacao());
-                
-                
+
                 stmt.execute();
-                
+
                 String sql2 = "SELECT CPFM FROM medicoregulador WHERE CPFM = ?";
-                
+
                 PreparedStatement ps = this.connection.prepareStatement(sql2);
                 ps.setString(1, medicoRegulador.getCPFM());
-                
+
                 ResultSet rs = ps.executeQuery();
-                
+
                 if (rs.next()) {
                     cpfm = rs.getString("CPFM");
                 }
 
-            }                        
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,5 +158,53 @@ public class MedicoDAO {
 
         return cpfm;
     }
-    
+
+    public String verificadoCpf(String cpf) {
+        String cpfValidacao = null;
+
+        try {
+
+            String sql = "SELECT CPFM FROM medicoregulador WHERE CPFM = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfValidacao = rs.getString("CPFM");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfValidacao;
+    }
+
+    public String getCpfmPadrao() {
+        String cpfm = null;
+
+        try {
+
+            String sql = "SELECT CPFM FROM medicoregulador";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfm = rs.getString("CPFM");
+                    break;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfm;
+    }
+
 }

@@ -68,4 +68,76 @@ public class MotoristaDAO {
         return cnh;
     }
     
+    public String verificadoCpf(String cpf) {
+        String cpfValidacao = null;
+
+        try {
+
+            String sql = "SELECT CPFM FROM motorista WHERE CPFM = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfValidacao = rs.getString("CPFM");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfValidacao;
+    }
+    
+    public String verificadoCnh(String cnh) {
+        String cnhValidacao = null;
+
+        try {
+
+            String sql = "SELECT CNH FROM motorista WHERE CNH = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cnh);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cnhValidacao = rs.getString("CNH");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cnhValidacao;
+    }
+    
+    public String getCnhPadrao() {
+        String cnh = null;
+
+        try {
+
+            String sql = "SELECT CNH FROM motorista";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cnh = rs.getString("CNH");
+                    break;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cnh;
+    }
+    
 }

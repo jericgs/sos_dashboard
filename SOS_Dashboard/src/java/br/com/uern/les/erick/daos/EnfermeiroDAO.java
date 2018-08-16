@@ -67,4 +67,52 @@ public class EnfermeiroDAO {
         return idE;
     }
     
+    public String verificadoCpf(String cpf) {
+        String cpfValidacao = null;
+
+        try {
+
+            String sql = "SELECT CPFE FROM enfermeiro WHERE CPFE = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfValidacao = rs.getString("CPFE");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EnfermeiroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfValidacao;
+    }
+    
+    public String getCpfePadrao() {
+        String cpfe = null;
+
+        try {
+
+            String sql = "SELECT CPFE FROM enfermeiro";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfe = rs.getString("CPFE");
+                    break;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EnfermeiroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfe;
+    }
+    
 }

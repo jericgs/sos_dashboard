@@ -80,6 +80,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="controle?logica=CadastroUnidadeMovel&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">add</i>
+                                <p>Ambulância</p>
+                            </a>
+                        </li>
+                        <li>
                             <a href="controle?logica=Monitoramento&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Monitoramento</p>
@@ -156,7 +162,7 @@
                                     <li>
                                         <a href="#contato" data-toggle="tab">
                                             <div class="icon-circle">
-                                                <i class="ti-email"></i>
+                                                <i class="ti-id-badge"></i>
                                             </div>
                                             Contato
                                         </a>
@@ -170,7 +176,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">CPF</label>                                                            
-                                                <input id="cpf" name="cpf" maxlength="14" type="text" value="" class="form-control">
+                                                <input id="cpf" name="cpf" maxlength="14" onblur="verificandoCpf()" type="text" value="" class="form-control">
                                             </div>                                                            
                                         </div>
                                         <div class="col-md-4">
@@ -301,28 +307,7 @@
                                 </div>
                                 <div class="tab-pane" id="contato">
                                     <h5 class="info-text"> Informações de contato. </h5>
-                                    <div id="secaoLogin"></div>
-<!--                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Login</label>
-                                                <input id="login" type="text" name="login" onblur="verificandoUserName()" maxlength="30" value="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Senha</label>
-                                                <input id="senha" type="password" name="senha" value="" maxlength="8" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Repita a senha</label>
-                                                <input id="senhaR" type="password" name="senhaR"  maxlength="8" value="" class="form-control">
-                                            </div>
-                                        </div>                                                    
-                                    </div>-->
-                                    
+                                    <div id="secaoLogin"></div>                                    
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
@@ -423,7 +408,7 @@
                                    + "  <div class='col-md-4'>"
                                    + "      <div class='form-group label-floating'>"
                                    + "          <label class='control-label'>Nº Coren</label>"
-                                   + "          <input id='coren' onkeyup= maiusculaSigla('coren') maxlength='15' name='coren' type='text' class='form-control'>"
+                                   + "          <input id='coren' onkeyup= maiusculaSigla('coren') maxlength='14' name='coren' type='text' class='form-control'>"
                                    + "      </div>"
                                    + "  </div>"
                                    + "  <div class='col-md-4'>"
@@ -501,7 +486,7 @@
                                    + "  <div class='col-md-6'>"
                                    + "      <div class='form-group label-floating'>"
                                    + "          <label class='control-label'>Nº CNH</label>"
-                                   + "          <input id='cnh' onkeyup= apenasNumeros('cnh') maxlength='11' name='cnh' type='text' class='form-control'>"
+                                   + "          <input id='cnh' onkeyup= apenasNumeros('cnh') onblur= verificandoCnh() maxlength='11' name='cnh' type='text' class='form-control'>"
                                    + "      </div>"
                                    + "  </div>"
                                    + "  <div class='col-md-6'>"
@@ -686,7 +671,7 @@
                 if(objDados[0].confirmacao === 'false'){
                     
                     swal({type: 'info', title: 'Oops...', text: 'O usuário: '+ valorLogin +'. Já existe.', showConfirmButton: false, timer: 4000});
-                    
+                    document.getElementById("login").value = "";
                 }                                
                 
             });
@@ -701,6 +686,52 @@
             location.href = "controle?logica=Cadastro&nomeUsuario=${sessionScope.admin.nomeUsuario}";
         });
         </c:if>
+    </script>
+    
+    <script>
+        
+        function verificandoCpf() {
+            
+            var valorCpf = document.getElementById("cpf").value;
+            
+            $.post("AjaxControle", {logicaAjax: "AjaxValidacaoCpf", cpf: valorCpf}, function (data, status) {
+                
+                var objDados = JSON.parse(data);
+                
+                if(objDados[0].confirmacaoCpf === 'false'){
+                    
+                    swal({type: 'info', title: 'Oops...', text: 'Já existe cadastro com o CPF: '+ valorCpf +'.', showConfirmButton: false, timer: 4000});
+                    document.getElementById("cpf").value = "";            
+                    
+                }
+                
+            });
+            
+        }
+        
+    </script>
+    
+    <script>
+        
+        function verificandoCnh() {
+            
+            var valorCnh = document.getElementById("cnh").value;
+            
+            $.post("AjaxControle", {logicaAjax: "AjaxValidacaoCnh", cnh: valorCnh}, function (data, status) {
+                
+                var objDados = JSON.parse(data);
+                
+                if(objDados[0].confirmacaoCnh === 'false'){
+                    
+                    swal({type: 'info', title: 'Oops...', text: 'Já existe cadastro com a CNH: '+ valorCnh +'.', showConfirmButton: false, timer: 4000});
+                    document.getElementById("cnh").value = "";            
+                    
+                }
+                
+            });
+            
+        }
+        
     </script>
 
 </html>

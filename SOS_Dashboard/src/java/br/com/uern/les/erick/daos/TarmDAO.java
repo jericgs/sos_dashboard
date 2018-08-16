@@ -102,4 +102,28 @@ public class TarmDAO {
         return cpft;
     }
     
+    public String verificadoCpf(String cpf) {
+        String cpfValidacao = null;
+
+        try {
+
+            String sql = "SELECT CPFT FROM tarm WHERE CPFT = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfValidacao = rs.getString("CPFT");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TarmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfValidacao;
+    }    
+    
 }

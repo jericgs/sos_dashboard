@@ -123,4 +123,67 @@ public class UmsbDAO {
         return existe;
     }
 
+    public String verificandoNomeAmbulancia(String nome) {
+        String nomeConfirmacao = null;
+
+        try {
+
+            String sql = "SELECT Nome FROM umsb WHERE Nome = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, nome);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    nomeConfirmacao = rs.getString("Nome");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UmsbDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return nomeConfirmacao;
+    }
+    
+    public String inserindoUmsb(UMSB umsb){
+        String placa = null;
+
+        try {
+            String sql1 = "INSERT INTO umsb "
+                    + "(Placa,CNH,CPFA,NomeUsuario,IdG,Nome)"
+                    + " values (?,?,?,?,?,?)";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql1);) {
+
+                stmt.setString(1, umsb.getPlaca());
+                stmt.setString(2, umsb.getCnh());                          
+                stmt.setString(3, umsb.getCpfa());
+                stmt.setString(4, umsb.getNomeUsuario());
+                stmt.setInt(5, umsb.getIdG());
+                stmt.setString(6, umsb.getNome());
+                                
+                stmt.execute();
+                
+                String sql2 = "SELECT Placa FROM umsb WHERE Placa = ?";
+                
+                PreparedStatement ps = this.connection.prepareStatement(sql2);
+                ps.setString(1, umsb.getPlaca());
+                
+                ResultSet rs = ps.executeQuery();
+                
+                if (rs.next()) {
+                    placa = rs.getString("Placa");
+                }
+
+            }                        
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UmsbDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return placa;
+    }
+    
 }

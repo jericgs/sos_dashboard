@@ -66,5 +66,53 @@ public class AuxiliarDAO {
 
         return idA;
     }
+    
+    public String verificadoCpf(String cpf) {
+        String cpfValidacao = null;
+
+        try {
+
+            String sql = "SELECT CPFA FROM auxiliar WHERE CPFA = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfValidacao = rs.getString("CPFA");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AuxiliarDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfValidacao;
+    }
+    
+    public String getCpfaPadrao() {
+        String cpfa = null;
+
+        try {
+
+            String sql = "SELECT CPFA FROM auxiliar";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {                
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    cpfa = rs.getString("CPFA");
+                    break;
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AuxiliarDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return cpfa;
+    }
 
 }

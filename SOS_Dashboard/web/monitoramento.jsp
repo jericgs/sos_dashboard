@@ -79,6 +79,12 @@
                                 <p>Cadastro</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="controle?logica=CadastroUnidadeMovel&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">add</i>
+                                <p>Ambulância</p>
+                            </a>
+                        </li>
                         <li class="active">
                             <a href="controle?logica=Monitoramento&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
