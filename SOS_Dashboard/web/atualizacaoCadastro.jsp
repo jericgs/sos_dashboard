@@ -1,6 +1,6 @@
 <%-- 
-    Document   : monitoramento
-    Created on : 02/08/2018, 12:02:30
+    Document   : atualizacaoCadastro
+    Created on : 16/08/2018, 11:57:21
     Author     : jerick.gs
 --%>
 
@@ -11,7 +11,7 @@
 
     <head>
 
-        <title>Admin - Monitoramento</title>
+        <title>Admin - Atualização</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -85,13 +85,13 @@
                                 <p>Ambulância</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="controle?logica=Alteracao&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                 <i class="material-icons">cached</i>
                                 <p>Alteração</p>
                             </a>
-                        </li> 
-                        <li class="active">
+                        </li>                        
+                        <li>
                             <a href="controle?logica=Monitoramento&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Monitoramento</p>
@@ -110,7 +110,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand"> Monitoramento das Unidades Móveis </a>
+                            <a class="navbar-brand"> Alteração de Dados </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
@@ -125,9 +125,52 @@
                         </div>
                     </div>
                 </nav>
-                <div id="map"></div>
-            </div>
-        </div>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div>
+                                <div class="card">
+                                    <div class="card-header" data-background-color="red">
+                                        <h4 class="title">Retificação de Cadastro</h4>
+                                        <p class="category">Atualização - 1/1</p>
+                                    </div>
+                                    <div class="card-content">
+                                        <form id="formRetificacao" action="controle" method="post">
+
+                                            <!-- CAMPOS DA TELA ANTERIOR -->                                            
+
+                                            <div class="row">
+                                                <div class="col-md-4">                                                   
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group label-floating" style="text-align: left;">
+                                                        <label class="control-label">CPF</label>
+                                                        <input id="cpf" style="text-align: center;" type="text" maxlength="14" value="" class="form-control">                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">                                                    
+                                                    <button type="submit" class="btn btn-primary btn-round btn-just-icon">
+                                                        <i class="material-icons">search</i>
+                                                        <div class="ripple-container"></div>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-3">                                                   
+                                                </div>
+                                            </div>                                                   
+                                            <hr>                                                                                       
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="">Gravar</button>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+
+        </div>        
+
     </body>
 
     <!--   Core JS Files   -->
@@ -150,17 +193,36 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
-    
+
     <script type="text/javascript">
-    $(document).ready(function () {
-        if ($('.main-panel > .content').length === 0) {
-            $('.main-panel').css('height', '100%');
+        /* Máscaras ER */
+        function mascara(o, f) {
+            v_obj = o;
+            v_fun = f;
+            setTimeout("execmascara()", 1);
         }
-
-
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initGoogleMaps();
-    });
-</script>
+        function execmascara() {
+            v_obj.value = v_fun(v_obj.value);
+        }
+        function cpf(v) {
+            v = v.replace(/\D/g, "");
+            v = v.replace(/(\d{3})(\d)/, "$1.$2");
+            v = v.replace(/(\d{3})(\d)/, "$1.$2");
+            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            return v;
+        }
+        function id(el) {
+            return document.getElementById(el);
+        }
+        function next(el, next) {
+            if (el.value.length >= el.maxLength)
+                id(next).focus();
+        }
+        window.onload = function () {
+            id('cpf').onkeyup = function () {
+                mascara(this, cpf);
+            };
+        };
+    </script>
 
 </html>

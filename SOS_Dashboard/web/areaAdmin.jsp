@@ -85,6 +85,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="controle?logica=Alteracao&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">cached</i>
+                                <p>Alteração</p>
+                            </a>
+                        </li>                          
+                        <li>
                             <a href="controle?logica=Monitoramento&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Monitoramento</p>

@@ -86,6 +86,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="controle?logica=Alteracao&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">cached</i>
+                                <p>Alteração</p>
+                            </a>
+                        </li>                         
+                        <li>
                             <a href="controle?logica=Monitoramento&nomeUsuario=${sessionScope.admin.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Monitoramento</p>
@@ -124,7 +130,7 @@
                 <div class="content">
 
                     <div class="card wizard-card" data-color="red" id="wizardProfile">
-                        <form id="formCadastro" action="controle" method="get">
+                        <form id="formCadastro" action="controle" method="post">
                             <!--        You can switch " data-color="orange" "  with one of the next bright colors: "blue", "green", "orange", "red", "azure"          -->
 
                             <div class="wizard-header text-center">
