@@ -145,10 +145,41 @@ public class EnfermeiroDAO {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(AuxiliarDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnfermeiroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return enfermeiro;
     }
+    
+    public int atualizarEnfermeiro(Enfermeiro enfermeiro) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE enfermeiro SET CPFE = ?, IdC = ?, IdE = ?, Nascimento = ?, "
+                    + "RG = ?, Nome = ?, Genero = ?, Situacao = ?, Coren = ? WHERE CPFE = ?";
+                    
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, enfermeiro.getCpfe());
+                stmt.setInt(2, enfermeiro.getIdC());
+                stmt.setInt(3, enfermeiro.getIdE());
+                stmt.setString(4, enfermeiro.getNascimento());
+                stmt.setString(5, enfermeiro.getRg());
+                stmt.setString(6, enfermeiro.getNome());
+                stmt.setString(7, enfermeiro.getGenero());
+                stmt.setString(8, enfermeiro.getSituacao());
+                stmt.setString(9, enfermeiro.getNumCoren());
+                stmt.setString(10, enfermeiro.getCpfe());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EnfermeiroDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }    
     
 }

@@ -90,4 +90,28 @@ public class ContatoDAO {
         return contato;
     }
 
+    public int atualizarContato(Contato contato) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE contato SET Tel = ?, Cel = ?, Email = ? "
+                    + "WHERE IdC = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, contato.getTelefone());
+                stmt.setString(2, contato.getCel());
+                stmt.setString(3, contato.getEmail());
+                stmt.setInt(4, contato.getIdC());
+                stmt.execute();
+
+                confirmacao++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ContatoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
+
 }

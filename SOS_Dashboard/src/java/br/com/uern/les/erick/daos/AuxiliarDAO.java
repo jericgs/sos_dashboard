@@ -150,5 +150,36 @@ public class AuxiliarDAO {
 
         return auxiliar;
     }
+    
+    public int atualizarAuxiliar(Auxiliar auxiliar) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE auxiliar SET CPFA = ?, IdC = ?, IdE = ?, Nascimento = ?, "
+                    + "RG = ?, Nome = ?, Genero = ?, Situacao = ?, Coren = ? WHERE CPFA = ?";
+                    
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, auxiliar.getCpfa());
+                stmt.setInt(2, auxiliar.getIdC());
+                stmt.setInt(3, auxiliar.getIdE());
+                stmt.setString(4, auxiliar.getNascimento());
+                stmt.setString(5, auxiliar.getRg());
+                stmt.setString(6, auxiliar.getNome());
+                stmt.setString(7, auxiliar.getGenero());
+                stmt.setString(8, auxiliar.getSituacao());
+                stmt.setString(9, auxiliar.getNumCoren());
+                stmt.setString(10, auxiliar.getCpfa());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AuxiliarDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
 
 }

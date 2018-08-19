@@ -176,4 +176,35 @@ public class MotoristaDAO {
         return motorista;
     }
     
+    public int atualizarMotorista(Motorista motorista) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE motorista SET CNH = ?, IdC = ?, IdE = ?, CPFM = ?, "
+                    + "Nascimento = ?, RG = ?, Nome = ?, Genero = ?, Situacao = ? WHERE CPFM = ?";
+                    
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, motorista.getCnh());
+                stmt.setInt(2, motorista.getIdC());
+                stmt.setInt(3, motorista.getIdE());
+                stmt.setString(4, motorista.getCpfm());
+                stmt.setString(5, motorista.getNascimento());
+                stmt.setString(6, motorista.getRg());
+                stmt.setString(7, motorista.getNome());
+                stmt.setString(8, motorista.getGenero());
+                stmt.setString(9, motorista.getSituacao());
+                stmt.setString(10, motorista.getCpfm());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
+    
 }

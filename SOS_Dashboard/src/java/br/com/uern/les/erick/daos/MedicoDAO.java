@@ -243,5 +243,36 @@ public class MedicoDAO {
 
         return medicoRegulador;
     }
+    
+    public int atualizarMedicoRegulador(MedicoRegulador medicoRegulador) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE medicoregulador SET CPFM = ?, IdC = ?, IdE = ?, CRM = ?, "
+                    + "Nascimento = ?, RG = ?, Nome = ?, Genero = ?, Situacao = ? WHERE CPFM = ?";
+                    
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, medicoRegulador.getCPFM());
+                stmt.setInt(2, medicoRegulador.getIdC());
+                stmt.setInt(3, medicoRegulador.getIdE());
+                stmt.setString(4, medicoRegulador.getCRM());
+                stmt.setString(5, medicoRegulador.getNascimento());
+                stmt.setString(6, medicoRegulador.getRG());
+                stmt.setString(7, medicoRegulador.getNome());
+                stmt.setString(8, medicoRegulador.getGenero());
+                stmt.setString(9, medicoRegulador.getSituacao());
+                stmt.setString(10, medicoRegulador.getCPFM());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
 
 }

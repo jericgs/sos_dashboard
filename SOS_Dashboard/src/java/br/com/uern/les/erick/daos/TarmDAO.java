@@ -162,4 +162,34 @@ public class TarmDAO {
         return tarm;
     }
     
+    public int atualizarTarm(Tarm tarm) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE tarm SET CPFT = ?, IdC = ?, IdE = ?, Nascimento = ?, "
+                    + "RG = ?, Nome = ?, Genero = ?, Situacao = ? WHERE CPFT = ?";
+                    
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, tarm.getCPFT());
+                stmt.setInt(2, tarm.getIdC());
+                stmt.setInt(3, tarm.getIdE());
+                stmt.setString(4, tarm.getNascimento());
+                stmt.setString(5, tarm.getRG());
+                stmt.setString(6, tarm.getNome());
+                stmt.setString(7, tarm.getGenero());
+                stmt.setString(8, tarm.getSituacao());                
+                stmt.setString(9, tarm.getCPFT());
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TarmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
+    
 }
