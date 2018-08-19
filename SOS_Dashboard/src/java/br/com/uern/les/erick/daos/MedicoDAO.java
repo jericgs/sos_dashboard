@@ -40,8 +40,8 @@ public class MedicoDAO {
 
                         medicoRegulador.setCPFM(rs.getString("CPFM"));
                         medicoRegulador.setUsuario(rs.getString("NomeUsuario"));
-                        medicoRegulador.setContato(rs.getInt("IdC"));
-                        medicoRegulador.setEndereco(rs.getInt("IdE"));
+                        medicoRegulador.setIdC(rs.getInt("IdC"));
+                        medicoRegulador.setIdE(rs.getInt("IdE"));
                         medicoRegulador.setCRM(rs.getString("CRM"));
                         medicoRegulador.setNascimento(rs.getString("Nascimento"));
                         medicoRegulador.setRG(rs.getString("RG"));
@@ -93,8 +93,8 @@ public class MedicoDAO {
                         while (resultSet.next()) {
                             medicoRegulador.setCPFM(resultSet.getString("CPFM"));
                             medicoRegulador.setUsuario(resultSet.getString("NomeUsuario"));
-                            medicoRegulador.setContato(resultSet.getInt("IdC"));
-                            medicoRegulador.setEndereco(resultSet.getInt("IdE"));
+                            medicoRegulador.setIdC(resultSet.getInt("IdC"));
+                            medicoRegulador.setIdE(resultSet.getInt("IdE"));
                             medicoRegulador.setCRM(resultSet.getString("CRM"));
                             medicoRegulador.setNascimento(resultSet.getString("Nascimento"));
                             medicoRegulador.setRG(resultSet.getString("RG"));
@@ -128,8 +128,8 @@ public class MedicoDAO {
 
                 stmt.setString(1, medicoRegulador.getCPFM());
                 stmt.setString(2, medicoRegulador.getUsuario());
-                stmt.setInt(3, medicoRegulador.getContato());
-                stmt.setInt(4, medicoRegulador.getEndereco());
+                stmt.setInt(3, medicoRegulador.getIdC());
+                stmt.setInt(4, medicoRegulador.getIdE());
                 stmt.setString(5, medicoRegulador.getCRM());
                 stmt.setString(6, medicoRegulador.getNascimento());
                 stmt.setString(7, medicoRegulador.getRG());
@@ -205,6 +205,43 @@ public class MedicoDAO {
         }
 
         return cpfm;
+    }
+    
+    public MedicoRegulador getMedicoRegulador(String cpf) {
+        MedicoRegulador medicoRegulador = null;
+
+        try {
+
+            String sql = "SELECT * FROM medicoregulador WHERE CPFM = ?";
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {      
+                    
+                    medicoRegulador = new MedicoRegulador();
+                    medicoRegulador.setCPFM(rs.getString("CPFM"));
+                    medicoRegulador.setUsuario(rs.getString("NomeUsuario"));
+                    medicoRegulador.setIdC(rs.getInt("IdC"));
+                    medicoRegulador.setIdE(rs.getInt("IdE"));
+                    medicoRegulador.setCRM(rs.getString("CRM"));
+                    medicoRegulador.setNascimento(rs.getString("Nascimento"));
+                    medicoRegulador.setRG(rs.getString("RG"));
+                    medicoRegulador.setNome(rs.getString("Nome"));
+                    medicoRegulador.setGenero(rs.getString("Genero"));
+                    medicoRegulador.setSituacao(rs.getString("Situacao"));                    
+                    
+                }
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return medicoRegulador;
     }
 
 }

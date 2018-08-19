@@ -38,8 +38,8 @@ public class TarmDAO {
                 Tarm tarmDados = new Tarm();
                 tarmDados.setCPFT(rs.getString("CPFT"));
                 tarmDados.setUsuario(rs.getString("NomeUsuario"));
-                tarmDados.setContato(rs.getInt("IdC"));
-                tarmDados.setEndereco(rs.getInt("IdE"));
+                tarmDados.setIdC(rs.getInt("IdC"));
+                tarmDados.setIdE(rs.getInt("IdE"));
                 tarmDados.setNascimento(rs.getString("Nascimento"));
                 tarmDados.setRG(rs.getString("RG"));
                 tarmDados.setNome(rs.getString("Nome"));
@@ -72,8 +72,8 @@ public class TarmDAO {
 
                 stmt.setString(1, tarm.getCPFT());
                 stmt.setString(2, tarm.getUsuario());
-                stmt.setInt(3, tarm.getContato());
-                stmt.setInt(4, tarm.getEndereco());                
+                stmt.setInt(3, tarm.getIdC());
+                stmt.setInt(4, tarm.getIdE());                
                 stmt.setString(5, tarm.getNascimento());
                 stmt.setString(6, tarm.getRG());
                 stmt.setString(7, tarm.getNome());
@@ -124,6 +124,42 @@ public class TarmDAO {
         }
 
         return cpfValidacao;
-    }    
+    }
+    
+    public Tarm getTarm(String cpf) {
+        Tarm tarm = null;
+
+        try {
+
+            String sql = "SELECT * FROM tarm WHERE CPFT = ?";
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {      
+                    
+                    tarm = new Tarm();
+                    tarm.setCPFT(rs.getString("CPFT")); 
+                    tarm.setUsuario(rs.getString("NomeUsuario"));
+                    tarm.setIdC(rs.getInt("IdC"));
+                    tarm.setIdE(rs.getInt("IdE"));                    
+                    tarm.setNascimento(rs.getString("Nascimento"));
+                    tarm.setRG(rs.getString("RG"));
+                    tarm.setNome(rs.getString("Nome"));
+                    tarm.setGenero(rs.getString("Genero"));
+                    tarm.setSituacao(rs.getString("Situacao"));                    
+                    
+                }
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TarmDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return tarm;
+    }
     
 }

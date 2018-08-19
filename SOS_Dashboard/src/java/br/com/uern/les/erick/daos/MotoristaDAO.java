@@ -140,4 +140,40 @@ public class MotoristaDAO {
         return cnh;
     }
     
+    public Motorista getMotorista(String cpf) {
+        Motorista motorista = null;
+
+        try {
+
+            String sql = "SELECT * FROM motorista WHERE CPFM = ?";
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {      
+                    
+                    motorista = new Motorista();
+                    motorista.setCnh(rs.getString("CNH"));                                       
+                    motorista.setIdC(rs.getInt("IdC"));
+                    motorista.setIdE(rs.getInt("IdE"));
+                    motorista.setCpfm(rs.getString("CPFM"));                    
+                    motorista.setNascimento(rs.getString("Nascimento"));
+                    motorista.setRg(rs.getString("RG"));
+                    motorista.setNome(rs.getString("Nome"));
+                    motorista.setGenero(rs.getString("Genero"));
+                    motorista.setSituacao(rs.getString("Situacao"));                    
+                    
+                }
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MotoristaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return motorista;
+    }
+    
 }

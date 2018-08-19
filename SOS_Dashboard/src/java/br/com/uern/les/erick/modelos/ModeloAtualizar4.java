@@ -9,48 +9,52 @@ package br.com.uern.les.erick.modelos;
  *
  * @author jerick.gs
  */
-public class Tarm {
+public class ModeloAtualizar4 extends Endereco{
     
-    private String CPFT;
-    private String usuario;
-    private int IdC;
-    private int IdE;
+    private String cpf;    
+    private int idC;
+    private int idE;
     private String nascimento;
     private String RG;
     private String nome;
     private String genero;
     private String situacao;
+    private String cargo;
+    
+    private String telefone;
+    private String cel;
+    private String email;
 
-    public String getCPFT() {
-        return CPFT;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setCPFT(String CPFT) {
-        this.CPFT = CPFT;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }        
+
+    public String getCpf() {
+        return cpf;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public int getIdC() {
-        return IdC;
+        return idC;
     }
 
-    public void setIdC(int contato) {
-        this.IdC = contato;
+    public void setIdC(int idC) {
+        this.idC = idC;
     }
 
     public int getIdE() {
-        return IdE;
+        return idE;
     }
 
-    public void setIdE(int endereco) {
-        this.IdE = endereco;
+    public void setIdE(int idE) {
+        this.idE = idE;
     }
 
     public String getNascimento() {
@@ -91,6 +95,30 @@ public class Tarm {
 
     public void setSituacao(String situacao) {
         this.situacao = situacao;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCel() {
+        return cel;
+    }
+
+    public void setCel(String cel) {
+        this.cel = cel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
             
 }

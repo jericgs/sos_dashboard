@@ -24,8 +24,8 @@ public class AuxiliarDAO {
     public AuxiliarDAO(Connection connection) {
         this.connection = connection;
     }
-    
-    public String inserindoAuxiliar(Auxiliar auxiliar){
+
+    public String inserindoAuxiliar(Auxiliar auxiliar) {
         String idA = null;
 
         try {
@@ -44,21 +44,21 @@ public class AuxiliarDAO {
                 stmt.setString(7, auxiliar.getGenero());
                 stmt.setString(8, auxiliar.getSituacao());
                 stmt.setString(9, auxiliar.getNumCoren());
-                
+
                 stmt.execute();
-                
+
                 String sql2 = "SELECT CPFA FROM auxiliar WHERE CPFA = ?";
-                
+
                 PreparedStatement ps = this.connection.prepareStatement(sql2);
                 ps.setString(1, auxiliar.getCpfa());
-                
+
                 ResultSet rs = ps.executeQuery();
-                
+
                 if (rs.next()) {
                     idA = rs.getString("CPFA");
                 }
 
-            }                        
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(AuxiliarDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,7 +66,7 @@ public class AuxiliarDAO {
 
         return idA;
     }
-    
+
     public String verificadoCpf(String cpf) {
         String cpfValidacao = null;
 
@@ -90,7 +90,7 @@ public class AuxiliarDAO {
 
         return cpfValidacao;
     }
-    
+
     public String getCpfaPadrao() {
         String cpfa = null;
 
@@ -98,7 +98,7 @@ public class AuxiliarDAO {
 
             String sql = "SELECT CPFA FROM auxiliar";
 
-            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {                
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
 
                 ResultSet rs = stmt.executeQuery();
 
@@ -113,6 +113,42 @@ public class AuxiliarDAO {
         }
 
         return cpfa;
+    }
+
+    public Auxiliar getAuxiliar(String cpf) {
+        Auxiliar auxiliar = null;
+
+        try {
+
+            String sql = "SELECT * FROM auxiliar WHERE CPFA = ?";
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {      
+                    
+                    auxiliar = new Auxiliar();
+                    auxiliar.setCpfa(rs.getString("CPFA"));
+                    auxiliar.setIdC(rs.getInt("IdC"));
+                    auxiliar.setIdE(rs.getInt("IdE"));
+                    auxiliar.setNascimento(rs.getString("Nascimento"));
+                    auxiliar.setRg(rs.getString("RG"));
+                    auxiliar.setNome(rs.getString("Nome"));
+                    auxiliar.setGenero(rs.getString("Genero"));
+                    auxiliar.setSituacao(rs.getString("Situacao"));
+                    auxiliar.setNumCoren(rs.getString("Coren"));
+                    
+                }
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AuxiliarDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return auxiliar;
     }
 
 }

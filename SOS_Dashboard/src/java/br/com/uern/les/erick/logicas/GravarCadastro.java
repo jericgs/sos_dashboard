@@ -259,8 +259,8 @@ public class GravarCadastro implements Logica {
                 MedicoRegulador medicoRegulador = new MedicoRegulador();
                 medicoRegulador.setCPFM(cpf);
                 medicoRegulador.setUsuario(idUsuario);
-                medicoRegulador.setContato(idC);
-                medicoRegulador.setEndereco(idE);
+                medicoRegulador.setIdC(idC);
+                medicoRegulador.setIdE(idE);
                 medicoRegulador.setCRM(estadoCrm);
                 medicoRegulador.setNascimento(nascimento);
                 medicoRegulador.setRG(rg);
@@ -406,8 +406,8 @@ public class GravarCadastro implements Logica {
                 Tarm tarm = new Tarm();
                 tarm.setCPFT(cpf);
                 tarm.setUsuario(idUsuario);
-                tarm.setContato(idC);
-                tarm.setEndereco(idE);
+                tarm.setIdC(idC);
+                tarm.setIdE(idE);
                 tarm.setNascimento(nascimento);
                 tarm.setRG(rg);
                 tarm.setNome(nome);

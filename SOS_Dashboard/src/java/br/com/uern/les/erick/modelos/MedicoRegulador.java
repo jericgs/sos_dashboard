@@ -12,8 +12,8 @@ package br.com.uern.les.erick.modelos;
 public class MedicoRegulador {
     private String CPFM;
     private String usuario;
-    private int contato;
-    private int endereco;
+    private int idC;
+    private int idE;
     private String CRM;
     private String nascimento;
     private String RG;
@@ -37,20 +37,20 @@ public class MedicoRegulador {
         this.usuario = usuario;
     }
 
-    public int getContato() {
-        return contato;
+    public int getIdC() {
+        return idC;
     }
 
-    public void setContato(int contato) {
-        this.contato = contato;
+    public void setIdC(int contato) {
+        this.idC = contato;
     }
 
-    public int getEndereco() {
-        return endereco;
+    public int getIdE() {
+        return idE;
     }
 
-    public void setEndereco(int endereco) {
-        this.endereco = endereco;
+    public void setIdE(int endereco) {
+        this.idE = endereco;
     }
 
     public String getCRM() {

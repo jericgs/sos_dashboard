@@ -115,4 +115,40 @@ public class EnfermeiroDAO {
         return cpfe;
     }
     
+    public Enfermeiro getEnfermeiro(String cpf) {
+        Enfermeiro enfermeiro = null;
+
+        try {
+
+            String sql = "SELECT * FROM enfermeiro WHERE CPFE = ?";
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, cpf);
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while (rs.next()) {      
+                    
+                    enfermeiro = new Enfermeiro();
+                    enfermeiro.setCpfe(rs.getString("CPFE"));
+                    enfermeiro.setIdC(rs.getInt("IdC"));
+                    enfermeiro.setIdE(rs.getInt("IdE"));
+                    enfermeiro.setNascimento(rs.getString("Nascimento"));
+                    enfermeiro.setRg(rs.getString("RG"));
+                    enfermeiro.setNome(rs.getString("Nome"));
+                    enfermeiro.setGenero(rs.getString("Genero"));
+                    enfermeiro.setSituacao(rs.getString("Situacao"));
+                    enfermeiro.setNumCoren(rs.getString("Coren"));
+                    
+                }
+                
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AuxiliarDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return enfermeiro;
+    }
+    
 }
