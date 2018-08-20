@@ -244,7 +244,7 @@ public class MedicoDAO {
         return medicoRegulador;
     }
     
-    public int atualizarMedicoRegulador(MedicoRegulador medicoRegulador) {
+    public int atualizarMedicoRegulador(MedicoRegulador medicoRegulador, String cpf) {
 
         int confirmacao = 0;
         try {
@@ -263,7 +263,7 @@ public class MedicoDAO {
                 stmt.setString(7, medicoRegulador.getNome());
                 stmt.setString(8, medicoRegulador.getGenero());
                 stmt.setString(9, medicoRegulador.getSituacao());
-                stmt.setString(10, medicoRegulador.getCPFM());
+                stmt.setString(10, cpf);
                 stmt.execute();
 
                 confirmacao++;

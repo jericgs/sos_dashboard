@@ -176,7 +176,7 @@ public class MotoristaDAO {
         return motorista;
     }
     
-    public int atualizarMotorista(Motorista motorista) {
+    public int atualizarMotorista(Motorista motorista, String cpf) {
 
         int confirmacao = 0;
         try {
@@ -195,7 +195,7 @@ public class MotoristaDAO {
                 stmt.setString(7, motorista.getNome());
                 stmt.setString(8, motorista.getGenero());
                 stmt.setString(9, motorista.getSituacao());
-                stmt.setString(10, motorista.getCpfm());
+                stmt.setString(10, cpf);
                 stmt.execute();
 
                 confirmacao++;

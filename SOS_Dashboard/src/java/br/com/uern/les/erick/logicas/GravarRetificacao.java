@@ -38,6 +38,7 @@ public class GravarRetificacao implements Logica {
         Connection connection = (Connection) req.getAttribute("conexao");
 
         //CAMPOS DE TELA
+        String cpf = req.getParameter("cpf");
         String cpfI = req.getParameter("cpfI");
         String rg = req.getParameter("rg");
         String nascimento = req.getParameter("nascimento");
@@ -107,7 +108,7 @@ public class GravarRetificacao implements Logica {
 
             //INSTÂNCIA AUXILIARDAO
             AuxiliarDAO auxiliarDAO = new AuxiliarDAO(connection);
-            int confirmacaoAuxiliar = auxiliarDAO.atualizarAuxiliar(auxiliar);
+            int confirmacaoAuxiliar = auxiliarDAO.atualizarAuxiliar(auxiliar, cpf);
 
             if ((confirmacaoContato != 0) && (confirmacaoEndereco != 0) && (confirmacaoAuxiliar != 0)) {
 
@@ -154,7 +155,7 @@ public class GravarRetificacao implements Logica {
 
             //INSTÂNCIA ENFERMEIRODAO
             EnfermeiroDAO enfermeiroDAO = new EnfermeiroDAO(connection);
-            int confirmacaoEnfermeiro = enfermeiroDAO.atualizarEnfermeiro(enfermeiro);
+            int confirmacaoEnfermeiro = enfermeiroDAO.atualizarEnfermeiro(enfermeiro, cpf);
 
             if ((confirmacaoContato != 0) && (confirmacaoEndereco != 0) && (confirmacaoEnfermeiro != 0)) {
 
@@ -205,7 +206,7 @@ public class GravarRetificacao implements Logica {
 
             //INSTÂNCIA MEDICODAO
             MedicoDAO medicoDAO = new MedicoDAO(connection);
-            int confirmacaoMedico = medicoDAO.atualizarMedicoRegulador(medicoRegulador);
+            int confirmacaoMedico = medicoDAO.atualizarMedicoRegulador(medicoRegulador, cpf);
 
             if ((confirmacaoContato != 0) && (confirmacaoEndereco != 0) && (confirmacaoMedico != 0)) {
 
@@ -252,7 +253,7 @@ public class GravarRetificacao implements Logica {
 
             //INSTÂNCIA MOTORISTADAO
             MotoristaDAO motoristaDAO = new MotoristaDAO(connection);
-            int confirmacaoMotorista = motoristaDAO.atualizarMotorista(motorista);
+            int confirmacaoMotorista = motoristaDAO.atualizarMotorista(motorista, cpf);
 
             if ((confirmacaoContato != 0) && (confirmacaoEndereco != 0) && (confirmacaoMotorista != 0)) {
 
@@ -295,7 +296,7 @@ public class GravarRetificacao implements Logica {
 
             //INSTÂNCIA TARMDAO
             TarmDAO tarmDAO = new TarmDAO(connection);
-            int confirmacaoTarm = tarmDAO.atualizarTarm(tarm);
+            int confirmacaoTarm = tarmDAO.atualizarTarm(tarm, cpf);
 
             if ((confirmacaoContato != 0) && (confirmacaoEndereco != 0) && (confirmacaoTarm != 0)) {
 

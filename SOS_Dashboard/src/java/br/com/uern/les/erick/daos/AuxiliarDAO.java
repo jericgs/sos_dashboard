@@ -151,7 +151,7 @@ public class AuxiliarDAO {
         return auxiliar;
     }
     
-    public int atualizarAuxiliar(Auxiliar auxiliar) {
+    public int atualizarAuxiliar(Auxiliar auxiliar, String cpf) {
 
         int confirmacao = 0;
         try {
@@ -170,7 +170,7 @@ public class AuxiliarDAO {
                 stmt.setString(7, auxiliar.getGenero());
                 stmt.setString(8, auxiliar.getSituacao());
                 stmt.setString(9, auxiliar.getNumCoren());
-                stmt.setString(10, auxiliar.getCpfa());
+                stmt.setString(10, cpf);
                 stmt.execute();
 
                 confirmacao++;

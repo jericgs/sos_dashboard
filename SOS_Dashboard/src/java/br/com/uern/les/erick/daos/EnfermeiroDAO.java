@@ -151,7 +151,7 @@ public class EnfermeiroDAO {
         return enfermeiro;
     }
     
-    public int atualizarEnfermeiro(Enfermeiro enfermeiro) {
+    public int atualizarEnfermeiro(Enfermeiro enfermeiro, String cpf) {
 
         int confirmacao = 0;
         try {
@@ -170,7 +170,7 @@ public class EnfermeiroDAO {
                 stmt.setString(7, enfermeiro.getGenero());
                 stmt.setString(8, enfermeiro.getSituacao());
                 stmt.setString(9, enfermeiro.getNumCoren());
-                stmt.setString(10, enfermeiro.getCpfe());
+                stmt.setString(10, cpf);
                 stmt.execute();
 
                 confirmacao++;

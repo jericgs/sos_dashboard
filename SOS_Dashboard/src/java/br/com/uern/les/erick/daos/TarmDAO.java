@@ -162,7 +162,7 @@ public class TarmDAO {
         return tarm;
     }
     
-    public int atualizarTarm(Tarm tarm) {
+    public int atualizarTarm(Tarm tarm, String cpf) {
 
         int confirmacao = 0;
         try {
@@ -180,7 +180,7 @@ public class TarmDAO {
                 stmt.setString(6, tarm.getNome());
                 stmt.setString(7, tarm.getGenero());
                 stmt.setString(8, tarm.getSituacao());                
-                stmt.setString(9, tarm.getCPFT());
+                stmt.setString(9, cpf);
                 stmt.execute();
 
                 confirmacao++;
