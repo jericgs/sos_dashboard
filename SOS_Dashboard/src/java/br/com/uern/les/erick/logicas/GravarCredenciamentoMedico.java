@@ -65,33 +65,23 @@ public class GravarCredenciamentoMedico implements Logica {
             ModeloEmail modeloEmail = new ModeloEmail();
             StringBuilder texto = modeloEmail.modelo3(medicoRegulador.getNome(), usuarioBuscado.getNomeUsuario(), usuarioBuscado.getSenha());
 
-            //ENVIANDO MENSAGEM
-            enviar.setMsg(texto.toString());
-            boolean enviou = enviar.enviarGmail();
+            new Thread() {
+                @Override
+                public void run() {
+                    //ENVIANDO MENSAGEM
+                    enviar.setMsg(texto.toString());
+                    boolean enviou = enviar.enviarGmail();
+                }
+            }.start();
 
-            if (enviou) {
+            //PARAMETROS PARA O ALERTA
+            Alerta alerta = new Alerta();
+            alerta.setTipoAlerta("success");
+            alerta.setMsnAlerta("Gravado com Sucesso!");
+            req.setAttribute("alerta", alerta);
 
-                //PARAMETROS PARA O ALERTA
-                Alerta alerta = new Alerta();
-                alerta.setTipoAlerta("success");
-                alerta.setMsnAlerta("Gravado com Sucesso!");
-                req.setAttribute("alerta", alerta);
-
-                //SETANDO PÁGINA
-                pagina = "contaMedico.jsp";
-
-            } else {
-
-                //PARAMETROS PARA O ALERTA
-                Alerta alerta = new Alerta();
-                alerta.setTipoAlerta("error");
-                alerta.setMsnAlerta("Erro ao Gravar!");
-                req.setAttribute("alerta", alerta);
-
-                //SETANDO PÁGINA
-                pagina = "contaMedico.jsp";
-
-            }
+            //SETANDO PÁGINA
+            pagina = "contaMedico.jsp";
 
         } else {
 
