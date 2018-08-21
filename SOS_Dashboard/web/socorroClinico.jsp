@@ -379,7 +379,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Tempo para Atendimento</label>                                                        
-                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();aplicandoDados();getConhecimento()" class="form-control selectpicker" data-style="select-with-transition" data-size="3">                                                                                                                                                                                    
+                                                        <select id="comboboxTempo" title="Nenhum" name="tempo" onChange="setSuport();aplicandoDados();getConhecimento()" class="form-control selectpicker" data-style="select-with-transition" data-size="3">                                                                                                                                                                                    
                                                             <option name="15min" value="1">Até 15 min</option>                                                            
                                                             <option name="40min" value="2">Até 40 min</option>
                                                             <option name="1h/M" value="4">1h ou Mais</option>
@@ -544,15 +544,14 @@
                                                                      
     </script>   
     
-<!--    <script>
+    <script>
         $("#formRegulacao").submit(function () {
-            if ($("#mensagem").val() === "" || $("#comboboxGravidade").val() === "" || $("#comboboxSocial").val() === "" ||
-                $("#comboboxRecursos").val() === "" || $("#comboboxTempo").val() === "" || $("#comboboxSuporte").val() === "") {
-                swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
+            if ($("#comboboxTempo").val() === "") {
+                swal({type: 'info', title: 'Oops...', text: 'Adicione o tempo de atendimento', showConfirmButton: false, timer: 2000});
                 return false;
             }
         });
-    </script>-->
+    </script>
     
     <script>        
         function limpandoCampo(id){                         

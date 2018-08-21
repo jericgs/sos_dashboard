@@ -10,6 +10,7 @@ import br.com.uern.les.erick.daos.MedicoDAO;
 import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.RegulacaoDAO;
 import br.com.uern.les.erick.modelos.Chamado;
+import br.com.uern.les.erick.modelos.InformacaoDeTempo;
 import br.com.uern.les.erick.modelos.ListaAndamento;
 import br.com.uern.les.erick.modelos.MedicoRegulador;
 import br.com.uern.les.erick.modelos.Paciente;
@@ -41,10 +42,15 @@ public class Andamento implements Logica {
 
         MedicoDAO medicoDAO = new MedicoDAO(connection);
         MedicoRegulador medicoRegulador = medicoDAO.getDadosMedicoRegulador(nomeUsuario);
+        
+        //INTÂNCIANDO INFORMAÇÃO
+        InformacaoDeTempo informacaoDeTempo = new InformacaoDeTempo();        
+        String dataHoje = informacaoDeTempo.alterarData(0);
+        String dataOntem = informacaoDeTempo.alterarData(-1);
 
         //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
         ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-        List<Chamado> chamadosMedico = chamadoDAO.getListaDeChamados(medicoRegulador.getCPFM());
+        List<Chamado> chamadosMedico = chamadoDAO.getListaDeChamados(medicoRegulador.getCPFM(), dataOntem, dataHoje);
 
         for (int i = 0; i < chamadosMedico.size(); i++) {
 

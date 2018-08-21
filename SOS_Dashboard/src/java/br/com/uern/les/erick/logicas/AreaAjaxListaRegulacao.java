@@ -10,6 +10,7 @@ import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.RegulacaoDAO;
 import br.com.uern.les.erick.modelos.Chamado;
 import br.com.uern.les.erick.modelos.ChamadoEspera;
+import br.com.uern.les.erick.modelos.InformacaoDeTempo;
 import br.com.uern.les.erick.modelos.Paciente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Connection;
@@ -35,9 +36,15 @@ public class AreaAjaxListaRegulacao implements LogicaAjax {
         //CONEXÃO COM BD
         Connection connection = (Connection) req.getAttribute("conexao");
 
+        //INTÂNCIANDO INFORMAÇÃO
+        InformacaoDeTempo informacaoDeTempo = new InformacaoDeTempo();        
+        String dataHoje = informacaoDeTempo.alterarData(0);
+        String dataOntem = informacaoDeTempo.alterarData(-1);
+        
+        
         //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
         ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-        List<Chamado> chamadosMedico = chamadoDAO.getListaDeChamados(cpfm);
+        List<Chamado> chamadosMedico = chamadoDAO.getListaDeChamados(cpfm, dataOntem, dataHoje);
 
         for (int i = 0; i < chamadosMedico.size(); i++) {
 

@@ -215,16 +215,18 @@ public class ChamadoDAO {
 
     }
 
-    public List<Chamado> getListaDeChamados(String cpfm) {
+    public List<Chamado> getListaDeChamados(String cpfm, String dataOntem, String dataHoje) {
 
         List<Chamado> lisChamadosDoMedico = new ArrayList<>();
 
         try {
-            String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFM = ? "
-                    + "ORDER BY IdRC ASC";
+            String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFM = ? AND "
+                    + "(DataDeRegistro = ? OR DataDeRegistro = ?) ORDER BY IdRC ASC";
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
-                stmt.setString(1, cpfm);                                                
+                stmt.setString(1, cpfm);
+                stmt.setString(2, dataOntem);
+                stmt.setString(3, dataHoje);
                 
                 ResultSet rs = stmt.executeQuery();
                 
@@ -279,16 +281,19 @@ public class ChamadoDAO {
         return chamadoMedico;
     }
     
-    public List<Chamado> getListaDeChamadosTarm(String cpft) {
+    public List<Chamado> getListaDeChamadosTarm(String cpft, String dataOntem, String dataHoje) {
 
         List<Chamado> lisChamadosDoTarm = new ArrayList<>();
 
         try {
-            String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFT = ? "
-                    + "ORDER BY IdRC ASC";
+            
+            String sql = "SELECT IdRC, IdP, Hora, Motivo, Queixa FROM registrodechamado WHERE CPFT = ? AND "
+                    + "(DataDeRegistro = ? OR DataDeRegistro = ?) ORDER BY IdRC ASC";                        
 
             try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
-                stmt.setString(1, cpft);                                                
+                stmt.setString(1, cpft);
+                stmt.setString(2, dataOntem);
+                stmt.setString(3, dataHoje);
                 
                 ResultSet rs = stmt.executeQuery();
                 

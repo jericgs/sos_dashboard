@@ -10,6 +10,7 @@ import br.com.uern.les.erick.daos.PacienteDAO;
 import br.com.uern.les.erick.daos.RegulacaoDAO;
 import br.com.uern.les.erick.daos.TarmDAO;
 import br.com.uern.les.erick.modelos.Chamado;
+import br.com.uern.les.erick.modelos.InformacaoDeTempo;
 import br.com.uern.les.erick.modelos.ListaAndamento;
 import br.com.uern.les.erick.modelos.Paciente;
 import br.com.uern.les.erick.modelos.Regulacao;
@@ -44,10 +45,15 @@ public class Encaminhamento implements Logica {
         //INSTÂNCIANDO TARMDAO
         TarmDAO tarmDAO = new TarmDAO(connection);
         Tarm tarm = tarmDAO.getDadosTarm(nomeUsuario);
+        
+        //INTÂNCIANDO INFORMAÇÃO
+        InformacaoDeTempo informacaoDeTempo = new InformacaoDeTempo();        
+        String dataHoje = informacaoDeTempo.alterarData(0);
+        String dataOntem = informacaoDeTempo.alterarData(-1);
 
         //INSTÂNCIANDO CHAMADODAO E REALIZANDO BUSCA
         ChamadoDAO chamadoDAO = new ChamadoDAO(connection);
-        List<Chamado> chamadosTarm = chamadoDAO.getListaDeChamadosTarm(tarm.getCPFT());
+        List<Chamado> chamadosTarm = chamadoDAO.getListaDeChamadosTarm(tarm.getCPFT(), dataOntem, dataHoje);
 
         for (int i = 0; i < chamadosTarm.size(); i++) {
 
