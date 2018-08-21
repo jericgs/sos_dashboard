@@ -84,6 +84,12 @@
                                 <p>Andamento</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                                <i class="material-icons">settings</i>
+                                <p>Conta</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

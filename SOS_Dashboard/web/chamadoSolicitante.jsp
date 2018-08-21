@@ -19,6 +19,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
         <!--  Material Dashboard CSS -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
@@ -89,6 +90,12 @@
                                 <p>Mapa</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
+                                <i class="material-icons">settings</i>
+                                <p>Conta</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -121,7 +128,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div>
-                                <div class="card">
+                                <div class="card wizard-card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Chamado</h4>
                                         <p class="category">Solicitante - 1/2</p>
@@ -222,11 +229,16 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material.min.js" type="text/javascript"></script>
-    <script src="Resources/node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
 
-    <!-- JS Select -->        
-    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-material-design.min.js" type="text/javascript"></script>
+    <!-- JS Select -->    
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-selectpicker.js" type="text/javascript"></script>
+
+    <!--  Plugin for the Wizard -->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/paper-bootstrap-wizard.js" type="text/javascript"></script>
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/-->
+    <script charset="UTF-8" src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.validate.min.js" type="text/javascript"></script>
 
     <!--  Charts Plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
@@ -366,15 +378,6 @@
                 mascara(this, mtel);
             };
         };
-    </script>
-
-    <script>
-        $("#formSolicitante").submit(function () {
-            if ($("#telefone").val() === "" || $("#solicitante").val() === "" || $("#combobox").val() === "") {
-                swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
-                return false;
-            }
-        });
     </script>
 
     <!-- Primeiro POG (Não consegui usar jax)-->

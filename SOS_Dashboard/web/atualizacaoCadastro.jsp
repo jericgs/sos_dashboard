@@ -97,6 +97,12 @@
                                 <p>Monitoramento</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.admin.nomeUsuario}">
+                                <i class="material-icons">settings</i>
+                                <p>Conta</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -132,7 +138,7 @@
                                 <div class="card wizard-card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Retificação de Cadastro</h4>
-                                        <p class="category" style="text-align: left">Atualização - 1/1</p>
+                                        <p class="category">Atualização - 1/1</p>
                                     </div>
                                     <div class="card-content">
                                         <form id="formRetificacao" action="controle" method="post">                                                                                        

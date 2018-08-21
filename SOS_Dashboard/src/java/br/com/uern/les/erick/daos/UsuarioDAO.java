@@ -129,7 +129,7 @@ public class UsuarioDAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return nomeUsuario;                
+        return nomeUsuario;
     }
 
     public List<Usuario> getUsuario() {
@@ -215,5 +215,59 @@ public class UsuarioDAO {
 
         return usuario;
     }
-        
+
+    public Usuario getUsuario(String nomeUsuario) {
+
+        Usuario usuario = null;
+
+        try {
+
+            String sql = "SELECT * FROM usuario WHERE NomeUsuario = ?";
+
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql);) {
+                stmt.setString(1, nomeUsuario);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    // criando o objeto Usuario
+                    usuario = new Usuario();
+                    usuario.setNomeUsuario(rs.getString("NomeUsuario"));
+                    usuario.setSenha(rs.getString("Senha"));
+                    usuario.setTipoDeUsuario(rs.getString("TipoUsuario"));
+                    usuario.setStatus(rs.getString("Status"));
+                   
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return usuario;
+    }
+
+    public int atualizarCredencial(Usuario usuario, String antigoUsuario) {
+
+        int confirmacao = 0;
+        try {
+
+            String sql = "UPDATE usuario SET NomeUsuario = ?, Senha = ? WHERE NomeUsuario = ?";                    
+            
+            try (PreparedStatement stmt = this.connection.prepareStatement(sql)) {
+                stmt.setString(1, usuario.getNomeUsuario());
+                stmt.setString(2, usuario.getSenha());
+                stmt.setString(3, antigoUsuario);
+                stmt.execute();
+
+                confirmacao++;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return confirmacao;
+    }
+    
 }

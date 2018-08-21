@@ -11,7 +11,7 @@
 
     <head>
 
-        <title>TARM - Andamento</title>
+        <title>Tarm - Andamento</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -89,6 +89,12 @@
                             <a href="controle?logica=Mapa&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">location_on</i>
                                 <p>Mapa</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
+                                <i class="material-icons">settings</i>
+                                <p>Conta</p>
                             </a>
                         </li>
                     </ul>

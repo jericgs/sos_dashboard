@@ -83,6 +83,12 @@
                                 <p>Andamento</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                                <i class="material-icons">settings</i>
+                                <p>Conta</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -118,7 +124,7 @@
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Regulação</h4>
-                                        <p class="category">Paciente - 2/N</p>
+                                        <p class="category">Paciente - 2/2</p>
                                     </div>
                                     <div class="card-content">
                                         <form id="formRegulacao" action="controle" method="post">

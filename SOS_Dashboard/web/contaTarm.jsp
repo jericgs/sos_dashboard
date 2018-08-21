@@ -1,6 +1,6 @@
 <%-- 
-    Document   : andamento
-    Created on : 26/07/2018, 14:36:35
+    Document   : conta
+    Created on : 20/08/2018, 13:44:46
     Author     : jerick.gs
 --%>
 
@@ -11,7 +11,7 @@
 
     <head>
 
-        <title>Médico - Andamento</title>
+        <title>Tarm - Conta</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -20,7 +20,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">                
-
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
         <!--  Material Dashboard CSS    -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" />
@@ -48,7 +48,6 @@
         </c:if>
 
         <div class="wrapper">
-
             <div class="sidebar" data-color="red" data-image="Resources/imagens/body/sidebar.png">
                 <!-- Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
     
@@ -68,25 +67,31 @@
                 <div class="sidebar-wrapper">
                     <ul class="nav">
                         <li>
-                            <a href="./areaMedico.jsp">
+                            <a href="./areaTarm.jsp">
                                 <i class="material-icons">dashboard</i>
                                 <p>Painel</p>
                             </a>
                         </li>                                                
                         <li>
-                            <a href="controle?logica=ListaRegulacoes&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                            <a href="controle?logica=ChamadoSolicitante&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">library_books</i>
-                                <p>Regulações</p>
+                                <p>Chamado</p>
                             </a>
                         </li>
-                        <li class="active">
-                            <a href="controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                        <li>
+                            <a href="controle?logica=Encaminhamento&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Andamento</p>
                             </a>
                         </li>
                         <li>
-                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                            <a href="controle?logica=Mapa&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
+                                <i class="material-icons">location_on</i>
+                                <p>Mapa</p>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                 <i class="material-icons">settings</i>
                                 <p>Conta</p>
                             </a>
@@ -104,12 +109,12 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand"> Ocorrências em Andamento </a>
+                            <a class="navbar-brand"> Configurações de Conta </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">                                                        
                                 <li>
-                                    <a href="controle?logica=Logout&status=${sessionScope.status}&nomeUsuario=${sessionScope.medico.nomeUsuario}">
+                                    <a href="controle?logica=Logout&status=${sessionScope.status}&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
                                         <i class="material-icons">exit_to_app</i>
                                         <p class="hidden-lg hidden-md">Sair</p>
                                     </a>                                
@@ -120,45 +125,50 @@
                     </div>
                 </nav>
                 <div class="content">
-                    <div class="container-fluid">                        
+                    <div class="container-fluid">
                         <div class="row">
                             <div>
-                                <div class="card">
+                                <div class="card wizard-card">
                                     <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Gerência de Ações</h4>                                       
+                                        <h4 class="title">Alteraçao de Credencial</h4>
+                                        <p class="category">Atualização - 1/1</p>
                                     </div>
                                     <div class="card-content">
-                                        <div class="tab-content">
-                                            <table style="border-collapse: collapse;" class="table">
-                                                <tbody>
-                                                    <!-- percorre contatos montando as linhas da tabela -->
-                                                    <c:forEach var="dadosAndamento" items="${sessionScope.dadosAndamento}">               
-                                                        <tr>                                                    
-                                                            <td>${dadosAndamento.idR} - ${dadosAndamento.nome}</td>
-                                                            <td class="lista-margem" style="text-align: right;">
-
-                                                                <button onClick="javascript:window.location = 'controle?logica=SinaisVitais&idR=${dadosAndamento.idR}&nomePaciente=${dadosAndamento.nome}&idadePaciente=${dadosAndamento.idade}'" type="button" rel="tooltip" title="Add/atualizar os Sinais Vitais" class="btn btn-info btn-simple btn-xs">
-                                                                    <i class="material-icons">loupe</i>
-                                                                </button>
-                                                                <button onClick="javascript:window.location = 'controle?logica=ArquivoSinaisVitais&idR=${dadosAndamento.idR}'" type="button" rel="tooltip" title="Arquivar" class="btn btn-success btn-simple btn-xs">
-                                                                    <i class="material-icons">move_to_inbox</i>
-                                                                </button>
-
-                                                            </td>
-                                                        </tr>   
-                                                    </c:forEach>                                                                                                                                                                                           
-                                                </tbody>
-                                            </table>                                        
-                                        </div>
+                                        <form id="formCredencial" action="controle" method="post">
+                                            
+                                            <!-- CAMPOS DA TELA ANTERIOR -->
+                                            <input type="hidden" name="nomeUsuario" value="${sessionScope.tarm.nomeUsuario}">
+                                            
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group label-floating">
+                                                        <label class='control-label'>Login</label>
+                                                        <input id='login' type='text' name='loginC' onblur="verificandoUserName()" maxlength='30' value='${sessionScope.tarm.nomeUsuario}' class='form-control' disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group label-floating">
+                                                        <label class='control-label'>Senha</label>
+                                                        <input id='senha' type='password' name='senha' value='' maxlength='8' class='form-control'>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group label-floating">
+                                                        <label class='control-label'>Repita a senha</label>
+                                                        <input id='senhaR' type='password' name='senhaR'  maxlength='8' value='' class='form-control'>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>                                                                                                                                                                                                                                                                                                                
+                                            <button type="submit" style="text-transform: uppercase;" class="btn btn-primary pull-right" name="logica" value="GravarCredenciamentoTarm">Atualizar</button>
+                                            <div class="clearfix"></div>
+                                        </form>
                                     </div>
-                                </div>                           
+                                </div>                            
                             </div>                            
                         </div>
                     </div>
-                </div>                                       
-
+                </div>
             </div>
-
         </div>
 
     </body>
@@ -167,6 +177,17 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material.min.js" type="text/javascript"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+
+    <!-- JS Select -->    
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-selectpicker.js" type="text/javascript"></script>
+
+    <!--  Plugin for the Wizard -->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/paper-bootstrap-wizard.js" type="text/javascript"></script>
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/-->
+    <script charset="UTF-8" src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.validate.min.js" type="text/javascript"></script>
+
     <!--  Charts Plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
     <!--  Dynamic Elements plugin -->
@@ -182,13 +203,35 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
-    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script> 
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
 
     <script>
-        <c:if test="${not empty informe.tipoAlerta}">
-            swal({type: '${informe.tipoAlerta}', title: 'Hey...', text: '${informe.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
-                location.href = "controle?logica=Andamento&nomeUsuario=${sessionScope.medico.nomeUsuario}";
+
+        function verificandoUserName() {
+
+            var valorLogin = document.getElementById("login").value;
+
+            $.post("AjaxControle", {logicaAjax: "AjaxValidacaoUserName", login: valorLogin}, function (data, status) {
+
+                var objDados = JSON.parse(data);
+
+                if (objDados[0].confirmacao === 'false') {
+
+                    swal({type: 'info', title: 'Oops...', text: 'O usuário: ' + valorLogin + '. Já existe.', showConfirmButton: false, timer: 4000});
+                    document.getElementById("login").value = "";
+                }
+
             });
+
+        }
+
+    </script>
+    
+    <script>
+        <c:if test="${not empty alerta.tipoAlerta}">
+        swal({type: '${alerta.tipoAlerta}', title: 'Hey...', text: '${alerta.msnAlerta}', showConfirmButton: false, timer: 2500}).then((value) => {
+            location.href = "controle?logica=Conta&nomeUsuario=${sessionScope.tarm.nomeUsuario}";
+        });
         </c:if>
     </script>
 

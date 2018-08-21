@@ -91,6 +91,12 @@
                                 <p>Mapa</p>
                             </a>
                         </li>
+                        <li>
+                            <a href="controle?logica=Conta&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
+                                <i class="material-icons">settings</i>
+                                <p>Conta</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

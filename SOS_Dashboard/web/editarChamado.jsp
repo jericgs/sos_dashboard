@@ -11,7 +11,7 @@
 
     <head>
 
-        <title>TARM - Andamento</title>
+        <title>Tarm - Andamento</title>
 
         <!-- Required meta tags -->                    
         <meta charset="utf-8">                     
@@ -20,7 +20,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">                
-
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
         <!--  Material Dashboard CSS    -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" />
@@ -93,6 +93,12 @@
                                     <p>Mapa</p>
                                 </a>
                             </li>
+                            <li>
+                                <a href="controle?logica=Conta&nomeUsuario=${sessionScope.tarm.nomeUsuario}">
+                                    <i class="material-icons">settings</i>
+                                    <p>Conta</p>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -126,7 +132,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div>
-                                    <div class="card">
+                                    <div class="card wizard-card">
                                         <div class="card-header" data-background-color="red">
                                             <h4 class="title">Atualizar Registro</h4>
                                             <p class="category">Atualizar - 1/1</p>
@@ -139,7 +145,7 @@
                                                 <input type="hidden" name="idP" value="${sessionScope.dadosOcorrencia.idP}">
                                                 <input type="hidden" name="idRC" value="${sessionScope.dadosOcorrencia.idRC}">
                                                 <input type="hidden" name="quantEndereco" value="${sessionScope.dadosOcorrencia.quantEndereco}">
-                                                                                                
+
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group label-floating">
@@ -179,10 +185,10 @@
                                                     </div>
                                                 </div>                                                
                                                 <c:if test="${sessionScope.dadosOcorrencia.quantEndereco == '1'}">
-                                                    
+
                                                     <!-- CAMPOS DA TELA ANTERIOR -->
                                                     <input type="hidden" name="idE1" value="${sessionScope.dadosOcorrencia.endereco1.idE}">
-                                                    
+
                                                     <div class="row ">
                                                         <div class="col-md-4">
                                                             <div class="form-group label-floating">
@@ -238,10 +244,10 @@
                                                     </div>  
                                                 </c:if>
                                                 <c:if test="${sessionScope.dadosOcorrencia.quantEndereco == '2'}">
-                                                    
+
                                                     <!-- CAMPOS DA TELA ANTERIOR -->
                                                     <input type="hidden" name="idE1" value="${sessionScope.dadosOcorrencia.endereco1.idE}">
-                                                    
+
                                                     <div class="row ">
                                                         <div class="col-md-4">
                                                             <div class="form-group label-floating">
@@ -298,7 +304,7 @@
 
                                                     <!-- CAMPOS DA TELA ANTERIOR -->
                                                     <input type="hidden" name="idE2" value="${sessionScope.dadosOcorrencia.endereco2.idE}">
-                                                            
+
                                                     <div class="row ">
                                                         <div class="col-md-4">
                                                             <div class="form-group label-floating">
@@ -375,6 +381,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material.min.js" type="text/javascript"></script>
+
+    <!--  Plugin for the Wizard -->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/paper-bootstrap-wizard.js" type="text/javascript"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/-->
+    <script charset="UTF-8" src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.validate.min.js" type="text/javascript"></script>
     <!--  Charts Plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
     <!--  Dynamic Elements plugin -->
@@ -391,41 +404,45 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/demo.js"></script>
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
-    
+
     <script>
-        function maiusculaSigla(id){
-            
+        function maiusculaSigla(id) {
+
             var x = document.getElementById(id);
             x.value = x.value.toUpperCase();
-                       
-        }
-    </script>    
-    
-    <script type="text/javascript">
-        
-        function apenasNumeros(id){
-                        
-            var valor = document.getElementById(id);
-            var novoTexto = valor.value.replace(/[^0-9]/g,'');
-            valor.value = novoTexto;
-            
-        }
-    
-    </script>    
-    
-    <script>
-        function maiuscula(id){
 
-            var letra=document.getElementById(id).value;
-            letra=letra.split("");
-            var tmp="";
-            for(i=0;i<letra.length;i++){
-                if(letra[i-1]){
-                    if(letra[i-1]===" "){letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
-                }else{letra[i]=letra[i].replace(letra[i],letra[i].toUpperCase());}
-                tmp+=letra[i];
+        }
+    </script>    
+
+    <script type="text/javascript">
+
+        function apenasNumeros(id) {
+
+            var valor = document.getElementById(id);
+            var novoTexto = valor.value.replace(/[^0-9]/g, '');
+            valor.value = novoTexto;
+
+        }
+
+    </script>    
+
+    <script>
+        function maiuscula(id) {
+
+            var letra = document.getElementById(id).value;
+            letra = letra.split("");
+            var tmp = "";
+            for (i = 0; i < letra.length; i++) {
+                if (letra[i - 1]) {
+                    if (letra[i - 1] === " ") {
+                        letra[i] = letra[i].replace(letra[i], letra[i].toUpperCase());
+                    }
+                } else {
+                    letra[i] = letra[i].replace(letra[i], letra[i].toUpperCase());
+                }
+                tmp += letra[i];
             }
-            document.getElementById(id).value=tmp;
+            document.getElementById(id).value = tmp;
         }
     </script>
 
@@ -458,32 +475,15 @@
             id('telefone').onkeyup = function () {
                 mascara(this, mtel);
             };
-            
+
             id('cep').onkeyup = function () {
                 mascara(this, mcep);
             };
-            
+
             id('cepD').onkeyup = function () {
                 mascara(this, mcep);
-            };            
+            };
         };
-    </script>
-    
-    <script>
-        $("#formSolicitante").submit(function () {
-            if ($("#paciente").val() === "" || $("#idade").val() === "" ||
-                $("#queixa").val() === "" || $("#logradouro").val() === "" ||
-                $("#numero").val() === "" || $("#complemento").val() === "" ||
-                $("#bairro").val() === "" || $("#cidade").val() === "" ||
-                $("#cep").val() === "" || $("#cepD").val() === "" ||
-                $("#logradouroD").val() === "" || $("#numeroD").val() === "" ||
-                $("#complementoD").val() === "" || $("#bairroD").val() === "" ||
-                $("#cidadeD").val() === "" || $("#solicitante").val() === "" ||
-                $("#telefone").val() === "") {
-                    swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
-                    return false;
-                }
-            });
-    </script>
-    
+    </script>  
+
 </html>
