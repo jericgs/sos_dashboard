@@ -20,7 +20,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">                
-
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
         <!--  Material Dashboard CSS    -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" />
@@ -123,7 +123,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div>
-                                <div class="card">
+                                <div class="card wizard-card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Sinais Vitais</h4>
                                         <p class="category">Sinais - 1/1</p>
@@ -221,7 +221,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group" style="margin-top: 0px">
                                                         <label class="control-label" style="margin-top: 12px">Gravidade Comprovada</label>                                                        
-                                                        <select id="combobox" name="gravidadeComprovada" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="4">                                                                                                                        
+                                                        <select id="combobox" name="gravidadeComprovada" class="form-control selectpicker" data-style="select-with-transition" data-size="4">                                                                                                                        
                                                             <option value="Pequena">Pequena</option>
                                                             <option value="Média">Média</option>
                                                             <option value="Severa">Severa</option>
@@ -256,6 +256,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-material-design.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-selectpicker.js" type="text/javascript"></script>
 
+    <!--  Plugin for the Wizard -->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/paper-bootstrap-wizard.js" type="text/javascript"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/-->
+    <script charset="UTF-8" src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.validate.min.js" type="text/javascript"></script>
+    
     <!--  Charts Plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
     <!--  Dynamic Elements plugin -->
@@ -273,7 +280,7 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>
 
-    <script>
+<!--    <script>
         $("#formRegulacao").submit(function () {
             if ($("#pa").val() === "" || $("#fc").val() === "" || $("#fr").val() === "" ||
                     $("#sats").val() === "" || $("#satc").val() === "" || $("#temperatura").val() === "" ||
@@ -282,7 +289,7 @@
                 return false;
             }
         });
-    </script>
+    </script>-->
 
     <script type="text/javascript">
         /* Máscaras ER */

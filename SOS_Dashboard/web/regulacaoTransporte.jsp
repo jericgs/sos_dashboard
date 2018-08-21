@@ -20,6 +20,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
         <!--  Material Dashboard CSS -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
@@ -122,7 +123,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div>
-                                <div class="card">
+                                <div class="card wizard-card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Regulação</h4>
                                         <p class="category">Paciente - 1/1</p>
@@ -169,7 +170,7 @@
                                                 <div class="col-md-6">                                                     
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Parecer do Médico</label>                                                        
-                                                        <select autofocus id="comboboxParecer" name="parecer" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="2">                                                                                                                                                                                    
+                                                        <select autofocus id="comboboxParecer" name="parecer" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" data-size="2">                                                                                                                                                                                    
                                                             <option name="aprovado" value="Aprovado">Aprovado</option>                                                            
                                                             <option name="negado" value="Negado">Negado</option>
                                                         </select>                                                        
@@ -178,7 +179,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Tipo de Suporte</label>                                                        
-                                                        <select autofocus id="comboboxSuporte" name="suporte" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="20">                                                                                                                                                                                    
+                                                        <select autofocus id="comboboxSuporte" name="suporte" class="form-control selectpicker" data-style="select-with-transition" data-size="20">                                                                                                                                                                                    
                                                             
                                                         </select>                                                        
                                                     </div> 
@@ -224,7 +225,7 @@
                                                     <div class="form-group">                                                        
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Justificativa</label>
-                                                            <textarea id="justificativa" class="form-control" maxlength="144" name="justificativa" form="formRegulacao" rows="3"></textarea>
+                                                            <textarea id="justificativa" name="justificativa" class="form-control" maxlength="144" name="justificativa" form="formRegulacao" rows="3"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -255,6 +256,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-material-design.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-selectpicker.js" type="text/javascript"></script>
 
+    <!--  Plugin for the Wizard -->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/paper-bootstrap-wizard.js" type="text/javascript"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/-->
+    <script charset="UTF-8" src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.validate.min.js" type="text/javascript"></script>
+    
     <!--  Charts Plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
     <!--  Dynamic Elements plugin -->
@@ -294,15 +302,6 @@
             });
         }
 
-    </script>
-    
-    <script>
-        $("#formRegulacao").submit(function () {
-            if ($("#justificativa").val() === "" || $("#comboboxParecer").val() === "" || $("#comboboxSuporte").val() === "") {
-                swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
-                return false;
-            }
-        });
-    </script>
+    </script>        
     
 </html>

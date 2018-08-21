@@ -19,6 +19,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
         <!--  Material Dashboard CSS -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
@@ -121,7 +122,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div>
-                                <div class="card">
+                                <div class="card wizard-card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Regulação</h4>
                                         <p class="category">Paciente - 2/2</p>
@@ -347,7 +348,7 @@
                                                 <div class="col-md-4">                                                     
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Gravidade do Caso</label>                                                        
-                                                        <select id="comboboxGravidade" name="gravidadeCaso" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                        <select id="comboboxGravidade" name="gravidadeCaso" class="form-control selectpicker" data-style="select-with-transition" data-size="3">                                                                                                                                                                                    
                                                             <option name="baixo" value="4">Baixo</option>                                                            
                                                             <option name="moderado" value="3">Moderado</option>
                                                             <option name="absoluto" value="0">Absoluto</option>
@@ -357,7 +358,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Valor Social</label>                                                        
-                                                        <select id="comboboxSocial" name="valorSocial" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                        <select id="comboboxSocial" name="valorSocial" class="form-control selectpicker" data-style="select-with-transition" data-size="3">                                                                                                                                                                                    
                                                             <option name="minimo" value="4">Mínimo</option>                                                            
                                                             <option name="baixo" value="3">Baixo</option>
                                                             <option name="alto" value="0">Alto</option>
@@ -367,7 +368,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Recursos Necessários</label>                                                        
-                                                        <select id="comboboxRecursos" name="recursos" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="2">                                                                                                                                                                                    
+                                                        <select id="comboboxRecursos" name="recursos" onChange="setSuport();" class="form-control selectpicker" data-style="select-with-transition" data-size="2">                                                                                                                                                                                    
                                                             <option name="possui" value="4">Possui</option>                                                            
                                                             <option name="naoPossui" value="0">Não Possui</option>
                                                         </select>                                                        
@@ -378,7 +379,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Tempo para Atendimento</label>                                                        
-                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();aplicandoDados();getConhecimento()" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="3">                                                                                                                                                                                    
+                                                        <select id="comboboxTempo" name="tempo" onChange="setSuport();aplicandoDados();getConhecimento()" class="form-control selectpicker" data-style="select-with-transition" data-size="3">                                                                                                                                                                                    
                                                             <option name="15min" value="1">Até 15 min</option>                                                            
                                                             <option name="40min" value="2">Até 40 min</option>
                                                             <option name="1h/M" value="4">1h ou Mais</option>
@@ -388,7 +389,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group"  style="margin-top: 0px">
                                                         <label class="control-label" style="position: static">Tipo de Suporte</label>                                                        
-                                                        <select id="comboboxSuporte" name="suporte" class="form-control selectpicker" data-style="select-with-transition" title="Nenhum" data-size="20">                                                                                                                                                                                    
+                                                        <select id="comboboxSuporte" name="suporte" class="form-control selectpicker" data-style="select-with-transition" data-size="20">                                                                                                                                                                                    
 
                                                         </select>                                                        
                                                     </div> 
@@ -431,6 +432,13 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-material-design.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap-selectpicker.js" type="text/javascript"></script>
 
+    <!--  Plugin for the Wizard -->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/paper-bootstrap-wizard.js" type="text/javascript"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/-->
+    <script charset="UTF-8" src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.validate.min.js" type="text/javascript"></script>
+    
     <!--  Charts Plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
     <!--  Dynamic Elements plugin -->
@@ -536,7 +544,7 @@
                                                                      
     </script>   
     
-    <script>
+<!--    <script>
         $("#formRegulacao").submit(function () {
             if ($("#mensagem").val() === "" || $("#comboboxGravidade").val() === "" || $("#comboboxSocial").val() === "" ||
                 $("#comboboxRecursos").val() === "" || $("#comboboxTempo").val() === "" || $("#comboboxSuporte").val() === "") {
@@ -544,7 +552,7 @@
                 return false;
             }
         });
-    </script>
+    </script>-->
     
     <script>        
         function limpandoCampo(id){                         

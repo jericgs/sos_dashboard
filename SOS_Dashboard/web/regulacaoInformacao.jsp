@@ -20,6 +20,7 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/node_modules/bootstrap/compiler/paper-bootstrap-wizard.css"/>
 
         <!--  Material Dashboard CSS -->
         <link href="Resources/node_modules/bootstrap/compiler/style-page3.css" rel="stylesheet" /> 
@@ -122,7 +123,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div>
-                                <div class="card">
+                                <div class="card wizard-card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Regulação</h4>
                                         <p class="category">Paciente - 1/1</p>
@@ -229,8 +230,16 @@
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/bootstrap.min.js" type="text/javascript"></script>
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/material.min.js" type="text/javascript"></script>
-    <!--  Charts Plugin -->
+    <!--  Charts Plugin -->    
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/chartist.min.js"></script>
+    
+    <!--  Plugin for the Wizard -->
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/paper-bootstrap-wizard.js" type="text/javascript"></script>
+    <script src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.bootstrap.wizard.js" type="text/javascript"></script> 
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/-->
+    <script charset="UTF-8" src="Resources/node_modules/bootstrap/js/disp-dasboard/jquery.validate.min.js" type="text/javascript"></script>
+    
     <!--  Dynamic Elements plugin -->
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/arrive.min.js"></script>
     <!--  PerfectScrollbar Library -->
@@ -246,14 +255,14 @@
     <!-- momentjs.com -->        
     <script src="Resources/node_modules/bootstrap/js/disp-dasboard/moment-with-locales.js"></script>  
 
-    <script>
+<!--    <script>
         $("#formRegulacao").submit(function () {
             if ($("#justificativa").val() === "") {
                 swal({type: 'info', title: 'Oops...', text: 'Campos em Branco!', showConfirmButton: false, timer: 2000});
                 return false;
             }
         });
-    </script>
+    </script>-->
     
     <script type = "text/javascript" >
 
