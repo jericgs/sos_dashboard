@@ -89,7 +89,7 @@ public class GravarSinaisVitais implements Logica {
             
             //MODELO SINAIS VITAIS
             SinaisVitais sinaisVitais = new SinaisVitais();
-            sinaisVitais.setIdV(idVsa);
+            sinaisVitais.setIdV(idVsb);
             sinaisVitais.setPa(pa);
             sinaisVitais.setFc(fc);
             sinaisVitais.setFr(fr);

@@ -125,7 +125,7 @@
                                 <div class="card">
                                     <div class="card-header" data-background-color="red">
                                         <h4 class="title">Registro de Regulação</h4>
-                                        <p class="category">Paciente - 1/N</p>
+                                        <p class="category">Paciente - 1/2</p>
                                     </div>
                                     <div class="card-content">
                                         <form id="formRegulacao" action="controle" method="post">
