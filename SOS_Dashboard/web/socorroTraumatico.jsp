@@ -59,7 +59,7 @@
                         <div>
                             <img src="Resources/imagens/icons/dashboard-logo.png">       
                         </div> 
-                        <a class="simple-text textLogo">
+                        <a class="simple-text textLogo" style="padding-top: 12px;">
                             SOS Dashboard
                         </a>                        
                     </a>                        
