@@ -219,7 +219,7 @@
                         <p class="lead mb-0"><span class="fa fa-phone-square"></span> (84) 3315-4917<br><span class="fa fa-phone-square"></span> (84) 3315-4883</p>
                     </div>
                     <div class="col-md-6 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Nós encontre</h4>
+                        <h4 class="text-uppercase mb-4">Nos encontre</h4>
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item">
                                 <a class="btn btn-outline-light btn-social text-center rounded-circle" href="https://www.facebook.com/SAMU-192-RN-Mossor%C3%B3-DJ-199721106877265/">
