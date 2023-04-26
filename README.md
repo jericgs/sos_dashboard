@@ -45,7 +45,7 @@
 <p align="justify">Através da simulação é apresentado de forma mais sucinta as funcionalidades do SOS Socorrista .</p>
 
 <p align="center">
-<a href="http://www.youtube.com/watch?v=vwISwVC18T0"><img src="http://img.youtube.com/vi/vwISwVC18T0/0.jpg" height="338" width="504" alt="SOS Socorrista Web" /></a>
+<a href="https://www.youtube.com/watch?v=-XMV7XYdW-Q"><img src="http://img.youtube.com/vi/-XMV7XYdW-Q/0.jpg" height="338" width="504" alt="SOS Socorrista Web" /></a>
 </p>
 
 ## Aplicação
